@@ -11,6 +11,11 @@ class IndexFactory{
 				return require_once('configure/routes.php');
 			},
 			function(){
+				require_once('IndexRoutesObserverFactory.php');
+
+				return array(
+					'index_routes_observer'=>\premade\IndexRoutesObserverFactory::create()
+				);
 			}
 			);
 	}
