@@ -11,6 +11,7 @@ class Index{
 		var_dump($this->_routes);
 		$this->_observers=$observersCallback();
 		var_dump($this->_observers);
+		$this->_update();
 	}
 
 	public function attachObserver($observerKey,$observer){
@@ -19,5 +20,11 @@ class Index{
 
 	public function detachObserver($observerKey){
 		unset($this->_observers[$observerKey]);
+	}
+
+	protected function _notify(){
+		foreach($this->_observers as $key=>$observer){
+			$observer->update($this);
+		}
 	}
 }

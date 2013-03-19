@@ -8,7 +8,11 @@ class IndexFactory{
 	public static function create($object='\premade\Index'){
 		return new $object(
 			function(){
-				return require_once('configure/routes.php');
+				$routes=require_once('configure/routes.php');
+
+				$routes['class']=$routes['class']();
+
+				return $routes;
 			},
 			function(){
 				require_once('IndexRoutesObserverFactory.php');
