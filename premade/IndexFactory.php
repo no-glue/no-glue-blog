@@ -11,6 +11,8 @@ class IndexFactory{
 				$routes=require_once('configure/routes.php');
 
 				$routes['class']=$routes['class']();
+				$routes['action']=$routes['action']();
+				$routes['params']=$routes['params']();
 
 				return $routes;
 			},

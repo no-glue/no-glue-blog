@@ -8,10 +8,12 @@ class Index{
 
 	public function __construct($routesCallback,$observersCallback){
 		$this->_routes=$routesCallback();
-		var_dump($this->_routes);
 		$this->_observers=$observersCallback();
-		var_dump($this->_observers);
-		$this->_update();
+		$this->_notify();
+	}
+
+	public function getRoutes(){
+		return $this->_routes;
 	}
 
 	public function attachObserver($observerKey,$observer){
