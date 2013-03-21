@@ -7,7 +7,7 @@ class Index{
 	}
 
 	public function index(){
-		require_once('views/index_index.php');
+		require_once('views/template.php');
 	}
 }
 
