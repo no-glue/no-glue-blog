@@ -1,3 +1,3 @@
-No Glue
+Sensible code
 _______
-A set of PHP classes to make development easier. 
+Personal site. 
