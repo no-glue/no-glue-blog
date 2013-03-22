@@ -13,7 +13,6 @@ class IndexFactory{
 				$routes['class']=$routes['class']();
 				$routes['action']=$routes['action']();
 				$routes['params']=$routes['params']();
-				var_dump($routes['params']);
 
 				return $routes;
 			},

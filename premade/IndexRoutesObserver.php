@@ -8,7 +8,14 @@ class IndexRoutesObserver{
 
 	public function update($index){
 		$routes=$index->getRoutes();
-		$application=require_once($routes['folder'].'/'.$routes['class'].'.php');
+
+		if($routes['class']&&$routes['action']){
+			$application=require_once($routes['folder'].'/'.$routes['class'].'.php');
+		} else {
+			$application=require_once($routes['folder'].'/PageNotFound.php');
+			$routes['action']='index';
+		}
+
 		$application->$routes['action']($routes['params']);
 	}
 }
