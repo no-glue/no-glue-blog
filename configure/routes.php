@@ -23,7 +23,7 @@ return array(
 	'params'=>function(){
 		require_once('premade/LettersFactory.php');
 		$letters=\premade\LettersFactory::create();
-		return $letters->getCorrectParams($_GET['params'],
+		return $letters->getCorrectParams(array_slice($_GET,2),
 		function($word){
 			return strtolower($word);
 		},

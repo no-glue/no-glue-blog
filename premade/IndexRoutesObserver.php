@@ -16,6 +16,6 @@ class IndexRoutesObserver{
 			$routes['action']='index';
 		}
 
-		$application->$routes['action']($routes['params']);
+		call_user_func_array(array($application,$routes['action']),$routes['params']);
 	}
 }
