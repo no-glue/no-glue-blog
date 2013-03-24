@@ -10,7 +10,7 @@ class Index{
 		require_once('views/index_index.php');
 	}
 
-	public function test($paramFirst){
+	public function testParams($paramFirst){
 		var_dump($paramFirst);
 	}
 }
