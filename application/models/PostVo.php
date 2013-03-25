@@ -9,4 +9,12 @@ class PostVo{
 	protected $_body;
 	protected $_created;
 	protected $_modified;
+
+	public function setId($id){
+		$this->_id=$id;
+	}
+
+	public function getId($id){
+		return $this->_id;
+	}
 }
