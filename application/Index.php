@@ -20,4 +20,7 @@ class Index{
 	}
 }
 
-return new \application\Index(new \application\PostDao(new \application\PostVo()));
+return new \application\Index(
+	new \application\PostDao(\premade\DatabaseConnectionFactory::create(),
+	new \application\PostVo())
+);
