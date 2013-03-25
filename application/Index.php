@@ -2,8 +2,13 @@
 
 namespace application;
 
+require_once('models/PostDao.php');
+
 class Index{
-	public function __construct(){
+	protected $_postDao;
+
+	public function __construct($postDao=NULL){
+		$this->_postDao=$postDao;
 	}
 
 	public function index(){
