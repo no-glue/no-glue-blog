@@ -20,4 +20,4 @@ class Index{
 	}
 }
 
-return new \application\Index();
+return new \application\Index(new \application\PostVo());
