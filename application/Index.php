@@ -7,7 +7,7 @@ require_once('models/PostDao.php');
 class Index{
 	protected $_postDao;
 
-	public function __construct($postDao=NULL){
+	public function __construct($postDao){
 		$this->_postDao=$postDao;
 	}
 
@@ -20,4 +20,4 @@ class Index{
 	}
 }
 
-return new \application\Index(new \application\PostVo());
+return new \application\Index(new \application\PostDao(new \application\PostVo()));
