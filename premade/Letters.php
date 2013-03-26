@@ -12,7 +12,7 @@ class Letters{
 		$this->_lettersUnderscoresNumbersOnly='/[^a-z_0-9]/';
 	}
 
-	public function getCorrectExpression($word,$callback,$rule='_lettersUnderscoresOnly'){
+	protected function _check($word,$rule){
 		if(!$word){
 			return $word;
 		}
@@ -21,17 +21,25 @@ class Letters{
 			return NULL;
 		}
 
+		return TRUE;
+	}
+
+	public function getCorrectClass($word,$callback,$rule){
+		$check=$this->_check($word,$rule);
+
+		if(!$check){
+			return $check;
+		}
+
 		return $callback(str_replace(' ','',ucwords(str_replace('_',' ',$word))));
 	}
 
 	public function getCorrectParams($array,$callback,$rule){
 		foreach($array as $key=>$item){
-			if(!item){
-				return $item;
-			}
+			$check=$this->_check($item,$rule);
 
-			if(preg_match_all($this->$rule,$item)){
-				return NULL;
+			if(!$check){
+				return $check;
 			}
 
 			$array[$key]=$callback($item);
@@ -39,6 +47,7 @@ class Letters{
 
 		return $array;
 	}
+
 	public static function getInstance(){
 		if(!self::$_instance){
 			self::$_instance=new \premade\Letters();
