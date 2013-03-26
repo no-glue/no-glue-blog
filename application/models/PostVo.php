@@ -1,6 +1,6 @@
 <?php
 
-namespace application;
+namespace application\models;
 
 class PostVo{
 	protected $_id;

@@ -1,6 +1,6 @@
 <?php
 
-namespace application;
+namespace application\models;
 
 require_once('premade/DatabaseConnectionFactory.php');
 require_once('PostVo.php');

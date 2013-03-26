@@ -4,6 +4,8 @@ namespace application;
 
 require_once('models/PostDao.php');
 
+use application\models;
+
 class Index{
 	protected $_postDao;
 
@@ -21,6 +23,6 @@ class Index{
 }
 
 return new \application\Index(
-	new \application\PostDao(\premade\DatabaseConnectionFactory::create(),
-	new \application\PostVo())
+	new \application\models\PostDao(\premade\DatabaseConnectionFactory::create(),
+	new \application\models\PostVo())
 );
