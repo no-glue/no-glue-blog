@@ -24,5 +24,5 @@ class Index{
 
 return new \application\Index(
 	new \application\models\PostDao(\premade\DatabaseConnectionFactory::create(),
-	new \application\models\PostVo())
+	new \application\models\PostVo(new \application\models\ValidationRules()))
 );

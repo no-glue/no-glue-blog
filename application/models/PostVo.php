@@ -2,6 +2,8 @@
 
 namespace application\models;
 
+require_once('ValidationRules.php');
+
 class PostVo{
 	protected $_id;
 	protected $_name;
@@ -9,6 +11,11 @@ class PostVo{
 	protected $_body;
 	protected $_created;
 	protected $_modified;
+	protected $_validationRules;
+
+	public function __construct($validationRules=NULL){
+		$this->_validationRules=$validationRules;
+	}
 
 	public function setId($id){
 		$this->_id=$id;
