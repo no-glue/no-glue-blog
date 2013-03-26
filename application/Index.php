@@ -20,9 +20,14 @@ class Index{
 	public function testParams($paramFirst){
 		var_dump($paramFirst);
 	}
+
+	public function testDatabase(){
+		
+	}
 }
 
 return new \application\Index(
-	new \application\models\PostDao(\premade\DatabaseConnectionFactory::create(),
-	new \application\models\PostVo(new \application\models\ValidationRules()))
+	new \application\models\PostDao(
+		\premade\DatabaseConnectionFactory::create()
+	)
 );

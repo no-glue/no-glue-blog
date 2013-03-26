@@ -13,8 +13,9 @@ class PostVo{
 	protected $_modified;
 	protected $_validationRules;
 
-	public function __construct($validationRules=NULL){
-		$this->_validationRules=$validationRules;
+	public function __construct($validationRules=array()){
+		$this->_validationRules=new \application\models\ValidationRules();
+		$this->_validationRules->setValidationRules($validationRules);
 	}
 
 	public function setId($id){

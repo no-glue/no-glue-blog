@@ -16,12 +16,12 @@ class ValidationRules{
 			});
 
 		$this->_validationRules=array_merge($this->_validationRules,
-				$alidationRules
+				$validationRules
 			);
 	}
 
-	public function setValidationRulesa($validationRules){
-		$this->_valiationRules=array_merge($this->_validationRules,
+	public function setValidationRules($validationRules){
+		$this->_validationRules=array_merge($this->_validationRules,
 				$validationRules
 			);	
 	}
