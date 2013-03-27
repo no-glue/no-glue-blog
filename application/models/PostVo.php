@@ -13,11 +13,6 @@ class PostVo{
 	protected $_modified;
 	protected $_validationRules;
 
-	public function __construct($validationRules=array()){
-		$this->_validationRules=new \application\models\ValidationRules();
-		$this->_validationRules->setValidationRules($validationRules);
-	}
-
 	public function setId($id){
 		$this->_id=$id;
 	}
@@ -64,5 +59,13 @@ class PostVo{
 
 	public function getModified(){
 		return $this->_modified;
+	}
+
+	public function setValidationRules($validationRules){
+		$this->_validationRules=new \application\models\ValidationRules($validationRules);
+	}
+
+	public function getValidationRules(){
+		return $this->_validationRules;
 	}
 }
