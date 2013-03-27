@@ -22,7 +22,7 @@ class Index{
 	}
 
 	public function testDatabase(){
-		
+		var_dump($this->_postDao->getPosts());
 	}
 }
 

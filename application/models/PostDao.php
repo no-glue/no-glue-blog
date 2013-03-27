@@ -32,9 +32,14 @@ class PostDao{
 
 			return $postVo;
 
-		} catch(PDOException $ex){
+		} catch(PDOException $ex) {
 			return NULL;
 		}
 	}
-			
+	
+	public function getPosts(){
+		$sql='SELECT * FROM posts';
+
+		return $this->execute($sql);
+	}
 }
