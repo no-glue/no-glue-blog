@@ -98,4 +98,8 @@ class PostVo{
 	public function getValidationRules(){
 		return $this->_validationRules;
 	}
+
+	public function getValue($field){
+		return $this->$field;
+	}
 }

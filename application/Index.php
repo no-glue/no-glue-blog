@@ -24,6 +24,28 @@ class Index{
 	public function testDatabase(){
 		var_dump($this->_postDao->getPosts());
 	}
+
+	public function testValidationPositive(){
+		var_dump($this->_postDao->validateAndSave(new \application\models\PostVo(
+			NULL,
+			'far-far-new',
+			'far far away',
+			'far far away',
+			time(),
+			time()
+		)));
+	}
+
+	public function testValidationNegative(){
+		var_dump($this->_postDao->validateAndSave(new \application\models\PostVo(
+			NULL,
+			'',
+			'far far away',
+			'far far away',
+			time(),
+			time()
+		)));
+	}
 }
 
 return new \application\Index(

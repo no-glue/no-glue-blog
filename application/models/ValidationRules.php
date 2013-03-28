@@ -8,7 +8,9 @@ class ValidationRules{
 	public function __construct(){
 		$this->_validationRules=array(
 			'notempty'=>function($item){
-				if(empty($item)){
+				$item=(bool)$item;
+
+				if(!$item){
 					return NULL;
 				} else {
 					return $item;
