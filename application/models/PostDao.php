@@ -48,20 +48,21 @@ class PostDao{
 		$result=TRUE;
 
 		foreach($validationRules as $field=>$rules){
-			foreach($rules as $rule){
-				$result&=$rule($postVo->getValue($field));
+			foreach($rules as $ruleName=>$ruleObject){
+				$rule=$ruleObject->getValidationRules();
+				$result&=$rule[$ruleName]($postVo->getValue($field));
+
+				if(!$result){
+					return NULL;
+				}
 			}
 		}
 
-		if(!$result){
-			return NULL;
-		}
+		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')';
 
-		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.postVo->getCreated().','.$postVo->getModified().')';
-		
 		try{
 			$this->_databaseConnection->getConnection()->query($sql);
-			
+
 			return $this->_databaseConnection->getConnection()->rowCount();
 		} catch(PDOException $ex) {
 			return NULL;
