@@ -32,6 +32,7 @@ class PostVo{
 		if(!empty($validationRules)){
 			foreach($validationRules as $field=>$rules){
 				foreach($rules as $rule){
+					$this->_validationRules[$field][$rule]=\application\models\ValidationRulesRefinery::refine('\application\models\ValidationRules',$rule);
 				}
 			}
 		} else {
