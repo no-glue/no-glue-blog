@@ -2,7 +2,7 @@
 
 namespace application\models;
 
-require_once('ValidationRules.php');
+require_once('ValidationRulesRefinery.php');
 
 class PostVo{
 	protected $_id;
@@ -12,6 +12,35 @@ class PostVo{
 	protected $_created;
 	protected $_modified;
 	protected $_validationRules;
+
+	public function __construct(
+		$id=NULL,
+		$name='',
+		$title='',
+		$body='',
+		$created=NULL,
+		$modified=NULL,
+		$validationRules=array()
+	){
+		$this->_id=$id;
+		$this->_name=$name;
+		$this->_title=$title;
+		$this->_body=$body;
+		$this->_created=$created;
+		$this->_modified=$modified;
+
+		if(!empty($validationRules)){
+			foreach($validationRules as $field=>$rules){
+				foreach($rules as $rule){
+				}
+			}
+		} else {
+			$this->_validationRules=array(
+				'_name'=>array(
+					'notempty'=>ValidationRulesRefinery::refine('\application\models\ValidationRules','notempty')
+			));
+		}
+	}
 
 	public function setId($id){
 		$this->_id=$id;
@@ -62,7 +91,7 @@ class PostVo{
 	}
 
 	public function setValidationRules($validationRules){
-		$this->_validationRules=new \application\models\ValidationRules($validationRules);
+		$this->_validationRules=$validationRules;
 	}
 
 	public function getValidationRules(){

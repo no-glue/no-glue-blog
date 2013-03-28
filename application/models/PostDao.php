@@ -42,4 +42,29 @@ class PostDao{
 
 		return $this->execute($sql);
 	}
+
+	public function validateAndSave($postVo){
+		$validationRules=$postVo->getValidationRules();
+		$result=TRUE;
+
+		foreach($validationRules as $field=>$rules){
+			foreach($rules as $rule){
+				$result&=$rule($postVo->getValue($field));
+			}
+		}
+
+		if(!$result){
+			return NULL;
+		}
+
+		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.postVo->getCreated().','.$postVo->getModified().')';
+		
+		try{
+			$this->_databaseConnection->getConnection()->query($sql);
+			
+			return $this->_databaseConnection->getConnection()->rowCount();
+		} catch(PDOException $ex) {
+			return NULL;
+		}
+	}
 }
