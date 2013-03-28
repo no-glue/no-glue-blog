@@ -38,7 +38,7 @@ class PostVo{
 		} else {
 			$this->_validationRules=array(
 				'_name'=>array(
-					'notempty'=>ValidationRulesRefinery::refine('\application\models\ValidationRules','notempty')
+					'notempty'=>\application\models\ValidationRulesRefinery::refine('\application\models\ValidationRules','notempty')
 			));
 		}
 	}
