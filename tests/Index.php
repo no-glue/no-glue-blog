@@ -8,6 +8,8 @@ class Index{
 	protected $_postDao;
 	protected $_observers;
 	protected $_tests;
+	protected $_testsSucceeded;
+	protected $_testsFailed;
 
 	public function __construct($postDao=NULL,
 		$observers=array(),
@@ -17,8 +19,6 @@ class Index{
 		$this->_observers=$observers;
 		$this->_tests=$tests;
 
-		print 'Tests Index';
-		
 		$this->_notify();
 	}
 
@@ -28,6 +28,18 @@ class Index{
 
 	public function detachObserver($observerKey){
 		unset($this->_observers[$observerKey]);
+	}
+
+	public function getTests(){
+		return $this->_tests;
+	}
+
+	public function addTestSucceeded($test){
+		$this->_testsSucceeded[]=$test;
+	}
+
+	public function addTestFailed($test){
+		$this->_testsFailed[]=$test;
 	}
 
 	protected function _notify(){
