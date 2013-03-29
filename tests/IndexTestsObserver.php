@@ -23,4 +23,7 @@ class IndexTestsObserver{
 	protected function _printFailedTests($index){
 		print "Failed tests\n\n";
 	}
+
+	protected function _testDatabase($index){
+	}
 }

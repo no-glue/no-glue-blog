@@ -51,4 +51,4 @@ class Index{
 
 new \tests\Index(NULL,array(
 	'IndexTestsObserver'=>\tests\IndexTestsObserverFactory::create()
-),array());
+),array('test_database'=>'_testDatabase'));
