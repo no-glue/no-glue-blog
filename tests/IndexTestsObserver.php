@@ -3,21 +3,25 @@
 namespace tests;
 
 class IndexTestsObserver{
-	public function __construct(){}
+	protected $_postDao;
+
+	public function __construct($postDao){
+		$this->_postDao=$postDao;
+	}
 
 	public function update($index){
 		$tests=$index->getTests();
 
 		foreach($tests as $testName=>$testFunction){
 			$testFunction='_'.$testFunction;
-			$this->$testFunction($index);
+			$this->$testFunction($index,$testName);
 		}
 
-		$this->_printSuccessfulTests($index);
-		$this->_printFailedTests($index);
+		$this->_printTestsSucceeded($index);
+		$this->_printTestsFailed($index);
 	}
 
-	protected function _printSuccessfulTests($index){
+	protected function _printTestsSucceeded($index){
 		print "Successful tests\n\n";
 
 		$testsSucceeded=$index->getTestsSucceeded();
@@ -27,7 +31,7 @@ class IndexTestsObserver{
 		}
 	}
 
-	protected function _printFailedTests($index){
+	protected function _printTestsFailed($index){
 		print "Failed tests\n\n";
 
 		$testsFailed=$index->getTestsFailed();
@@ -37,6 +41,16 @@ class IndexTestsObserver{
 		}
 	}
 
-	protected function _testDatabase($index){
+	protected function _testDatabase($index,$testName){
+		$posts=$this->_postDao->getPosts();
+		$actual=(int)$posts[0]->getId();
+		$expected=(int)1;
+		$claim=$actual.'=='.$expected;		
+
+		if(assert($claim)){
+			$index->addTestSucceeded($testName);
+		} else {
+			$index->addTestFailed($testName);
+		}
 	}
 }
