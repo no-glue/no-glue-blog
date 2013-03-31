@@ -17,8 +17,10 @@ class PostDao{
 	public function execute($sql){
 		try{
 			$rowNumber=0;
+			$statement=$this->_databaseConnection->getConnection()->prepare($sql);
+			$statement->execute();
 
-			foreach($this->_databaseConnection->getConnection()->query($sql) as $row){
+			while($row=$statement->fetch()){
 				$postVo[$rowNumber]=new \application\models\postVo();
 
 				$postVo[$rowNumber]->setId($row['id']);
@@ -61,9 +63,10 @@ class PostDao{
 		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')';
 
 		try{
-			$this->_databaseConnection->getConnection()->query($sql);
+			$statement=$this->_databaseConnection->getConnection()->prepare($sql);
+			$statement->execute();
 
-			return $this->_databaseConnection->getConnection()->rowCount();
+			return $statement->rowCount();
 		} catch(PDOException $ex) {
 			return NULL;
 		}
