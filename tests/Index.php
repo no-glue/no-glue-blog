@@ -38,8 +38,16 @@ class Index{
 		$this->_testsSucceeded[]=$test;
 	}
 
+	public function getTestsSucceeded(){
+		return $this->_testsSucceeded;
+	}
+
 	public function addTestFailed($test){
 		$this->_testsFailed[]=$test;
+	}
+
+	public function getTestsFailed(){
+		return $this->_testsFailed;
 	}
 
 	protected function _notify(){
@@ -51,4 +59,4 @@ class Index{
 
 new \tests\Index(NULL,array(
 	'IndexTestsObserver'=>\tests\IndexTestsObserverFactory::create()
-),array('test_database'=>'_testDatabase'));
+),array('test_database'=>'testDatabase'));
