@@ -34,7 +34,7 @@ class IndexTestsObserver{
 
 	protected function _printTestsFailed($index){
 		print "Failed tests\n\n";
-		print "______________________________________________\n\n";
+		print "----------------------------------------------\n\n";
 
 		$testsFailed=$index->getTestsFailed();
 
