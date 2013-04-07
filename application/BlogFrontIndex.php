@@ -2,13 +2,19 @@
 
 namespace application;
 
+use application\classes;
+
 class BlogFrontIndex{
 	public function __construct(){}
 
 	public function index(){
 		$values=(Object)array(
 			'css'=>array(
-				'main'=>'<link href=\'application/assets/css/sensiblecode.css\' type=\'text/css\' rel=\'stylesheet\' />'
+				'main'=>array(
+					'location'=>'application/assets/css/sensiblecode.css',
+					'type'=>'text/css',
+					'rel'=>'stylesheet'
+				)
 			),
 			'subviews'=>array(
 				'header'=>array(
@@ -20,6 +26,7 @@ class BlogFrontIndex{
 			)
 		);
 
+		require_once('classes/Links.php');
 		require_once('views/blog_front_template.php');
 	}
 

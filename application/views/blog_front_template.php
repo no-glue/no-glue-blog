@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo $values->css['main']; ?>
+	<?php echo \application\classes\Links::css($values->css['main']['location'],$values->css['main']['type'],$values->css['main']['rel']); ?>
 </head>
 <body>
 	<div id='container'>
