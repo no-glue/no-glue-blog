@@ -2,23 +2,19 @@
 
 namespace application\models;
 
-require_once('premade/DatabaseConnectionFactory.php');
 require_once('PostVo.php');
 
-use premade;
-
 class PostDao{
-	protected $_databaseConnection;
+	protected $_databaseWrapper;
 
-	public function __construct($databaseConnection){
-		$this->_databaseConnection=$databaseConnection;
+	public function __construct($databaseWrapper){
+		$this->_databaseWrapper=$databaseWrapper;
 	}
 
 	public function execute($sql){
 		try{
 			$rowNumber=0;
-			$statement=$this->_databaseConnection->getConnection()->prepare($sql);
-			$statement->execute();
+			$statement=$this->_databaseWrapper->execute($sql);
 
 			while($row=$statement->fetch()){
 				$postVo[$rowNumber]=new \application\models\postVo();
@@ -34,7 +30,7 @@ class PostDao{
 
 			return $postVo;
 
-		} catch(PDOException $ex) {
+		}catch(Exception $ex){
 			return NULL;
 		}
 	}
@@ -63,11 +59,10 @@ class PostDao{
 		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')';
 
 		try{
-			$statement=$this->_databaseConnection->getConnection()->prepare($sql);
-			$statement->execute();
+			$statement=$this->_databaseWrapper->execute($sql);
 
 			return $statement->rowCount();
-		} catch(PDOException $ex) {
+		}catch(Exception $ex){
 			return NULL;
 		}
 	}
