@@ -3,8 +3,7 @@
 namespace application;
 
 class Index{
-	public function __construct(){
-	}
+	public function __construct(){}
 
 	public function index(){
 		$values=(Object)array(
@@ -22,6 +21,10 @@ class Index{
 		);
 
 		require_once('views/template.php');
+	}
+
+	public function testParams($paramFirst){
+		var_dump($paramFirst);
 	}
 }
 
