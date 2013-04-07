@@ -19,4 +19,12 @@ class PdoDatabaseWrapper{
 			return NULL;
 		}
 	}
+
+	public function fetch($statement){
+		try{
+			return $statement->fetch();
+		}catch(PDOException $ex){
+			return NULL;
+		}
+	}
 }

@@ -61,7 +61,8 @@ new \tests\Index(NULL,array(
 	'IndexTestsObserver'=>\tests\IndexTestsObserverFactory::create()
 ),
 array(
-	'test_database'=>'testDatabase',
+	'test_database_connect'=>'testDatabaseConnect',
 	'test_validation_positive'=>'testValidationPositive',
-	'test_validation_negative'=>'testValidationNegative'
+	'test_validation_negative'=>'testValidationNegative',
+	'test_insert_to_database'=>'testInsertToDatabase'
 ));

@@ -43,7 +43,7 @@ class IndexTestsObserver{
 		}
 	}
 
-	protected function _testDatabase($index,$testName){
+	protected function _testDatabaseConnect($index,$testName){
 		print "$testName\n\n";
 		print "..............................................\n\n";
 
@@ -63,15 +63,15 @@ class IndexTestsObserver{
 		print "$testName\n\n";
 		print "..............................................\n\n";
 
-		$actual=(int)$this->_postDao->validateAndSave(new \application\models\PostVo(
+		$actual=(string)'\''.$this->_postDao->validate(new \application\models\PostVo(
 			NULL,
 			'far-far-new',
 			'far far away',
 			'far far away',
 			time(),
 			time()
-		));
-		$expected=(int)1;
+		))->getName().'\'';
+		$expected=(string)'\'far-far-new\'';
 		$claim=$actual.'=='.$expected;
 
 		if(assert($claim)){
@@ -85,7 +85,7 @@ class IndexTestsObserver{
 		print "$testName\n\n";
 		print "..............................................\n\n";
 
-		$actual=(int)$this->_postDao->validateAndSave(new \application\models\PostVo(
+		$actual=(int)$this->_postDao->validate(new \application\models\PostVo(
 			NULL,
 			'',
 			'far far away',
@@ -102,4 +102,27 @@ class IndexTestsObserver{
 			$index->addTestFailed($testName);
 		}
 	}	
+
+	protected function _testInsertToDatabase($index,$testName){
+		print "$testName\n\n";
+		print "..............................................\n\n";
+
+		$actual=(int)$this->_postDao->save(new \application\models\PostVo(
+			NULL,
+			'far-far-new',
+			'far far away',
+			'far far away',
+			time(),
+			time()
+		));
+		$expected=(int)1;
+		$claim=$actual.'=='.$expected;
+
+		if(assert($claim)){
+			$index->addTestSucceeded($testName);
+		} else {
+			$index->addTestFailed($testName);
+		}
+	}
+		
 }

@@ -12,27 +12,22 @@ class PostDao{
 	}
 
 	public function execute($sql){
-		try{
-			$rowNumber=0;
-			$statement=$this->_databaseWrapper->execute($sql);
+		$rowNumber=0;
+		$statement=$this->_databaseWrapper->execute($sql);
 
-			while($row=$statement->fetch()){
-				$postVo[$rowNumber]=new \application\models\postVo();
+		while($row=$this->_databaseWrapper->fetch($statement)){
+			$postVo[$rowNumber]=new \application\models\postVo();
 
-				$postVo[$rowNumber]->setId($row['id']);
-				$postVo[$rowNumber]->setName($row['name']);
-				$postVo[$rowNumber]->setTitle($row['title']);
-				$postVo[$rowNumber]->setBody($row['body']);
-				$postVo[$rowNumber]->setCreated($row['created']);
-				$postVo[$rowNumber]->setModified($row['modified']);
-				$rowNumber++;
-			}
-
-			return $postVo;
-
-		}catch(Exception $ex){
-			return NULL;
+			$postVo[$rowNumber]->setId($row['id']);
+			$postVo[$rowNumber]->setName($row['name']);
+			$postVo[$rowNumber]->setTitle($row['title']);
+			$postVo[$rowNumber]->setBody($row['body']);
+			$postVo[$rowNumber]->setCreated($row['created']);
+			$postVo[$rowNumber]->setModified($row['modified']);
+			$rowNumber++;
 		}
+
+		return $postVo;
 	}
 	
 	public function getPosts(){
@@ -41,7 +36,7 @@ class PostDao{
 		return $this->execute($sql);
 	}
 
-	public function validateAndSave($postVo){
+	public function validate($postVo){
 		$validationRules=$postVo->getValidationRules();
 		$result=TRUE;
 
@@ -56,14 +51,14 @@ class PostDao{
 			}
 		}
 
+		return $postVo;
+	}
+
+	public function save($postVo){
 		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')';
 
-		try{
-			$statement=$this->_databaseWrapper->execute($sql);
+		$statement=$this->_databaseWrapper->execute($sql);
 
-			return $statement->rowCount();
-		}catch(Exception $ex){
-			return NULL;
-		}
+		return $statement->rowCount();
 	}
 }
