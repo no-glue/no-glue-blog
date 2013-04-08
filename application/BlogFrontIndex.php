@@ -27,6 +27,7 @@ class BlogFrontIndex{
 		);
 
 		require_once('classes/Links.php');
+
 		require_once('views/blog_front_template.php');
 	}
 
