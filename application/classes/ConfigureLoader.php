@@ -3,9 +3,10 @@
 namespace application\classes;
 
 class ConfigureLoader{
-	public static function load($folder,$file){
-		$loaded=require_once($folder.'/'.$file);
+	public static function help($folder='configure/',$file='host.php'){
+		$loaded=require_once($folder.$file);
+		$host=(Object)$loader;
 
-		return (Object)$loaded;
+		return $host->host;
 	}
 }
