@@ -10,7 +10,9 @@ class BlogFrontIndex{
 	public function index(){
 		require_once('classes/View.php');
 
-		\application\classes\View::load('blog_front_template.php');
+		\application\classes\View::load('blog_front_template.php',
+			'blog_front_index_index.php'
+		);
 	}
 }
 
