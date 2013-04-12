@@ -4,7 +4,7 @@ namespace application;
 
 use application\classes;
 
-class BlogFrontIndex{
+class BlogFrontContacts{
 	public function __construct(){}
 
 	public function index(){
@@ -22,14 +22,14 @@ class BlogFrontIndex{
 					'blog_front_description'=>'blog_front_description.php'
 				),
 				'blog_front_menu'=>'blog_front_menu_logged_out.php',
-				'blog_front_body'=>'blog_front_about_me.php'
+				'blog_front_body'=>'blog_front_contact.php'
 			)
 		);
 
 		require_once('classes/Links.php');
 
-		require_once('views/blog_front_template.php');
+		require_once('views/blog_front_contacts_index.php');
 	}
 }
 
-return new \application\BlogFrontIndex();
+return new \application\BlogFrontContacts();
