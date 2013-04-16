@@ -3,7 +3,7 @@
 return array(
 	'css'=>array(
 		'main'=>array(
-			'location'=>'application/assets/css/sensiblecode.css',
+			'location'=>'application/css/sensiblecode.css',
 			'type'=>'text/css',
 			'rel'=>'stylesheet'
 		)
