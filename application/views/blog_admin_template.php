@@ -6,12 +6,12 @@
 <body>
 	<div id='container'>
 		<div id='header'>
-			<?php require_once($values['subviews']['header']['blog_front_title']); ?>
-			<?php require_once($values['subviews']['header']['blog_front_description']); ?>
-			<?php require_once($values['subviews']['blog_front_menu']); ?>
+			<?php require_once($values['subviews']['header']['blog_admin_title']); ?>
+			<?php require_once($values['subviews']['header']['blog_admin_description']); ?>
+			<?php require_once($values['subviews']['blog_admin_menu']); ?>
 		</div>
 		<div id='content'>
-			<?php require_once($values['subviews']['blog_front_body']); ?>
+			<?php require_once($values['subviews']['blog_admin_body']); ?>
 		</div>
 		<div id='footer'></div>
 	</div>
