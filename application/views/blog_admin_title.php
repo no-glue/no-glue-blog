@@ -1,1 +1,1 @@
-<div id='site-title'>blog admin title</div>
+<div id='site-title'>no glue blog</div>

@@ -25,15 +25,18 @@
 
 #site-title{
 	width:970px;
+	margin-bottom:10px;
 	font-size:32px;
+	color:#2E99FF;
 	float:right;
 	clear:both;
-	color:#2E99FF;
 	font-weight: bold;
+	text-transform:capitalize;
 }
 
 #site-description{
 	width:970px;
+	margin-bottom:10px;
 	font-size:16px;
 	float:right;
 	clear both;
