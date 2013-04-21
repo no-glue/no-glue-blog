@@ -11,7 +11,6 @@ class PostVo{
 	protected $_body;
 	protected $_created;
 	protected $_modified;
-	protected $_validationRules;
 
 	public function __construct(
 		$id=NULL,
@@ -20,7 +19,6 @@ class PostVo{
 		$body='',
 		$created=NULL,
 		$modified=NULL,
-		$validationRules=array()
 	){
 		$this->_id=$id;
 		$this->_name=$name;
@@ -28,19 +26,6 @@ class PostVo{
 		$this->_body=$body;
 		$this->_created=$created;
 		$this->_modified=$modified;
-
-		if(!empty($validationRules)){
-			foreach($validationRules as $field=>$rules){
-				foreach($rules as $rule){
-					$this->_validationRules[$field][$rule]=\application\models\ValidationRulesRefinery::refine('\application\models\ValidationRules',$rule);
-				}
-			}
-		} else {
-			$this->_validationRules=array(
-				'_name'=>array(
-					'notempty'=>\application\models\ValidationRulesRefinery::refine('\application\models\ValidationRules','notempty')
-			));
-		}
 	}
 
 	public function setId($id){
@@ -89,17 +74,5 @@ class PostVo{
 
 	public function getModified(){
 		return $this->_modified;
-	}
-
-	public function setValidationRules($validationRules){
-		$this->_validationRules=$validationRules;
-	}
-
-	public function getValidationRules(){
-		return $this->_validationRules;
-	}
-
-	public function getValue($field){
-		return $this->$field;
 	}
 }

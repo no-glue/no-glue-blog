@@ -36,24 +36,6 @@ class PostDao{
 		return $this->execute($sql);
 	}
 
-	public function validate($postVo){
-		$validationRules=$postVo->getValidationRules();
-		$result=TRUE;
-
-		foreach($validationRules as $field=>$rules){
-			foreach($rules as $ruleName=>$ruleObject){
-				$rule=$ruleObject->getValidationRules();
-				$result&=$rule[$ruleName]($postVo->getValue($field));
-
-				if(!$result){
-					return NULL;
-				}
-			}
-		}
-
-		return $postVo;
-	}
-
 	public function save($postVo){
 		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')';
 
