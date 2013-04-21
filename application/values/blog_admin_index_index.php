@@ -14,6 +14,6 @@ return array(
 			'blog_admin_description'=>'blog_admin_description.php'
 		),
 		'blog_admin_menu'=>'empty.php',
-		'blog_admin_body'=>'blog_admin_log_in.php'
+		'blog_admin_body'=>'blog_admin_index_index.php'
 	)
 );

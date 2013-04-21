@@ -16,4 +16,4 @@ class BlogAdminIndex{
 	}
 }
 
-return new \application\BlogFrontIndex();
+return new \application\BlogAdminIndex();
