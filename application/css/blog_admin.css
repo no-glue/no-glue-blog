@@ -23,6 +23,23 @@
 	clear:both;
 }
 
+#site-title{
+	width:970px;
+	font-size:32px;
+	float:right;
+	clear:both;
+	color:#2E99FF;
+	font-weight: bold;
+}
+
+#site-description{
+	width:970px;
+	font-size:16px;
+	float:right;
+	clear both;
+	font-style: italic;
+}
+
 #content{
 	width:970px;
 	margin-bottom:30px;
