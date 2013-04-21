@@ -1,3 +1,3 @@
-Sensible code
+No Glue Blog
 _______
-Personal site. 
+Blog based on No Glue classes. 
