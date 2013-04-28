@@ -2,13 +2,17 @@
 
 namespace application\models;
 
+use premade;
+
 class DaoCustomiser{
-	public static function customise($values,$objectName){
+	public static function customise($objectName){
 		require_once('DaoFactory.php');
 
 		$object=\application\models\DaoFactory::create($objectName);
 
-		$object->set($values);
+		require_once('premade/DatabaseWrapperFactory.php');
+
+		$object->set(\premade\DatabaseWrapperFactory::create());
 
 		return $object;
 	}
