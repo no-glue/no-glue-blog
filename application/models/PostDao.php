@@ -2,7 +2,7 @@
 
 namespace application\models;
 
-require_once('PostVo.php');
+use application/classes;
 
 class PostDao{
 	protected $_databaseWrapper;
@@ -12,27 +12,18 @@ class PostDao{
 	}
 
 	public function execute($sql){
-		$rowNumber=0;
 		$statement=$this->_databaseWrapper->execute($sql);
 
-		while($row=$this->_databaseWrapper->fetch($statement)){
-			$postVo[$rowNumber]=new \application\models\postVo();
+		require_once('application/classes/ResultFactory.php');
 
-			$postVo[$rowNumber]->setId($row['id']);
-			$postVo[$rowNumber]->setName($row['name']);
-			$postVo[$rowNumber]->setTitle($row['title']);
-			$postVo[$rowNumber]->setBody($row['body']);
-			$postVo[$rowNumber]->setCreated($row['created']);
-			$postVo[$rowNumber]->setModified($row['modified']);
-			$rowNumber++;
-		}
+		$result=\application\classes\ResultFactory::create();
 
-		return $postVo;
+		$result->set($this->_databaseWrapper,$statement);
+
+		return $result;
 	}
 	
-	public function getPosts(){
-		$sql='SELECT * FROM posts';
-
+	public function getPosts($sql='SELECT * FROM posts'){
 		return $this->execute($sql);
 	}
 

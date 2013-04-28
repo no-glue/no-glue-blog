@@ -28,6 +28,22 @@ class PostVo{
 		$this->_modified=$modified;
 	}
 
+	public function set(
+		$id=NULL,
+		$name='',
+		$title='',
+		$body='',
+		$created=NULL,
+		$modified=NULL,
+	){
+		$this->_id=$id;
+		$this->_name=$name;
+		$this->_title=$title;
+		$this->_body=$body;
+		$this->_created=$created;
+		$this->_modified=$modified;
+	}
+
 	public function setId($id){
 		$this->_id=$id;
 	}
