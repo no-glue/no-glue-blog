@@ -10,13 +10,19 @@ class BlogAdminPosts{
 	public function __construct(){}
 
 	public function index(){
+		require_once('classes/ResultFactory.php');
+		require_once('classes/ResultCustomiser.php');
 		require_once('models/DaoCustomiser.php');
 		require_once('models/DaoFactory.php');
 		require_once('premade/DatabaseWrapperFactory.php');
 
-		$posts=\application\models\DaoCustomiser::customise(
-			\application\models\DaoFactory::create('PostDao'),
-			\premade\DatabaseWrapperFactory::create())->getPosts();
+		$posts=\application\classes\ResultCustomiser::customise(
+			\application\classes\ResultFactory::create(),
+			\premade\DatabaseWrapperFactory::create(),
+			\application\models\DaoCustomiser::customise(
+				\application\models\DaoFactory::create('PostDao'),
+				\premade\DatabaseWrapperFactory::create())->getPosts(),
+			'PostVo');
 
 		require_once('classes/View.php');
 

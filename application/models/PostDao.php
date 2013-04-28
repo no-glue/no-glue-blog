@@ -18,13 +18,7 @@ class PostDao{
 	public function execute($sql){
 		$statement=$this->_databaseWrapper->execute($sql);
 
-		require_once('application/classes/ResultFactory.php');
-
-		$result=\application\classes\ResultFactory::create();
-
-		$result->set($this->_databaseWrapper,$statement);
-
-		return $result;
+		return $statement;
 	}
 	
 	public function getPosts($sql='SELECT * FROM posts'){
