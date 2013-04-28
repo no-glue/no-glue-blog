@@ -2,12 +2,16 @@
 
 namespace application\models;
 
-use application/classes;
+use application\classes;
 
 class PostDao{
 	protected $_databaseWrapper;
 
 	public function __construct($databaseWrapper){
+		$this->_databaseWrapper=$databaseWrapper;
+	}
+
+	public function set($databaseWrapper){
 		$this->_databaseWrapper=$databaseWrapper;
 	}
 

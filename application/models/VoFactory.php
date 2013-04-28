@@ -9,6 +9,8 @@ class VoFactory{
 	$namespace='\\application\\models\\'){
 		require_once($lookWhere.$object.$extension);
 
-		return new $namespace.$object;
+		$object=$namespace.$object;
+
+		return new $object;
 	}
 }

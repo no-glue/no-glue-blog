@@ -11,6 +11,8 @@ class BlogAdminPosts{
 
 	public function index(){
 		require_once('models/DaoCustomiser.php');
+		require_once('models/DaoFactory.php');
+		require_once('premade/DatabaseWrapperFactory.php');
 
 		$posts=\application\models\DaoCustomiser::customise(
 			\application\models\DaoFactory::create('PostDao'),

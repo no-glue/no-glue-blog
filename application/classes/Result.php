@@ -11,6 +11,11 @@ class Result{
 		$this->_statement=$statement;
 	}
 
+	public function set($databaseWrapper,$statement){
+		$this->_databaseWrapper=$databaseWrapper;
+		$this->_statement=$statement;
+	}
+
 	public function fetch($thisVo){
 		require_once('application/models/VoFactory.php');
 
