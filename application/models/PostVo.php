@@ -2,8 +2,6 @@
 
 namespace application\models;
 
-require_once('ValidationRulesRefinery.php');
-
 class PostVo{
 	protected $_id;
 	protected $_name;
@@ -18,7 +16,7 @@ class PostVo{
 		$title='',
 		$body='',
 		$created=NULL,
-		$modified=NULL,
+		$modified=NULL
 	){
 		$this->_id=$id;
 		$this->_name=$name;
@@ -34,7 +32,7 @@ class PostVo{
 		$title='',
 		$body='',
 		$created=NULL,
-		$modified=NULL,
+		$modified=NULL
 	){
 		$this->_id=$id;
 		$this->_name=$name;

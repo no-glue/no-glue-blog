@@ -7,7 +7,7 @@ use application\classes;
 class PostDao{
 	protected $_databaseWrapper;
 
-	public function __construct($databaseWrapper){
+	public function __construct($databaseWrapper=NULL){
 		$this->_databaseWrapper=$databaseWrapper;
 	}
 

@@ -10,21 +10,28 @@ class BlogAdminPosts{
 	public function __construct(){}
 
 	public function index(){
-		require_once('classes/ResultAdder.php');
-		require_once('classes/ResultCustomiser.php');
-		require_once('models/DaoCustomiser.php');
+		require_once('classes/ResultFactory.php');
+		require_once('premade/DatabaseWrapperFactory.php');
+		require_once('models/DaoFactory.php');
+		require_once('models/VoSetterFactory.php');
 
-		$posts=
-		\application\classes\ResultAdder::add(
-			\application\classes\ResultCustomiser::customise(),
-			\application\models\DaoCustomiser::customise('PostDao')->getPosts(),
-			'PostVo');
+		$post=\application\models\DaoFactory::create('PostDao');
+
+		$post->set(\premade\DatabaseWrapperFactory::create());
+
+		$result=\application\classes\ResultFactory::create();
+
+		$result->set(
+			\premade\DatabaseWrapperFactory::create(),
+			$post->getPosts(),
+			'PostVo',
+			\application\models\VoSetterFactory::create('PostVoSetter'));
 
 		require_once('classes/View.php');
 
 		\application\classes\View::load('blog_admin_template.php',
 			'blog_admin_posts_index.php',
-			array('posts'=>$posts)
+			array('posts'=>$result)
 		);
 	}
 }
