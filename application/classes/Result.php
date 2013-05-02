@@ -7,7 +7,7 @@ class Result{
 	protected $_statement;
 	protected $_whatVo;
 
-	public function __construct($databaseWrapper,$statement,$whatVo){
+	public function __construct($databaseWrapper=NULL,$statement=NULL,$whatVo=''){
 		$this->_databaseWrapper=$databaseWrapper;
 		$this->_statement=$statement;
 		$this->_whatVo=$whatVo;
@@ -17,6 +17,30 @@ class Result{
 		$this->_databaseWrapper=$databaseWrapper;
 		$this->_statement=$statement;
 		$this->_whatVo=$whatVo;
+	}
+
+	public function setDatabaseWrapper($databaseWrapper){
+		$this->_databaseWrapper=$databaseWrapper;
+	}
+
+	public function setStatement($statement){
+		$this->_statement=$statement;
+	}
+
+	public function setWhatVo($whatVo){
+		$this->_whatVo=$whatVo;
+	}
+
+	public function getDatabaseWrapper(){
+		return $this->_databaseWrapper;
+	}
+
+	public function getStatement(){
+		return $this->_statement;
+	}
+
+	public function getWhatVo(){
+		return $this->_whatVo;
 	}
 
 	public function fetch(){

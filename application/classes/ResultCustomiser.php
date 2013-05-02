@@ -5,14 +5,14 @@ namespace application\classes;
 use premade;
 
 class ResultCustomiser{
-	public function customise($statement,$whatVo,$objectName='Result'){
+	public function customise($objectName='Result'){
 		require_once('ResultFactory.php');
 
 		$object=\application\classes\ResultFactory::create($objectName);
 
 		require_once('premade/DatabaseWrapperFactory.php');
 
-		$object->set(\premade\DatabaseWrapperFactory::create(),$statement,$whatVo);
+		$object->setDatabaseWrapper(\premade\DatabaseWrapperFactory::create());
 
 		return $object;
 	}
