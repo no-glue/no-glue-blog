@@ -13,19 +13,20 @@ class BlogAdminPosts{
 		require_once('classes/ResultFactory.php');
 		require_once('premade/DatabaseWrapperFactory.php');
 		require_once('models/DaoFactory.php');
-		require_once('models/VoSetterFactory.php');
 
 		$post=\application\models\DaoFactory::create('PostDao');
 
 		$post->set(\premade\DatabaseWrapperFactory::create());
 
+		$posts=$post->getPosts();
+
 		$result=\application\classes\ResultFactory::create();
 
 		$result->set(
 			\premade\DatabaseWrapperFactory::create(),
-			$post->getPosts(),
+			$posts,
 			'PostVo',
-			\application\models\VoSetterFactory::create('PostVoSetter'));
+			'PostVoSetter');
 
 		require_once('classes/View.php');
 

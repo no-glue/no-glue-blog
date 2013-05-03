@@ -8,7 +8,7 @@ class Result{
 	protected $_whatVo;
 	protected $_voSetter;
 
-	public function __construct($databaseWrapper=NULL,$statement=NULL,$whatVo='',$voSetter=NULL){
+	public function __construct($databaseWrapper=NULL,$statement=NULL,$whatVo='',$voSetter=''){
 		$this->_databaseWrapper=$databaseWrapper;
 		$this->_statement=$statement;
 		$this->_whatVo=$whatVo;
@@ -56,12 +56,17 @@ class Result{
 
 	public function fetch(){
 		require_once('application/models/VoFactory.php');
+		require_once('application/models/VoSetterFactory.php');
 
 		$vo=NULL;
 
 		$statement=$this->_databaseWrapper->fetch($this->_statement);
 
-		$statement AND $vo=\application\Models\VoFactory::create($this->_whatVo) AND $this->_voSetter->set($vo,$statement);
+		$voSetter=\application\models\VoSetterFactory::create($this->_voSetter);
+
+		$statement AND 
+		$vo=\application\Models\VoFactory::create($this->_whatVo) AND 
+		$voSetter->set($vo,$statement);
 
 		return $vo;
 	}
