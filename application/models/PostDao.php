@@ -21,7 +21,7 @@ class PostDao{
 		return $statement;
 	}
 	
-	public function getPosts($sql='SELECT * FROM posts'){
+	public function getPosts($sql='SELECT * FROM posts ORDER BY id DESC'){
 		return $this->execute($sql);
 	}
 
