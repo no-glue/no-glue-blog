@@ -15,11 +15,11 @@
 		<tr>
 			<td><?php echo $post->getId(); ?></td>
 			<td><?php echo $post->getName(); ?></td>
-			<td><?php echo \application\classes\HelperFactory::create('Text')->cut($post->getTitle()); ?></td>
-			<td><?php echo \application\classes\HelperFactory::create('Text')->cut($post->getBody()); ?></td>
+			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>
+			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getBody()); ?></td>
 			<td><?php echo gmdate('Y-m-d',$post->getCreatedAt()); ?></td>
 			<td><?php echo gmdate('Y-m-d',$post->getModifiedAt()); ?></td>
-			<td><?php echo \application\classes\Links::link('','','view'); ?></td>
+			<td><?php echo \application\classes\ClassFactory::create('Links')->link('','','view'); ?></td>
 		</tr>
 		<?php endwhile; ?>
 	</tbody>

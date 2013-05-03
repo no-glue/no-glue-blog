@@ -2,7 +2,7 @@
 
 namespace application\classes;
 
-class HelperFactory{
+class ClassFactory{
 	public static function create($object,
 	$lookWhere='',
 	$extension='.php',
