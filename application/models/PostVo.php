@@ -7,23 +7,23 @@ class PostVo{
 	protected $_name;
 	protected $_title;
 	protected $_body;
-	protected $_created;
-	protected $_modified;
+	protected $_createdAt;
+	protected $_modifiedAt;
 
 	public function __construct(
 		$id=NULL,
 		$name='',
 		$title='',
 		$body='',
-		$created=NULL,
-		$modified=NULL
+		$createdAt=NULL,
+		$modifiedAt=NULL
 	){
 		$this->_id=$id;
 		$this->_name=$name;
 		$this->_title=$title;
 		$this->_body=$body;
-		$this->_created=$created;
-		$this->_modified=$modified;
+		$this->_createdAt=$createdAt;
+		$this->_modifiedAt=$modifiedAt;
 	}
 
 	public function set(
@@ -31,15 +31,15 @@ class PostVo{
 		$name='',
 		$title='',
 		$body='',
-		$created=NULL,
-		$modified=NULL
+		$createdAt=NULL,
+		$modifiedAt=NULL
 	){
 		$this->_id=$id;
 		$this->_name=$name;
 		$this->_title=$title;
 		$this->_body=$body;
-		$this->_created=$created;
-		$this->_modified=$modified;
+		$this->_createdAt=$createdAt;
+		$this->_modifiedAt=$modifiedAt;
 	}
 
 	public function setId($id){
@@ -74,19 +74,19 @@ class PostVo{
 		return $this->_body;
 	}
 
-	public function setCreated($created){
-		$this->_created=$created;
+	public function setCreatedAt($createdAt){
+		$this->_createdAt=$createdAt;
 	}
 
-	public function getCreated(){
-		return $this->_created;
+	public function getCreatedAt(){
+		return $this->_createdAt;
 	}
 
-	public function setModified($modified){
-		$this->_modified=$modified;
+	public function setModifiedAt($modifiedAt){
+		$this->_modifiedAt=$modifiedAt;
 	}
 
-	public function getModified(){
-		return $this->_modified;
+	public function getModifiedAt(){
+		return $this->_modifiedAt;
 	}
 }

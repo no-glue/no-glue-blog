@@ -11,7 +11,7 @@ CREATE TABLE posts(
 	name VARCHAR(255),
 	title VARCHAR(255),
 	body TEXT,
-	created INT(11),
-	modified INT(11),
+	created_at INT(11),
+	modified_at INT(11),
 	PRIMARY KEY(id)
 );
