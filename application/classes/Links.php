@@ -13,7 +13,7 @@ class Links{
 	public static function link($class,$action,$text,$parameters=array(),$host=''){
 		$configureLoader=self::_helper('configure_loader');
 		$host=(string)$host;
-		$host=($host==='')?$configureLoader::help():$host;
+		($host==='') AND $host=$configureLoader::help();
 
 		$result='<a href=\''.$host.'?class='.$class.'&action='.$action;
 

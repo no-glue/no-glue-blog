@@ -7,6 +7,7 @@
 			<th>body</th>
 			<th>created at</th>
 			<th>modified at</th>
+			<th>view</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -18,6 +19,7 @@
 			<td><?php echo \application\classes\Text::cut($post->getBody()); ?></td>
 			<td><?php echo gmdate('Y-m-d',$post->getCreatedAt()); ?></td>
 			<td><?php echo gmdate('Y-m-d',$post->getModifiedAt()); ?></td>
+			<td><?php echo \application\classes\Links::link('','','view'); ?></td>
 		</tr>
 		<?php endwhile; ?>
 	</tbody>
