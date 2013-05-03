@@ -12,9 +12,11 @@ class BlogAdminPosts{
 		require_once('classes/DaoWorker.php');
 
 		$posts=\application\classes\ResultCustomiser::customise()
-			->setStatement(\application\classes\DaoWorker::work(
-				'PostDao',
-				'getPosts'))
+			->setStatement(
+				\application\classes\DaoWorker::work(
+					'PostDao',
+					'getPosts')
+			)
 			->setWhatVo('PostVo')
 			->setVoSetter('PostVoSetter');
 
