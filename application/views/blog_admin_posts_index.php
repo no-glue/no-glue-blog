@@ -1,4 +1,4 @@
-<table>
+<table class='show'>
 	<thead>
 		<tr>
 			<th>id</th>
