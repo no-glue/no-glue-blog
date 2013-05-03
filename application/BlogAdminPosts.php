@@ -15,7 +15,8 @@ class BlogAdminPosts{
 			->setStatement(
 				\application\classes\DaoWorker::work(
 					'PostDao',
-					'getPosts')
+					'getPosts'
+				)
 			)
 			->setWhatVo('PostVo')
 			->setVoSetter('PostVoSetter');
