@@ -2,7 +2,6 @@
 
 namespace application;
 
-use application\models;
 use application\classes;
 
 class BlogAdminPosts{
@@ -10,14 +9,12 @@ class BlogAdminPosts{
 
 	public function index(){
 		require_once('classes/ResultCustomiser.php');
-		require_once('models/DaoCustomiser.php');
+		require_once('classes/DaoWorker.php');
 
-		$posts=
-			\application\classes\ResultCustomiser::customise()
-			->setStatement(
-				\application\models\DaoCustomiser
-				::customise('PostDao')
-				->getPosts())
+		$posts=\application\classes\ResultCustomiser::customise()
+			->setStatement(\application\classes\DaoWorker::work(
+				'PostDao',
+				'getPosts'))
 			->setWhatVo('PostVo')
 			->setVoSetter('PostVoSetter');
 
