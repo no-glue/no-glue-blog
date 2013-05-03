@@ -10,7 +10,7 @@ class Links{
 		return $helpers[$helper];
 	}
 
-	public static function link($class,$action,$text,$parameters=array(),$host=''){
+	public function link($class,$action,$text,$parameters=array(),$host=''){
 		$configureLoader=self::_helper('configure_loader');
 		$host=(string)$host;
 		($host==='') AND $host=$configureLoader::help();
@@ -28,7 +28,7 @@ class Links{
 		return $result;
 	}
 
-	public static function css($location,$type='text/css',$rel='stylesheet'){
+	public function css($location,$type='text/css',$rel='stylesheet'){
 		return '<link href=\''.$location.'\' type=\''.$type.'\' rel=\''.$rel.'\'/>';
 	}
 }
