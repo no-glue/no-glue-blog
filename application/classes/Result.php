@@ -28,14 +28,20 @@ class Result{
 
 	public function setStatement($statement){
 		$this->_statement=$statement;
+
+		return $this;
 	}
 
 	public function setWhatVo($whatVo){
 		$this->_whatVo=$whatVo;
+
+		return $this;
 	}
 
 	public function setVoSetter($voSetter){
 		$this->_voSetter=$voSetter;
+
+		return $this;
 	}
 
 	public function getDatabaseWrapper(){

@@ -2,7 +2,6 @@
 
 namespace application;
 
-use premade;
 use application\models;
 use application\classes;
 
@@ -10,27 +9,23 @@ class BlogAdminPosts{
 	public function __construct(){}
 
 	public function index(){
-		require_once('classes/ResultFactory.php');
-		require_once('premade/DatabaseWrapperFactory.php');
+		require_once('classes/ResultCustomiser.php');
 		require_once('models/DaoCustomiser.php');
 
-		$post=\application\models\DaoCustomiser::customise('PostDao');
-
-		$posts=$post->getPosts();
-
-		$result=\application\classes\ResultFactory::create();
-
-		$result->set(
-			\premade\DatabaseWrapperFactory::create(),
-			$posts,
-			'PostVo',
-			'PostVoSetter');
+		$posts=
+			\application\classes\ResultCustomiser::customise()
+			->setStatement(
+				\application\models\DaoCustomiser
+				::customise('PostDao')
+				->getPosts())
+			->setWhatVo('PostVo')
+			->setVoSetter('PostVoSetter');
 
 		require_once('classes/View.php');
 
 		\application\classes\View::load('blog_admin_template.php',
 			'blog_admin_posts_index.php',
-			array('posts'=>$result)
+			array('posts'=>$posts)
 		);
 	}
 }
