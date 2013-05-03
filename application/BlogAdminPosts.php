@@ -12,11 +12,9 @@ class BlogAdminPosts{
 	public function index(){
 		require_once('classes/ResultFactory.php');
 		require_once('premade/DatabaseWrapperFactory.php');
-		require_once('models/DaoFactory.php');
+		require_once('models/DaoCustomiser.php');
 
-		$post=\application\models\DaoFactory::create('PostDao');
-
-		$post->set(\premade\DatabaseWrapperFactory::create());
+		$post=\application\models\DaoCustomiser::customise('PostDao');
 
 		$posts=$post->getPosts();
 
