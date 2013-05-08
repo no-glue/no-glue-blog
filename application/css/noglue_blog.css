@@ -26,12 +26,16 @@
 #site-title{
 	width:970px;
 	margin-bottom:10px;
-	font-size:32px;
-	color:#2E99FF;
 	float:right;
 	clear:both;
+}
+
+#site-title a{
+	font-size:32px;
+	color:#2E99FF;
 	font-weight: bold;
 	text-transform:capitalize;
+	text-decoration:none;
 }
 
 #site-description{
