@@ -54,6 +54,17 @@
 	clear:both;
 }
 
+.show th{
+	color:#2E99FF;
+	font-weight: bold;
+	text-transform:capitalize;
+}
+
+.show a{
+	color:#2E99FF;
+	text-decoration:none;
+}
+
 .show td{
-	padding:5px;
+	padding:10px;
 }
