@@ -11,7 +11,13 @@
 	<tbody>
 		<?php while($post=$values['posts']->fetch()): ?>
 		<tr>
-			<td><?php echo \application\classes\ClassFactory::create('Links')->link('','',$post->getName()); ?></td>
+			<td>
+				<div class='line'><?php echo $post->getName(); ?></div>
+				<div class='line'>
+					<?php echo \application\classes\ClassFactory::create('Links')->lineForm('',''); ?>
+					<?php echo \application\classes\ClassFactory::create('Links')->lineForm('',''); ?>
+				</div>
+			</td>
 			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>
 			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getBody()); ?></td>
 			<td><?php echo date('Y-m-d',$post->getCreatedAt()); ?></td>

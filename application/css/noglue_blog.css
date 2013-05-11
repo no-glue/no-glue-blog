@@ -68,3 +68,8 @@
 .show td{
 	padding:10px;
 }
+
+.show .line{
+	clear:both;
+	float:right;
+}
