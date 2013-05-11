@@ -11,9 +11,14 @@ class Links{
 	}
 
 	public function link($class,$action,$text,$parameters=array(),$host=''){
-		$configureLoader=self::_helper('configure_loader');
 		$host=(string)$host;
-		($host==='') AND $host=$configureLoader::help();
+
+		if($host!==''){
+			return '<a href=\''.$host.'\'>'.$text.'</a>';
+		}
+
+		$configureLoader=self::_helper('configure_loader');
+		$host=$configureLoader::help();
 
 		$result='<a href=\''.$host.'?class='.$class.'&action='.$action;
 
@@ -30,5 +35,27 @@ class Links{
 
 	public function css($location,$type='text/css',$rel='stylesheet'){
 		return '<link href=\''.$location.'\' type=\''.$type.'\' rel=\''.$rel.'\'/>';
+	}
+
+	public function line_form($class,$action,$formName='view',$formMethod='get',$itemId=''){
+		$configureLoader=self::_helper('configure_loader');
+		$host=$configureLoader::help();
+
+		$formAction='<a href=\''.$host.'?class='.$class.'&action='.$action;
+
+		$formMethod=(string)$formMethod;
+
+		$formMethod==='get' AND 
+		$formAction.='&id='.$itemId;
+
+		$string='<form method=\''.$formMethod.'\' action=\''.$formAction.'\'>';
+		$formMethod==='post' AND 
+		$string.='<input type=\'hidden\' name=\'id\' value='.$itemId.' />';
+
+		$string.='<button type=\'submit\' name=\''.$formName.'\'>'.ucfirst($formName).'</button>';
+
+		$string.='</form>';
+
+		return $string;
 	}
 }
