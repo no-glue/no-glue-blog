@@ -37,7 +37,7 @@ class Links{
 		return '<link href=\''.$location.'\' type=\''.$type.'\' rel=\''.$rel.'\'/>';
 	}
 
-	public function lineForm($class,$action,$formName='view',$formMethod='get',$itemId=''){
+	public function lineForm($class,$action,$itemId='',$formName='view',$formMethod='get'){
 		$configureLoader=self::_helper('configure_loader');
 		$host=$configureLoader::help();
 

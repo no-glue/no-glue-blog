@@ -13,7 +13,7 @@
 		<tr>
 			<td>
 				<div class='line'><?php echo $post->getName(); ?></div>
-				<div class='line'><?php echo \application\classes\ClassFactory::create('Links')->lineForm('',''); ?></div>
+				<div class='line'><?php echo \application\classes\ClassFactory::create('Links')->lineForm('','',$post->getId()); ?></div>
 				<div class='line'>
 					<?php echo \application\classes\ClassFactory::create('Links')->lineForm('',''); ?>
 				</div>
