@@ -69,7 +69,8 @@
 	padding:10px;
 }
 
-.show .line{
+.line{
+	margin-bottom:5px;
 	clear:both;
 	float:right;
 }
