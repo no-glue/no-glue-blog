@@ -12,7 +12,7 @@ class Result{
 		$this->_databaseWrapper=$databaseWrapper;
 		$this->_statement=$statement;
 		$this->_whatVo=$whatVo;
-		$this->_voSetter=$_voSetter;
+		$this->_voSetter=$voSetter;
 	}
 
 	public function set($databaseWrapper,$statement,$whatVo,$voSetter){

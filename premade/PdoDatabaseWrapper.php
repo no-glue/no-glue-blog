@@ -12,6 +12,7 @@ class PdoDatabaseWrapper{
 	public function execute($sql){
 		try{
 			$statement=$this->_databaseConnection->getConnection()->prepare($sql);
+
 			$statement->execute();
 
 			return $statement;

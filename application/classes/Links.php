@@ -41,18 +41,12 @@ class Links{
 		$configureLoader=self::_helper('configure_loader');
 		$host=$configureLoader::help();
 
-		$formAction=$host.'?class='.$class.'&action='.$action;
-
-		$formMethod=(string)$formMethod;
-
-		$formMethod==='get' AND 
-		$formAction.='&id='.$itemId;
-
-		$string='<form method=\''.$formMethod.'\' action=\''.$formAction.'\'>';
-		$formMethod==='post' AND 
+		$string='<form method=\''.$host.'\' action=\''.$formAction.'\'>';
+		$string.='<input type=\'hidden\' name=\'class\' value=\''.$class.'\' />';
+		$string.='<input type=\'hidden\' name=\'action\' value=\''.$action.'\' />';
 		$string.='<input type=\'hidden\' name=\'id\' value='.$itemId.' />';
 
-		$string.='<button type=\'submit\' name=\''.$formName.'\'>'.ucfirst($formName).'</button>';
+		$string.='<input type=\'submit\' name=\''.$formName.'\' value=\''.$formName.'\' />';
 
 		$string.='</form>';
 

@@ -25,6 +25,11 @@ class PostDao{
 		return $this->execute($sql);
 	}
 
+	public function getPostById($postId,$sql='SELECT * FROM posts WHERE id=%d'){
+		
+		return $this->execute(sprintf($sql,$postId));
+	}
+
 	public function save($postVo){
 		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')';
 
