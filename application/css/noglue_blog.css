@@ -70,11 +70,6 @@
 	text-transform:capitalize;
 }
 
-.show a{
-	color:#2E99FF;
-	text-decoration:none;
-}
-
 .show td{
 	padding:10px;
 }
@@ -83,4 +78,10 @@
 	margin-bottom:5px;
 	clear:both;
 	float:right;
+}
+
+.line a{
+	color:#2E99FF;
+	text-decoration:none;
+	text-transform:capitalize;
 }
