@@ -41,7 +41,7 @@ class Links{
 		$configureLoader=self::_helper('configure_loader');
 		$host=$configureLoader::help();
 
-		$string='<form method=\''.$host.'\' action=\''.$formAction.'\'>';
+		$string='<form method=\''.$formMethod.'\' action=\''.$host.'\'>';
 		$string.='<input type=\'hidden\' name=\'class\' value=\''.$class.'\' />';
 		$string.='<input type=\'hidden\' name=\'action\' value=\''.$action.'\' />';
 		$string.='<input type=\'hidden\' name=\'id\' value='.$itemId.' />';
@@ -51,5 +51,20 @@ class Links{
 		$string.='</form>';
 
 		return $string;
+	}
+
+	public function formOpen($class,$action,$method='post'){
+		$configureLoader=self::_helper('configure_loader');
+		$host=$configureLoader::help();
+
+		$string='<form method=\''.$method.'\' action=\''.$host.'\'>';
+		$string.='<input type=\'hidden\' name=\'class\' value=\''.$class.'\' />';
+		$string.='<input type=\'hidden\' name=\'action\' value=\''.$action.'\' />';
+
+		return $string;
+	}
+
+	public function formClose(){
+		return '</form>';
 	}
 }

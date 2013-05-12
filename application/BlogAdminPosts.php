@@ -33,7 +33,7 @@ class BlogAdminPosts{
 		require_once('classes/ResultCustomiser.php');
 		require_once('classes/DaoWorker.php');
 
-		$posts=\application\classes\ResultCustomiser::customise()
+		$post=\application\classes\ResultCustomiser::customise()
 			->setStatement(
 				\application\classes\DaoWorker::work(
 					'PostDao',
@@ -44,13 +44,14 @@ class BlogAdminPosts{
 				)
 			)
 			->setWhatVo('PostVo')
-			->setVoSetter('PostVoSetter');
+			->setVoSetter('PostVoSetter')
+			->fetch();
 
 		require_once('classes/View.php');
 
 		\application\classes\View::load('blog_admin_template.php',
 			'blog_admin_posts_view.php',
-			array('posts'=>$posts)
+			array('post'=>$post)
 		);
 	}
 }
