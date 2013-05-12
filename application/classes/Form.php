@@ -8,7 +8,7 @@ class Form{
 		return $helpers[$helper];
 	}
 
-	public function formOpen($class,$action,$wrapOpen='',$wrapClose='',$method='post'){
+	public function open($class,$action,$wrapOpen='',$wrapClose='',$method='post'){
 		$configureLoader=self::_helper('configure_loader');
 		$host=$configureLoader::help();
 
@@ -19,7 +19,7 @@ class Form{
 		return $string;
 	}
 
-	public function formClose(){
+	public function close(){
 		return '</form>';
 	}
 }
