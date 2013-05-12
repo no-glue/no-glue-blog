@@ -2,14 +2,26 @@
 
 namespace application\classes;
 
+use premade;
+
 class Result{
 	protected $_databaseWrapper;
 	protected $_statement;
 	protected $_whatVo;
 	protected $_voSetter;
 
-	public function __construct($databaseWrapper=NULL,$statement=NULL,$whatVo='',$voSetter=''){
-		$this->_databaseWrapper=$databaseWrapper;
+	public function __construct($databaseWrapper=array(
+		'factory_file'=>'premade/DatabaseWrapperFactory.php',
+		'factory'=>'\\premade\\DatabaseWrapperFactory',
+		'object'=>'\\premade\\PdoDatabaseWrapper'),
+		$statement=NULL,$whatVo='',$voSetter=''){
+		require_once($databaseWrapper['factory_file']);
+
+		$this->_databaseWrapper=
+			$databaseWrapper['factory']::create(
+				$databaseWrapper['object']
+			);
+
 		$this->_statement=$statement;
 		$this->_whatVo=$whatVo;
 		$this->_voSetter=$voSetter;

@@ -8,10 +8,10 @@ class BlogAdminPosts{
 	public function __construct(){}
 
 	public function index(){
-		require_once('classes/ResultCustomiser.php');
+		require_once('classes/ClassFactory.php');
 		require_once('classes/DaoWorker.php');
 
-		$posts=\application\classes\ResultCustomiser::customise()
+		$posts=\application\classes\ClassFactory::create('Result')
 			->setStatement(
 				\application\classes\DaoWorker::work('PostDao',
 					'getPosts')
@@ -28,10 +28,10 @@ class BlogAdminPosts{
 	}
 
 	public function view($postId){
-		require_once('classes/ResultCustomiser.php');
+		require_once('classes/ClassFactory.php');
 		require_once('classes/DaoWorker.php');
 
-		$post=\application\classes\ResultCustomiser::customise()
+		$post=\application\classes\ClassFactory::create('Result')
 			->setStatement(
 				\application\classes\DaoWorker::work(
 					'PostDao',
