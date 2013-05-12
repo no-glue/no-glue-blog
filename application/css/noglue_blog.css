@@ -54,6 +54,16 @@
 	clear:both;
 }
 
+#right-content{
+	width:370px;
+	float:right;
+}
+
+#left-content{
+	width:600px;
+	float:right;
+}
+
 .show th{
 	color:#2E99FF;
 	font-weight: bold;
