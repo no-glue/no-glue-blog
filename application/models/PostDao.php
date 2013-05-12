@@ -2,13 +2,23 @@
 
 namespace application\models;
 
+use premade;
 use application\classes;
 
 class PostDao{
 	protected $_databaseWrapper;
 
-	public function __construct($databaseWrapper=NULL){
-		$this->_databaseWrapper=$databaseWrapper;
+	public function __construct($databaseWrapper=array(
+		'factory_file'=>'premade/DatabaseWrapperFactory.php',
+		'factory'=>'\\premade\\DatabaseWrapperFactory',
+		'object'=>'\\premade\\PdoDatabaseWrapper'
+	)){
+		require_once($databaseWrapper['factory_file']);
+
+		$this->_databaseWrapper=
+			$databaseWrapper['factory']::create(
+				$databaseWrapper['object']
+			);
 	}
 
 	public function set($databaseWrapper){

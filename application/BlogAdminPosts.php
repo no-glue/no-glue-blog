@@ -13,10 +13,8 @@ class BlogAdminPosts{
 
 		$posts=\application\classes\ResultCustomiser::customise()
 			->setStatement(
-				\application\classes\DaoWorker::work(
-					'PostDao',
-					'getPosts'
-				)
+				\application\classes\DaoWorker::work('PostDao',
+					'getPosts')
 			)
 			->setWhatVo('PostVo')
 			->setVoSetter('PostVoSetter');
