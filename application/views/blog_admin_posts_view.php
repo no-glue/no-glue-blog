@@ -1,4 +1,4 @@
-<?php echo \application\classes\ClassFactory::create('Links')->formOpen('blog_admin_posts','update'); ?>
+<?php echo \application\classes\ClassFactory::create('Form')->formOpen('blog_admin_posts','update','<div class=\'line\'>','</div>'); ?>
 <div class='line'>name</div>
 <div class='line'><input type='text' name='name' value='<?php echo $values['post']->getName(); ?>' /></div>
 <div class='line'>title</div>
@@ -11,4 +11,4 @@
 <div class='line'><?php echo date('Y-m-d H:i:s',$values['post']->getModifiedAt()); ?></div>
 <div class='line'><input type='hidden' name='id' value='<?php echo $values['post']->getId(); ?>' /></div>
 <div class='line'><input type='submit' name='update' value='update' /></div>
-<?php echo \application\classes\ClassFactory::create('Links')->formClose(); ?>
+<?php echo \application\classes\ClassFactory::create('Form')->formClose(); ?>

@@ -52,19 +52,4 @@ class Links{
 
 		return $string;
 	}
-
-	public function formOpen($class,$action,$method='post'){
-		$configureLoader=self::_helper('configure_loader');
-		$host=$configureLoader::help();
-
-		$string='<form method=\''.$method.'\' action=\''.$host.'\'>';
-		$string.='<input type=\'hidden\' name=\'class\' value=\''.$class.'\' />';
-		$string.='<input type=\'hidden\' name=\'action\' value=\''.$action.'\' />';
-
-		return $string;
-	}
-
-	public function formClose(){
-		return '</form>';
-	}
 }

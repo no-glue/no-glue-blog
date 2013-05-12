@@ -20,8 +20,8 @@
 			</td>
 			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>
 			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getBody()); ?></td>
-			<td><?php echo date('Y-m-d',$post->getCreatedAt()); ?></td>
-			<td><?php echo date('Y-m-d',$post->getModifiedAt()); ?></td>
+			<td><?php echo date('Y-m-d H:i:s',$post->getCreatedAt()); ?></td>
+			<td><?php echo date('Y-m-d H:i:s',$post->getModifiedAt()); ?></td>
 		</tr>
 		<?php endwhile; ?>
 	</tbody>
