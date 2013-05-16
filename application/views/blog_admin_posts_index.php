@@ -13,13 +13,13 @@
 		<tr>
 			<td>
 				<div class='line'><?php echo $post->getName(); ?></div>
-				<div class='line'><?php echo \application\classes\ClassWorker::work('Links','lineForm',array('class'=>'blog_admin_posts','name'=>'view','item_id'=>$post->getId())); ?></div>
+				<div class='line'><?php echo \application\classes\ClassFactory::create('Links')->lineForm('blog_admin_posts','view',$post->getId()); ?></div>
 				<div class='line'>
-					<?php echo \application\classes\ClassWorker::work('Links','lineForm',array('name'=>'','id'=>'')); ?>
+					<?php echo \application\classes\ClassFactory::create('Links')->lineForm('',''); ?>
 				</div>
 			</td>
-			<td><?php echo \application\classes\ClassWorker::work('Text','cut',array('text'=>$post->getTitle())); ?></td>
-			<td><?php echo \application\classes\ClassWorker::work('Text','cut',array('text'=>$post->getBody())); ?></td>
+			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>
+			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getBody()); ?></td>
 			<td><?php echo date('Y-m-d H:i:s',$post->getCreatedAt()); ?></td>
 			<td><?php echo date('Y-m-d H:i:s',$post->getModifiedAt()); ?></td>
 		</tr>
