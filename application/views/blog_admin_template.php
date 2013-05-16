@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo \application\classes\ClassFactory::create('Links')->css($values['css']['main']['location'],$values['css']['main']['type'],$values['css']['main']['rel']); ?>
+	<?php 
+		echo \application\classes\ClassWorker::work(
+			'Links',
+			'css',
+			array(
+				'location'=>$values['css']['main']['location'],
+				'type'=>$values['css']['main']['type'],
+				'rel'=>$values['css']['main']['rel']
+			)
+		); 
+	?>
 </head>
 <body>
 	<div id='container'>

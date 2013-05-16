@@ -36,9 +36,7 @@ class BlogAdminPosts{
 				\application\classes\DaoWorker::work(
 					'PostDao',
 					'getPostById',
-					array(
-						'postId'=>$postId
-					)
+					array('postId'=>$postId)
 				)
 			)
 			->setWhatVo('PostVo')

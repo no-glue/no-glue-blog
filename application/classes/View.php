@@ -12,7 +12,7 @@ class View{
 
 		!empty($additionalValues) AND $values=array_merge($values,$additionalValues);
 
-		require_once('ClassFactory.php');
+		require_once('ClassWorker.php');
 
 		require_once($viewsLocation.$view);
 	}
