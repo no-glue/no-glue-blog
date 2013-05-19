@@ -13,9 +13,9 @@
 		<tr>
 			<td>
 				<div class='line'><?php echo $post->getName(); ?></div>
-				<div class='line'><?php echo \application\classes\ClassFactory::create('Links')->lineForm('blog_admin_posts','view',$post->getId()); ?></div>
+				<div class='line'><?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','view',$post->getId()); ?></div>
 				<div class='line'>
-					<?php echo \application\classes\ClassFactory::create('Links')->lineForm('',''); ?>
+					<?php echo \application\classes\ClassFactory::create('Link')->lineForm('',''); ?>
 				</div>
 			</td>
 			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>

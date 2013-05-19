@@ -4,7 +4,7 @@ namespace application\classes;
 
 require_once('ConfigureLoader.php');
 
-class Links{
+class Link{
 	protected static function _helper($helper,$helpers=array(
 		'configure_loader'=>'\application\classes\ConfigureLoader')){
 		return $helpers[$helper];
