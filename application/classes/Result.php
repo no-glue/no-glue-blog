@@ -8,13 +8,12 @@ class Result{
 	protected $_databaseWrapper;
 	protected $_statement;
 	protected $_whatVo;
-	protected $_voSetter;
 
 	public function __construct($databaseWrapper=array(
 		'factory_file'=>'premade/DatabaseWrapperFactory.php',
 		'factory'=>'\\premade\\DatabaseWrapperFactory',
 		'object'=>'\\premade\\PdoDatabaseWrapper'),
-		$statement=NULL,$whatVo='',$voSetter=''){
+		$statement=NULL,$whatVo=''){
 		require_once($databaseWrapper['factory_file']);
 
 		$this->_databaseWrapper=
@@ -24,14 +23,12 @@ class Result{
 
 		$this->_statement=$statement;
 		$this->_whatVo=$whatVo;
-		$this->_voSetter=$voSetter;
 	}
 
-	public function set($databaseWrapper,$statement,$whatVo,$voSetter){
+	public function set($databaseWrapper,$statement,$whatVo){
 		$this->_databaseWrapper=$databaseWrapper;
 		$this->_statement=$statement;
 		$this->_whatVo=$whatVo;
-		$this->_voSetter=$voSetter;
 	}
 
 	public function setDatabaseWrapper($databaseWrapper){
@@ -50,12 +47,6 @@ class Result{
 		return $this;
 	}
 
-	public function setVoSetter($voSetter){
-		$this->_voSetter=$voSetter;
-
-		return $this;
-	}
-
 	public function getDatabaseWrapper(){
 		return $this->_databaseWrapper;
 	}
@@ -66,10 +57,6 @@ class Result{
 
 	public function getWhatVo(){
 		return $this->_whatVo;
-	}
-
-	public function getVoSetter(){
-		return $this->_voSetter;
 	}
 
 	public function fetch(){

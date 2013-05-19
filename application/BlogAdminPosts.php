@@ -17,10 +17,9 @@ class BlogAdminPosts{
 				\application\models\DaoFactory::create(
 					'PostDao'
 				)
-					->getPosts()
+				->getPosts()
 			)
-			->setWhatVo('PostVo')
-			->setVoSetter('PostVoSetter');
+			->setWhatVo('PostVo');
 
 		require_once('classes/View.php');
 
@@ -42,7 +41,6 @@ class BlogAdminPosts{
 				->getPostById($postId)
 			)
 			->setWhatVo('PostVo')
-			->setVoSetter('PostVoSetter')
 			->fetch();
 
 		require_once('classes/View.php');
