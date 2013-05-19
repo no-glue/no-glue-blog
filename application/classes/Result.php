@@ -74,17 +74,14 @@ class Result{
 
 	public function fetch(){
 		require_once('application/models/VoFactory.php');
-		require_once('application/models/VoSetterFactory.php');
 
 		$vo=NULL;
 
 		$statement=$this->_databaseWrapper->fetch($this->_statement);
 
-		$voSetter=\application\models\VoSetterFactory::create($this->_voSetter);
-
 		$statement AND 
 		$vo=\application\Models\VoFactory::create($this->_whatVo) AND 
-		$voSetter->set($vo,$statement);
+		$vo->setFromArray($statement);
 
 		return $vo;
 	}

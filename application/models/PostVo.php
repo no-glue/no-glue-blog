@@ -42,6 +42,15 @@ class PostVo{
 		$this->_modifiedAt=$modifiedAt;
 	}
 
+	public function setFromArray($statement){
+		$this->_id=$statement['id'];
+		$this->_name=$statement['name'];
+		$this->_title=$statement['title'];
+		$this->_body=$statement['body'];
+		$this->_createdAt=$statement['created_at'];
+		$this->_modifiedAt=$statement['modified_at'];
+	}
+
 	public function setId($id){
 		$this->_id=$id;
 	}
