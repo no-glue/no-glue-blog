@@ -8,6 +8,7 @@ class IndexSimple{
 	protected $_action;
 	protected $_params;
 	protected $_requestType;
+	protected $_observers;
 
 	public function __construct(
 		$folder=array(
@@ -15,7 +16,7 @@ class IndexSimple{
 			'params'=>'folder'
 		),
 		$class=array(
-			'function'=>'getGlass'
+			'function'=>'getClass'
 		),
 		$action=array(
 			'function'=>'getAction'
@@ -34,7 +35,14 @@ class IndexSimple{
 		$requestGroup=array(
 			'factory'=>'\\premade\\PremadeFactory',
 			'object'=>'RequestHelper'
+		),
+		$observers=array(
+			'index_routes_observer'=>array(
+				'factory'=>'\\premade\\PremadeFactory',
+				'object'=>'IndexRoutesObserver'
+			)
 		)
+
 	){
 		require_once($folderGroup['factory_file']);
 
@@ -44,16 +52,75 @@ class IndexSimple{
 			);
 
 		$this->_folder=
-			$configureLoader->folder['function']($folder['params']);
+			$configureLoader->{$folder['function']}($folder['params']);
 
 		$requestHelper=
 			$requestGroup['factory']::create(
 				$requestGroup['object']
 			);
 
-		$this->_class=$requestHelper->$class['function']();
-		$this->_action=$requestHelper->$action['function']();
-		$this->_params=$requestHelper->$params['function']();
-		$this->_requestType=$requestHelper->$requestType['function']();
+		$this->_class=$requestHelper->{$class['function']}();
+		$this->_action=$requestHelper->{$action['function']}();
+		$this->_params=$requestHelper->{$params['function']}();
+		$this->_requestType=$requestHelper->{$requestType['function']}();
+
+		foreach($observers as $key=>$observer){
+			$this->_observers[$key]=
+				$observer['factory']::create(
+					$observer['object']
+				);
+		}
+
+		$this->_notify();
+	}
+
+	public function setFolder($folder){
+		$this->_folder=$folder;
+	}
+
+	public function getFolder(){
+		return $this->_folder;
+	}
+
+	public function setClass($class){
+		$this->_class=$class;
+	}
+
+	public function getClass(){
+		return $this->_class;
+	}
+	
+	public function setAction($action){
+		$this->_action=$action;
+	}
+
+	public function getAction(){
+		return $this->_action;
+	}
+
+	public function setParams($params){
+		$this->_params=$params;
+	}
+
+	public function getParams(){
+		return $this->_params;
+	}
+
+	public function getRequestType(){
+		return $this->_requestType;
+	}
+
+	public function attachObserver($observerKey,$observer){
+		$this->_observers[$observerKey]=$observer;
+	}
+
+	public function detachObserver($observerKey){
+		unset($this->_observers[$observerKey]);
+	}
+
+	protected function _notify(){
+		foreach($this->_observers as $key=>$observer){
+			$observer->update($this);
+		}
 	}
 }

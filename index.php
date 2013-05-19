@@ -1,7 +1,7 @@
 <?php
 
-require_once('premade/IndexFactory.php');
+require_once('premade/PremadeFactory.php');
 
 use premade;
 
-\premade\IndexFactory::create();
+\premade\PremadeFactory::create('IndexSimple');

@@ -7,16 +7,14 @@ class IndexRoutesObserver{
 	}
 
 	public function update($index){
-		$routes=$index->getRoutes();
-
-		if($routes['class']&&$routes['action']&&!is_null($routes['params'])){
-			$application=require_once($routes['folder'].'/'.$routes['class'].'.php');
+		if($index->getClass()&&$index->getAction()){
+			$application=require_once($index->getFolder().'/'.$index->getClass().'.php');
 		} else {
-			$application=require_once($routes['folder'].'/PageNotFound.php');
-			$routes['action']='index';
-			$routes['params']=array();
+			$application=require_once($index->getFolder().'/PageNotFound.php');
+			$index->setAction('index');
+			$index->setRoutes(array());
 		}
 
-		call_user_func_array(array($application,$routes['action']),$routes['params']);
+		call_user_func_array(array($application,$index->getAction()),$index->getParams());
 	}
 }
