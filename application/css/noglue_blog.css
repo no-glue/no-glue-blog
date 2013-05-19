@@ -100,3 +100,14 @@
 	width:600px;
 	height:300px;
 }
+
+.submit{
+	padding:5px;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border:1px solid #2E99FF;
+	background:#FFFFFF;
+	color:#2E99FF;
+	text-transform:capitalize;
+}

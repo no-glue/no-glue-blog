@@ -37,7 +37,7 @@ class Link{
 		return '<link href=\''.$location.'\' type=\''.$type.'\' rel=\''.$rel.'\'/>';
 	}
 
-	public function lineForm($class,$action,$itemId='',$formName='view',$formMethod='get'){
+	public function lineForm($class,$action,$itemId='',$attributes=array(),$formName='view',$formMethod='get'){
 		$configureLoader=self::_helper('configure_loader');
 		$host=$configureLoader::help();
 
@@ -46,7 +46,14 @@ class Link{
 		$string.='<input type=\'hidden\' name=\'action\' value=\''.$action.'\' />';
 		$string.='<input type=\'hidden\' name=\'id\' value='.$itemId.' />';
 
-		$string.='<input type=\'submit\' name=\''.$formName.'\' value=\''.$formName.'\' />';
+		$string.='<input type=\'submit\' name=\''.$formName.'\' value=\''.$formName.'\'';
+
+		foreach($attributes as $key=>$attribute){
+			$string.=' %s=\'%s\'';
+			$string=sprintf($string,$key,$attribute);
+		}
+
+		$string.=' />';
 
 		$string.='</form>';
 

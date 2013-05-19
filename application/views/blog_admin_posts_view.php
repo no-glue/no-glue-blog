@@ -10,5 +10,5 @@
 <div class='line title'>modified at</div>
 <div class='line'><?php echo date('Y-m-d H:i:s',$values['post']->getModifiedAt()); ?></div>
 <div class='line'><input type='hidden' name='id' value='<?php echo $values['post']->getId(); ?>' /></div>
-<div class='line'><input type='submit' name='update' value='update' /></div>
+<div class='line'><input type='submit' name='update' value='update' class='submit' /></div>
 <?php echo \application\classes\ClassFactory::create('Form')->close(); ?>
