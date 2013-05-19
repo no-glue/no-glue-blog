@@ -7,7 +7,6 @@ class IndexSimple{
 	protected $_class;
 	protected $_action;
 	protected $_params;
-	protected $_requestType;
 	protected $_observers;
 
 	public function __construct(
@@ -23,9 +22,6 @@ class IndexSimple{
 		),
 		$params=array(
 			'function'=>'getParams'
-		),
-		$requestType=array(
-			'function'=>'getRequestType'
 		),
 		$folderGroup=array(
 			'factory_file'=>'PremadeFactory.php',
@@ -62,7 +58,6 @@ class IndexSimple{
 		$this->_class=$requestHelper->{$class['function']}();
 		$this->_action=$requestHelper->{$action['function']}();
 		$this->_params=$requestHelper->{$params['function']}();
-		$this->_requestType=$requestHelper->{$requestType['function']}();
 
 		foreach($observers as $key=>$observer){
 			$this->_observers[$key]=
@@ -104,10 +99,6 @@ class IndexSimple{
 
 	public function getParams(){
 		return $this->_params;
-	}
-
-	public function getRequestType(){
-		return $this->_requestType;
 	}
 
 	public function attachObserver($observerKey,$observer){

@@ -24,10 +24,10 @@ class RequestHelper{
 	}
 
 	public function getParams(){
-		return array_slice($_REQUEST,2);
-	}
+		$params=array_slice($_REQUEST,2);
 
-	public function getRequestType(){
-		return $_SERVER['REQUEST_METHOD'];
+		$params['request_type']=$_SERVER['REQUEST_TYPE'];
+
+		return $params;
 	}
 }
