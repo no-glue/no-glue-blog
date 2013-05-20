@@ -58,13 +58,17 @@ class RequestHelper{
 	public function getParams($params=array()){
 		empty($params) AND 
 		$params=array_slice($_REQUEST,2);
+		$params=
+			array_merge(
+				array('request_type'=>
+					$_SERVER['REQUEST_METHOD']),
+				$params
+			);
 
 		(empty($params) OR 
 		!$this->_delegates['letters']
 			->checkParams($params)) AND 
 		$params=array();
-
-		$params['request_type']=$_SERVER['REQUEST_TYPE'];
 
 		return $params;
 	}

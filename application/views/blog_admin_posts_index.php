@@ -15,7 +15,7 @@
 				<div class='line'><?php echo $post->getName(); ?></div>
 				<div class='line'><?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','view',$post->getId(),array('class'=>'submit')); ?></div>
 				<div class='line'>
-					<?php echo \application\classes\ClassFactory::create('Link')->lineForm('','',0,array('class'=>'submit')); ?>
+					<?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','index',$post->getId(),array('class'=>'submit'),'delete','post'); ?>
 				</div>
 			</td>
 			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>

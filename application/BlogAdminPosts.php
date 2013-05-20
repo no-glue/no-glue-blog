@@ -8,7 +8,7 @@ use application\models;
 class BlogAdminPosts{
 	public function __construct(){}
 
-	public function index(){
+	public function index($requestType,$id){
 		require_once('classes/ClassFactory.php');
 		require_once('models/DaoFactory.php');
 
@@ -29,7 +29,7 @@ class BlogAdminPosts{
 		);
 	}
 
-	public function view($postId){
+	public function view($requestType,$postId){
 		require_once('classes/ClassFactory.php');
 		require_once('models/DaoFactory.php');
 
