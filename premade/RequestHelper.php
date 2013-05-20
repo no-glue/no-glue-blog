@@ -46,13 +46,23 @@ class RequestHelper{
 		$action=NULL;
 
 		isset($_REQUEST['action']) AND
-		$action=$_REQUEST['action'];
+		$this->_delegates['letters']
+			->check($_REQUEST['action'],'class') AND
+		$action=
+			$this->_delegates['request_formatter']
+				->getCorrectAction($_REQUEST['action']);
 
 		return $action;
 	}
 
-	public function getParams(){
+	public function getParams($params=array()){
+		empty($params) AND 
 		$params=array_slice($_REQUEST,2);
+
+		(empty($params) OR 
+		!$this->_delegates['letters']
+			->checkParams($params)) AND 
+		$params=array();
 
 		$params['request_type']=$_SERVER['REQUEST_TYPE'];
 
