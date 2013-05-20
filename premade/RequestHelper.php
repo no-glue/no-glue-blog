@@ -3,13 +3,41 @@
 namespace premade;
 
 class RequestHelper{
-	public function __construct(){}
+	protected $_delegates;
+
+	public function __construct(
+		$delegates=array(
+			'letters'=>array(
+				'object'=>'Letters'
+			),
+			'request_formatter'=>array(
+				'object'=>'RequestFormatter'
+			)
+		),
+		$delegatesGroup=array(
+			'factory_file'=>'PremadeFactory.php',
+			'factory'=>'\\premade\\PremadeFactory'
+		)
+	){
+		require_once($delegatesGroup['factory_file']);
+
+		foreach($delegates as $key=>$delegate){
+			$this->_delegates[$key]=
+				$delegatesGroup['factory']::create(
+					$delegate['object']
+				);
+		}
+	}
 
 	public function getClass(){
 		$class=NULL;
 
 		isset($_REQUEST['class']) AND
-		$class=$_REQUEST['class'];
+		$this->_delegates['letters']
+			->check($_REQUEST['class'],'class') AND
+		$class=
+			$this->_delegates['request_formatter']
+				->getCorrectClass($_REQUEST['class']);
 
 		return $class;
 	}

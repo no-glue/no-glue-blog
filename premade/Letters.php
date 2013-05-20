@@ -5,17 +5,18 @@ namespace premade;
 class Letters{
 	protected $_lettersUnderscoresOnly;
 	protected $_lettersUnderscoresNumbersOnly;
-	protected static $_instance;
 
 	public function __construct(){
-		$this->_lettersUnderscoresOnly='/[^a-z_]/';
-		$this->_lettersUnderscoresNumbersOnly='/[^a-z_0-9]/';
+		$this->_class='/[^a-z_]/';
+		$this->_paramValues='/[^a-z_0-9]/';
 	}
 
-	protected function _check($word,$rule){
+	public function check($word,$rule){
 		if(!$word){
 			return $word;
 		}
+
+		$rule='_'.$rule;
 
 		if(preg_match_all($this->$rule,$word)){
 			return NULL;
@@ -24,35 +25,24 @@ class Letters{
 		return TRUE;
 	}
 
-	public function getCorrectClass($word,$callback,$rule){
-		$check=$this->_check($word,$rule);
+	public function checkParams($params,
+		$ruleKeys='class',
+		$ruleValues='paramValues'
+	){
+		$check=TRUE;
+		$ruleKeys='_'.$ruleKeys;
+		$ruleValues='_'.$ruleValues;
 
-		if(!$check){
-			return $check;
-		}
-
-		return $callback(str_replace(' ','',ucwords(str_replace('_',' ',$word))));
-	}
-
-	public function getCorrectParams($array,$callback,$rule){
-		foreach($array as $key=>$item){
-			$check=$this->_check($item,$rule);
+		foreach($params as $key=>$param){
+			$check&=
+				$this->check($key,$ruleKeys)&
+				$this->check($param,$ruleValues);
 
 			if(!$check){
 				return $check;
 			}
-
-			$array[$key]=$callback($item);
 		}
 
-		return $array;
-	}
-
-	public static function getInstance(){
-		if(!self::$_instance){
-			self::$_instance=new \premade\Letters();
-		}
-
-		return self::$_instance;
+		return $check;
 	}
 }
