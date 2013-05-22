@@ -65,9 +65,8 @@ class RequestHelper{
 				$params
 			);
 
-		(empty($params) OR 
 		!$this->_delegates['letters']
-			->checkParams($params)) AND 
+			->checkParams($params) AND 
 		$params=array();
 
 		return $params;

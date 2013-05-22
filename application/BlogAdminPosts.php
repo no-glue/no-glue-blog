@@ -2,6 +2,7 @@
 
 namespace application;
 
+use premade;
 use application\classes;
 use application\models;
 
@@ -9,8 +10,13 @@ class BlogAdminPosts{
 	public function __construct(){}
 
 	public function index($requestType,$id){
+		require_once('premade/Constants.php');
 		require_once('classes/ClassFactory.php');
 		require_once('models/DaoFactory.php');
+
+		$requestType===\premade\Constants::REQUEST_POST AND
+		\application\models\DaoFactory::create('PostDao')
+			->deletePostById($id);
 
 		$posts=\application\classes\ClassFactory::create('Result')
 			->setStatement(

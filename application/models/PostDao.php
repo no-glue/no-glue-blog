@@ -47,4 +47,12 @@ class PostDao{
 
 		return $statement->rowCount();
 	}
+
+	public function deletePostById($postId,$sql='DELETE FROM posts WHERE id=%d'){
+		$sql=sprintf($sql,$postId);
+
+		$statement=$this->_databaseWrapper->execute($sql);
+
+		return $statement->rowCount();
+	}
 }
