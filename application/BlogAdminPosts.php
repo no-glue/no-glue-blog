@@ -14,17 +14,13 @@ class BlogAdminPosts{
 		require_once('classes/ClassFactory.php');
 		require_once('models/DaoFactory.php');
 
+		$postDao=\application\models\DaoFactory::create('PostDao');
+
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\application\models\DaoFactory::create('PostDao')
-			->deletePostById($id);
+		$postDao->deletePostById($id);
 
 		$posts=\application\classes\ClassFactory::create('Result')
-			->setStatement(
-				\application\models\DaoFactory::create(
-					'PostDao'
-				)
-				->getPosts()
-			)
+			->setStatement($postDao->getPosts())
 			->setWhatVo('PostVo');
 
 		require_once('classes/View.php');
