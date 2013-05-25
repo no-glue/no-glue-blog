@@ -55,4 +55,12 @@ class PostDao{
 
 		return $statement->rowCount();
 	}
+
+	public function update($postVo,$sql='UPDATE posts SET name=\'%s\',title=\'%s\',body=\'%s\',modified_at=UNIX_TIMESTAMP() WHERE id=%d'){
+		$sql=sprintf($sql,$postVo->getName(),$postVo->getTitle(),$postVo->getBody(),$postVo->getId());
+
+		$statement=$this->_databaseWrapper->execute($sql);
+
+		return $statement->rowCount();
+	}
 }

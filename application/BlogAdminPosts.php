@@ -9,7 +9,7 @@ use application\models;
 class BlogAdminPosts{
 	public function __construct(){}
 
-	public function index($requestType,$id){
+	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');
 		require_once('classes/ClassFactory.php');
 		require_once('models/DaoFactory.php');
@@ -17,7 +17,7 @@ class BlogAdminPosts{
 		$postDao=\application\models\DaoFactory::create('PostDao');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		$postDao->deletePostById($id);
+		$postDao->deletePostById($requestObject->id);
 
 		$posts=\application\classes\ClassFactory::create('Result')
 			->setStatement($postDao->getPosts())
@@ -31,16 +31,27 @@ class BlogAdminPosts{
 		);
 	}
 
-	public function view($requestType,$postId){
+	public function view($requestType,$requestObject){
+		require_once('premade/Constants.php');
 		require_once('classes/ClassFactory.php');
 		require_once('models/DaoFactory.php');
+		require_once('models/VoFactory.php');
+
+		$requestType===\premade\Constants::REQUEST_POST AND
+		\application\models\DaoFactory::create('PostDao')
+			->update(
+				\application\models\VoFactory::create(
+					'PostVo'
+				)
+				->setFromObject($requestObject)
+			);
 
 		$post=\application\classes\ClassFactory::create('Result')
 			->setStatement(
 				\application\models\DaoFactory::create(
 					'PostDao'
 				)
-				->getPostById($postId)
+				->getPostById($requestObject->id)
 			)
 			->setWhatVo('PostVo')
 			->fetch();

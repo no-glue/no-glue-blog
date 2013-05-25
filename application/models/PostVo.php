@@ -48,7 +48,22 @@ class PostVo{
 		$this->_title=$statement['title'];
 		$this->_body=$statement['body'];
 		$this->_createdAt=$statement['created_at'];
-		$this->_modifiedAt=$statement['modified_at'];
+		$this->_modifiedAt=
+			isset($statement['modified_at'])?
+				$statement['modified_at']:time();
+	}
+
+	public function setFromObject($object){
+		$this->_id=$object->id;
+		$this->_name=$object->name;
+		$this->_title=$object->title;
+		$this->_body=$object->body;
+		$this->_createdAt=$object->created_at;
+		$this->_modifiedAt=
+			isset($object->modified_at)?
+				$object->modified_at:time();
+
+		return $this;
 	}
 
 	public function setId($id){

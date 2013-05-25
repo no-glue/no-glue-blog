@@ -56,18 +56,23 @@ class RequestHelper{
 	}
 
 	public function getParams($params=array()){
+		require_once('Constants.php');
+
 		empty($params) AND 
 		$params=array_slice($_REQUEST,2);
-		$params=
-			array_merge(
-				array('request_type'=>
-					$_SERVER['REQUEST_METHOD']),
-				$params
-			);
 
+		$requestType=(string)$_SERVER['REQUEST_METHOD'];
+
+		$requestType!==(string)\premade\Constants::REQUEST_POST AND
 		!$this->_delegates['letters']
 			->checkParams($params) AND 
 		$params=array();
+
+		$params=
+			array_merge(
+				array('request_type'=>$requestType),
+				array('request_object'=>(Object)$params)
+			);
 
 		return $params;
 	}
