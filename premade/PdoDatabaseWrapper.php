@@ -9,11 +9,11 @@ class PdoDatabaseWrapper{
 		$this->_databaseConnection=$databaseConnection;
 	}
 
-	public function execute($sql){
+	public function execute($sql,$params=array()){
 		try{
-			$statement=$this->_databaseConnection->getConnection()->prepare($sql);
+			$statement=$this->_databaseConnection->getConnection()->prepare($sql,array(\PDO::ATTR_CURSOR=>\PDO::CURSOR_FWDONLY));
 
-			$statement->execute();
+			$statement->execute($params);
 
 			return $statement;
 		}catch(PDOException $ex){
