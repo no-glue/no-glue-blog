@@ -13,10 +13,13 @@ class BlogAdminPosts{
 		require_once('premade/Constants.php');
 		require_once('classes/ClassFactory.php');
 		require_once('models/DaoFactory.php');
+		require_once('models/ModelFactory.php');
 
 		$postDao=\application\models\DaoFactory::create('PostDao');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
+		\application\models\ModelFactory::create('PostValidate')
+			->validateDelete($requestObject) AND
 		$postDao->deletePostById($requestObject->id);
 
 		$posts=\application\classes\ClassFactory::create('Result')
