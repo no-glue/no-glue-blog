@@ -39,8 +39,11 @@ class BlogAdminPosts{
 		require_once('classes/ClassFactory.php');
 		require_once('models/DaoFactory.php');
 		require_once('models/VoFactory.php');
+		require_once('models/ModelFactory.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
+		\application\models\ModelFactory::create('PostValidate')
+			->validateUpdate($requestObject) AND
 		\application\models\DaoFactory::create('PostDao')
 			->update(
 				\application\models\VoFactory::create(

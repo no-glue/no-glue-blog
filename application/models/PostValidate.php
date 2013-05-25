@@ -9,4 +9,8 @@ class PostValidate{
 		return isset($requestObject->id) AND
 			is_numeric($requestObject->id);
 	}
+
+	public function validateUpdate($requestObject){
+		return TRUE;
+	}
 }

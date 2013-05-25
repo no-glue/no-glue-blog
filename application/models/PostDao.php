@@ -37,11 +37,11 @@ class PostDao{
 
 	public function getPostById($postId,$sql='SELECT * FROM posts WHERE id=%d'){
 		
-		return $this->execute(mysql_real_escape_string(sprintf($sql,$postId)));
+		return $this->execute(sprintf($sql,$postId));
 	}
 
 	public function save($postVo){
-		$sql=mysql_real_escape_string('INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')');
+		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')';
 
 		$statement=$this->_databaseWrapper->execute($sql);
 
@@ -49,7 +49,7 @@ class PostDao{
 	}
 
 	public function deletePostById($postId,$sql='DELETE FROM posts WHERE id=%d'){
-		$sql=mysql_real_escape_string(sprintf($sql,$postId));
+		$sql=sprintf($sql,$postId);
 
 		$statement=$this->_databaseWrapper->execute($sql);
 
@@ -57,7 +57,7 @@ class PostDao{
 	}
 
 	public function update($postVo,$sql='UPDATE posts SET name=\'%s\',title=\'%s\',body=\'%s\',modified_at=UNIX_TIMESTAMP() WHERE id=%d'){
-		$sql=mysql_real_escape_string(sprintf($sql,$postVo->getName(),$postVo->getTitle(),$postVo->getBody(),$postVo->getId()));
+		$sql=sprintf($sql,$postVo->getName(),$postVo->getTitle(),$postVo->getBody(),$postVo->getId());
 
 		$statement=$this->_databaseWrapper->execute($sql);
 

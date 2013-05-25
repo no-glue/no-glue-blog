@@ -38,8 +38,6 @@ class Letters{
 		$ruleValues='paramValues'
 	){
 		$check=TRUE;
-		$ruleKeys='_'.$ruleKeys;
-		$ruleValues='_'.$ruleValues;
 
 		foreach($params as $key=>$param){
 			$check&=
