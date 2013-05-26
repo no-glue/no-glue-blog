@@ -83,8 +83,7 @@ class BlogAdminPosts{
 		);
 
 		\application\classes\View::load('blog_admin_template.php',
-			'blog_admin_posts_add.php',
-			array('post'=>$post)
+			'blog_admin_posts_add.php'
 		);
 	}
 }
