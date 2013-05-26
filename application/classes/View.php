@@ -4,11 +4,13 @@ namespace application\classes;
 
 class View{
 	public static function load($view,
-	$for,
+	$body,
 	$additionalValues=array(),
 	$valuesLocation='application/values/',
 	$viewsLocation='application/views/'){
-		$values=require_once($valuesLocation.$for);
+		$values=require_once($valuesLocation.$view);
+
+		$values['subviews']['blog_admin_body']=$body;
 
 		!empty($additionalValues) AND $values=array_merge($values,$additionalValues);
 
