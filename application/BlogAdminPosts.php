@@ -11,8 +11,8 @@ class BlogAdminPosts{
 
 	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('classes/ClassFactory.php');
 		require_once('models/ModelFactory.php');
+		require_once('classes/ClassFactory.php');
 
 		$postDao=\application\models\ModelFactory::create('PostDao');
 
@@ -35,8 +35,8 @@ class BlogAdminPosts{
 
 	public function view($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('classes/ClassFactory.php');
 		require_once('models/ModelFactory.php');
+		require_once('classes/ClassFactory.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\ModelFactory::create('PostValidate')
@@ -68,9 +68,9 @@ class BlogAdminPosts{
 	}
 
 	public function add($requestType,$requestObject){
-		require_once('classes/View.php');
 		require_once('premade/Constants.php');
 		require_once('models/ModelFactory.php');
+		require_once('classes/View.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\ModelFactory::create('PostDao')->save(
