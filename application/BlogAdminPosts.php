@@ -69,6 +69,15 @@ class BlogAdminPosts{
 			array('post'=>$post)
 		);
 	}
+
+	public function add($requestType,$requestObject){
+		require_once('classes/View.php');
+
+		\application\classes\View::load('blog_admin_template.php',
+			'blog_admin_posts_add.php',
+			array('post'=>$post)
+		);
+	}
 }
 
 return new \application\BlogAdminPosts();
