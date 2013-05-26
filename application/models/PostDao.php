@@ -40,10 +40,14 @@ class PostDao{
 		return $this->execute(sprintf($sql,$postId));
 	}
 
-	public function save($postVo){
-		$sql='INSERT INTO posts (name,title,body,created,modified) VALUES (\''.$postVo->getName().'\',\''.$postVo->getTitle().'\',\''.$postVo->getBody().'\','.$postVo->getCreated().','.$postVo->getModified().')';
-
-		$statement=$this->_databaseWrapper->execute($sql);
+	public function save($postVo,$sql='INSERT INTO posts (name,title,body,created_at,modified_at) VALUES (:name,:title,:body,:created_at,:modified_at)'){
+		$statement=$this->_databaseWrapper->execute($sql,array(
+			':name'=>$postVo->getName(),
+			':title'=>$postVo->getTitle(),
+			':body'=>$postVo->getBody(),
+			':created_at'=>$postVo->getCreatedAt(),
+			':modified_at'=>$postVo->getModifiedAt()
+		));
 
 		return $statement->rowCount();
 	}

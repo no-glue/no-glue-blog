@@ -54,11 +54,15 @@ class PostVo{
 	}
 
 	public function setFromObject($object){
-		$this->_id=$object->id;
+		$this->_id=
+			isset($object->id)?
+				$object->id:'';
 		$this->_name=$object->name;
 		$this->_title=$object->title;
 		$this->_body=$object->body;
-		$this->_createdAt=$object->created_at;
+		$this->_createdAt=
+			isset($object->created_at)?
+				$object->created_at:time();
 		$this->_modifiedAt=
 			isset($object->modified_at)?
 				$object->modified_at:time();
