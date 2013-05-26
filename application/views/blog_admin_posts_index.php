@@ -1,28 +1,30 @@
-<table class='show'>
-	<thead>
-		<tr>
-			<th>name</th>
-			<th>title</th>
-			<th>body</th>
-			<th>created at</th>
-			<th>modified at</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php while($post=$values['posts']->fetch()): ?>
-		<tr>
-			<td>
-				<div class='line'><?php echo $post->getName(); ?></div>
-				<div class='line'><?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','view',$post->getId(),array('class'=>'submit')); ?></div>
-				<div class='line'>
-					<?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','index',$post->getId(),array('class'=>'submit'),'delete','post'); ?>
-				</div>
-			</td>
-			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>
-			<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getBody()); ?></td>
-			<td><?php echo date('Y-m-d H:i:s',$post->getCreatedAt()); ?></td>
-			<td><?php echo date('Y-m-d H:i:s',$post->getModifiedAt()); ?></td>
-		</tr>
-		<?php endwhile; ?>
-	</tbody>
-</table>
+<?php require_once('blog_admin_posts_index_title.php'); ?>
+<?php require_once('blog_admin_posts_index_menu.php'); ?>
+<div class='line'>
+	<table class='show'>
+		<thead>
+			<tr>
+				<th>name</th>
+				<th>title</th>
+				<th>body</th>
+				<th>created at</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php while($post=$values['posts']->fetch()): ?>
+			<tr>
+				<td>
+					<div class='line'><?php echo $post->getName(); ?></div>
+					<div class='line'><?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','view',$post->getId(),array('class'=>'submit')); ?></div>
+					<div class='line'>
+						<?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','index',$post->getId(),array('class'=>'submit'),'delete','post'); ?>
+					</div>
+				</td>
+				<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>
+				<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getBody()); ?></td>
+				<td><?php echo date('Y-m-d H:i:s',$post->getCreatedAt()); ?></td>
+			</tr>
+			<?php endwhile; ?>
+		</tbody>
+	</table>
+</div>

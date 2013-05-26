@@ -38,6 +38,13 @@
 	text-decoration:none;
 }
 
+.page-title{
+	font-size:32px;
+	color:#2E99FF;
+	font-weight: bold;
+	text-transform:capitalize;
+}
+
 #site-description{
 	width:970px;
 	margin-bottom:10px;
