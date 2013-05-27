@@ -22,7 +22,7 @@ class UserDao{
 	}
 
 	public function login($username,$password,$sql='SELECT id,level FROM users WHERE username=:username AND password=:password'){
-		require_once('classes/ClassFactory');
+		require_once('application/classes/ClassFactory.php');
 
 		$statement=$this->_databaseWrapper->execute($sql,array(
 			':username'=>$username,
@@ -35,6 +35,6 @@ class UserDao{
 
 		$session->login($row['level']);
 
-		return $row;
+		return $statement->rowCount();
 	}
 }

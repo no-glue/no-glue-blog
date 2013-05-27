@@ -10,7 +10,7 @@ class Form{
 
 	public function open($class,$action,$wrapOpen='',$wrapClose='',$method='post'){
 		$configureLoader=self::_helper('configure_loader');
-		$host=$configureLoader::help();
+		$host=$configureLoader::help()['host'];
 
 		$string='<form method=\''.$method.'\' action=\''.$host.'\'>';
 		$string.=$wrapOpen.'<input type=\'hidden\' name=\'class\' value=\''.$class.'\' />'.$wrapClose;

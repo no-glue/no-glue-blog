@@ -18,7 +18,7 @@ class Link{
 		}
 
 		$configureLoader=self::_helper('configure_loader');
-		$host=$configureLoader::help();
+		$host=$configureLoader::help()['host'];
 
 		$result='<a href=\''.$host.'?class='.$class.'&action='.$action;
 
@@ -39,7 +39,7 @@ class Link{
 
 	public function lineForm($class,$action,$itemId='',$attributes=array(),$formName='view',$formMethod='get'){
 		$configureLoader=self::_helper('configure_loader');
-		$host=$configureLoader::help();
+		$host=$configureLoader::help()['host'];
 
 		$string='<form method=\''.$formMethod.'\' action=\''.$host.'\'>';
 		$string.='<input type=\'hidden\' name=\'class\' value=\''.$class.'\' />';
