@@ -17,4 +17,11 @@ class Session{
 
 		session_regenerate_id();
 	}
+
+	public function currentUserCan($right){
+		session_start();
+
+		return isset($_SESSION['access_rights']) AND
+			in_array($right,$_SESSION['access_rights']);
+	}
 }
