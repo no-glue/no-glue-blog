@@ -21,12 +21,20 @@ class UserDao{
 			);
 	}
 
-	public function login($username,$password,$sql='SELECT id FROM users WHERE username=:username AND password=:password'){
+	public function login($username,$password,$sql='SELECT id,level FROM users WHERE username=:username AND password=:password'){
+		require_once('classes/ClassFactory');
+
 		$statement=$this->_databaseWrapper->execute($sql,array(
 			':username'=>$username,
 			':password'=>$password
 		));
 
-		return $statement->rowCount();
+		$row=$this->_databaseWrapper->fetch($statement);
+
+		$session=\application\classes\ClassFactory::create('Session');
+
+		$session->login($row['level']);
+
+		return $row;
 	}
 }
