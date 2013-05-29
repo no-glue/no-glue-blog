@@ -20,17 +20,18 @@ class Link{
 		$configureLoader=self::_helper('configure_loader');
 		$host=$configureLoader::help()['host'];
 
-		$result='<a href=\''.$host.'?class='.$class.'&action='.$action;
+		$result='<a href=\'%s?%s\'>%s</a>';
 
-		foreach($parameters as $parameter=>$value){
-			$result.='&'.$parameter.'='.$value;
-		}
+		$query=http_build_query(
+			array_merge(
+				array(
+					'class'=>$class,
+					'action'=>$action
+				),
+				$parameters
+			));
 
-		$result.='\'>';
-		$result.=$text;
-		$result.='</a>';
-
-		return $result;
+		return sprintf($result,$host,$query,$text);
 	}
 
 	public function css($location,$type='text/css',$rel='stylesheet'){
