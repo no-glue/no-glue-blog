@@ -15,11 +15,15 @@ class BlogAdminIndex{
 		require_once('classes/View.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		$user=\application\models\ModelFactory::create('UserDao')
+		$count=\application\models\ModelFactory::create('UserDao')
 			->login(
 				$requestObject->username,
 				$requestObject->password
-			);
+			) AND
+		\application\classes\ClassFactory::create('Session')
+			->currentUserCan('can_access_admin') AND
+		\application\classes\ClassFactory::create('Redirect')
+			->redirect('blog_admin_posts','index');
 
 		\application\classes\View::load('blog_admin_template.php',
 			'blog_admin_index_index.php'
