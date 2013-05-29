@@ -7,7 +7,11 @@ use application\classes;
 use application\models;
 
 class BlogAdminPosts{
-	public function __construct(){}
+	public function __construct(){
+		require_once('Factory.php');
+
+		\application\Factory::create('BlogAdmin');
+	}
 
 	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');

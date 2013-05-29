@@ -21,8 +21,6 @@ class BlogAdminIndex{
 				$requestObject->password
 			);
 
-		if(isset($user)){exit('<pre>'.print_r($user,true).'</pre>');}
-
 		\application\classes\View::load('blog_admin_template.php',
 			'blog_admin_index_index.php'
 		);
