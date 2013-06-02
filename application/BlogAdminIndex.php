@@ -29,6 +29,16 @@ class BlogAdminIndex{
 			'blog_admin_index_index.php'
 		);
 	}
+
+	public function logout(){
+		require_once('models/ModelFactory.php');
+		require_once('classes/ClassFactory.php');
+
+		\application\models\ModelFactory::create('UserDao')
+			->logout() AND
+		\application\classes\ClassFactory::create('Redirect')
+			->redirect('blog_admin_index','index');
+	}
 }
 
 return new \application\BlogAdminIndex();

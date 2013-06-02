@@ -18,6 +18,14 @@ class Session{
 		session_regenerate_id();
 	}
 
+	public function logout(){
+		session_start();
+
+		unset($_SESSION['access_rights']);
+
+		return TRUE;
+	}
+
 	public function currentUserCan($right){
 		session_start();
 

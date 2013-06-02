@@ -37,4 +37,11 @@ class UserDao{
 
 		return $statement->rowCount();
 	}
+
+	public function logout(){
+		require_once('application/classes/ClassFactory.php');
+
+		return \application\classes\ClassFactory::create('Session')
+			->logout($row['level']);
+	}
 }
