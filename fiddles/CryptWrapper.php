@@ -7,8 +7,9 @@ class CryptWrapper{
 }
 
 class Index{
-	public function __construct($argv,$object='CryptWrapper',$function='crypt'){
+	public function __construct($argv,$object='CryptWrapper'){
 		$argv=array_slice($argv,1);
+		$function=array_shift($argv);
 		print_r($argv);
 		call_user_func_array(array(new $object,$function),$argv);
 	}
