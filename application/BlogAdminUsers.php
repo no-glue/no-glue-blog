@@ -10,7 +10,11 @@ class BlogAdminUsers{
 	}
 
 	public function index($requestType,$reuestObject){
-		exit('users');
+		require_once('classes/View.php');
+
+		\application\classes\View::load('blog_admin_template.php',
+			'blog_admin_users_index.php'
+		);
 	}
 }
 
