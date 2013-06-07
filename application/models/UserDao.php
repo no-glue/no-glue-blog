@@ -21,6 +21,16 @@ class UserDao{
 			);
 	}
 
+	public function execute($sql){
+		$statement=$this->_databaseWrapper->execute($sql);
+
+		return $statement;
+	}
+
+	public function getUsers($sql='SELECT * FROM users ORDER BY id DESC'){
+		return $this->execute($sql);
+	}
+
 	public function save($userVo,$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)'){
 		$statement=$this->_databaseWrapper->execute($sql,array(
 			':username'=>$userVo->getUsername(),
