@@ -9,11 +9,17 @@ class BlogAdminUsers{
 		\application\Factory::create('BlogAdmin');
 	}
 
-	public function index($requestType,$reuestObject){
+	public function index($requestType,$requestObject){
+		require_once('premade/Constants.php');
 		require_once('models/ModelFactory.php');
 		require_once('classes/ClassFactory.php');
 
 		$userDao=\application\models\ModelFactory::create('UserDao');
+
+		$requestType===\premade\Constants::REQUEST_POST AND
+		\application\models\ModelFactory::create('UserValidate')
+			->validateDelete($requestObject) AND
+		$userDao->deleteUserById($requestObject->id);
 
 		$users=\application\classes\ClassFactory::create('Result')
 			->setStatement($userDao->getUsers())

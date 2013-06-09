@@ -73,6 +73,12 @@ class UserDao{
 			->logout($row['level']);
 	}
 
+	public function deleteUserById($userId,$sql='DELETE FROM users WHERE id=:id'){
+		$statement=$this->_databaseWrapper->execute($sql,array(':id'=>$userId));
+
+		return $statement->rowCount();
+	}
+
 	public function update($userVo,$sql='UPDATE users SET username=:username,<password=:password,>level=:level,modified_at=UNIX_TIMESTAMP() WHERE id=:id'){
 		$values=array(
 			':username'=>$userVo->getUsername(),
