@@ -28,8 +28,18 @@ class BlogAdminUsers{
 	}
 
 	public function view($requestType,$requestObject){
+		require_once('premade/Constants.php');
 		require_once('models/ModelFactory.php');
 		require_once('classes/ClassFactory.php');
+
+		$requestType===\premade\Constants::REQUEST_POST AND
+		\application\models\ModelFactory::create('UserDao')
+			->update(
+				\application\models\ModelFactory::create(
+					'UserVo'
+				)
+				->setFromObject($requestObject)
+			);
 
 		$user=\application\classes\ClassFactory::create('Result')
 			->setStatement(

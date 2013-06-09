@@ -55,6 +55,25 @@ class UserVo{
 		return $this;
 	}
 
+	public function setFromObject($object){
+		$this->_id=
+			isset($object->id)?
+				$object->id:'';
+		$this->_username=$object->username;
+		$this->_password=
+			isset($object->password)?
+				$object->password:'';
+		$this->_level=$object->level;
+		$this->_created_at=
+			isset($object->created_at)?
+				$object->created_at:time();
+		$this->_modified_at=
+			isset($object->modified_at)?
+				$object->modified_at:time();
+
+		return $this;
+	}
+
 	public function setId($id){
 		$this->_id=$id;
 

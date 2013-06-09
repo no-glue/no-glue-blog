@@ -72,4 +72,24 @@ class UserDao{
 		return \application\classes\ClassFactory::create('Session')
 			->logout($row['level']);
 	}
+
+	public function update($userVo,$sql='UPDATE users SET username=:username,<password=:password,>level=:level,modified_at=UNIX_TIMESTAMP() WHERE id=:id'){
+		$values=array(
+			':username'=>$userVo->getUsername(),
+			':password'=>$userVo->getPassword(),
+			':level'=>$userVo->getLevel(),
+			':id'=>$userVo->getId()
+		);
+			
+		if($userVo->getPassword()!==''){
+			$sql=str_replace('<password=:password,>','password=:password,',$sql);
+		}else{
+			$sql=str_replace('<password=:password,>','',$sql);
+			unset($values[':password']);
+		}
+
+		$statement=$this->_databaseWrapper->execute($sql,$values);
+
+		return $statement->rowCount();
+	}
 }
