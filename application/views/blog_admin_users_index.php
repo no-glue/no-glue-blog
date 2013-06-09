@@ -1,3 +1,5 @@
+<?php require_once('blog_admin_users_index_title.php'); ?>
+<?php require_once('blog_admin_users_index_menu.php'); ?>
 <div class='line'>
 	<table class='show'>
 		<thead>
