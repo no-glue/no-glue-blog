@@ -31,6 +31,11 @@ class UserDao{
 		return $this->execute($sql);
 	}
 
+	public function getUserById($userId,$sql='SELECT * FROM users WHERE id=%d'){
+		
+		return $this->execute(sprintf($sql,$userId));
+	}
+
 	public function save($userVo,$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)'){
 		$statement=$this->_databaseWrapper->execute($sql,array(
 			':username'=>$userVo->getUsername(),
