@@ -60,10 +60,31 @@ class UserDao{
 			->logout($row['level']);
 	}
 
-	public function save($userVo,$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)'){
+	public function save(
+		$userVo,
+		$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)',
+		$helpers=array(
+			'scramble'=>array(
+				'object'=>'Scramble',
+				'factory_file'=>'application/classes/ClassFactory.php',
+				'factory'=>'\\application\\classes\\ClassFactory'
+			))
+	){
+		$helpersActual=array();
+
+		foreach($helpers as $key=>$helper){
+			require_once($helper['factory_file']);
+
+			$helpersActual[$key]=
+				$helper['factory']::create($helper['object']);
+		}
+
 		$statement=$this->_databaseWrapper->execute($sql,array(
 			':username'=>$userVo->getUsername(),
-			':password'=>$userVo->getPassword(),
+			':password'=>
+				$helpersActual['scramble']->scramble(
+					$userVo->getUsername(),
+					$userVo->getPassword()),
 			':level'=>$userVo->getLevel(),
 			':created_at'=>$userVo->getCreatedAt(),
 			':modified_at'=>$userVo->getModifiedAt()
