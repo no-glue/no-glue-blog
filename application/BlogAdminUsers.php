@@ -66,7 +66,15 @@ class BlogAdminUsers{
 	}
 
 	public function add($requestType,$requestObject){
+		require_once('premade/Constants.php');
+		require_once('models/ModelFactory.php');
 		require_once('classes/View.php');
+
+		$requestType===\premade\Constants::REQUEST_POST AND
+		\application\models\ModelFactory::create('UserDao')->save(
+			\application\models\ModelFactory::create('UserVo')
+				->setFromObject($requestObject)
+		);
 
 		\application\classes\View::load('blog_admin_template.php',
 			'blog_admin_users_add.php'

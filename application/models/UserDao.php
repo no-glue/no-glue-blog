@@ -36,19 +36,6 @@ class UserDao{
 		return $this->execute(sprintf($sql,$userId));
 	}
 
-	public function save($userVo,$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)'){
-		$statement=$this->_databaseWrapper->execute($sql,array(
-			':username'=>$userVo->getUsername(),
-			':password'=>$userVo->getPassword(),
-			':level'=>$userVo->getLevel(),
-			':created_at'=>$userVo->getCreatedAt(),
-			':modified_at'=>$userVo->getModifiedAt()
-		));
-
-		return $statement->rowCount();
-	}
-		
-
 	public function login($username,$password,$sql='SELECT id,level FROM users WHERE username=:username AND password=:password'){
 		require_once('application/classes/ClassFactory.php');
 
@@ -71,6 +58,18 @@ class UserDao{
 
 		return \application\classes\ClassFactory::create('Session')
 			->logout($row['level']);
+	}
+
+	public function save($userVo,$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)'){
+		$statement=$this->_databaseWrapper->execute($sql,array(
+			':username'=>$userVo->getUsername(),
+			':password'=>$userVo->getPassword(),
+			':level'=>$userVo->getLevel(),
+			':created_at'=>$userVo->getCreatedAt(),
+			':modified_at'=>$userVo->getModifiedAt()
+		));
+
+		return $statement->rowCount();
 	}
 
 	public function deleteUserById($userId,$sql='DELETE FROM users WHERE id=:id'){
