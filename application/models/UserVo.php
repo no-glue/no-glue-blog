@@ -46,13 +46,23 @@ class UserVo{
 
 	public function setFromArray($statement){
 		$this->_id=$statement['id'];
-		$this->_username=$statement['id'];
-		$this->_password=$statement['id'];
-		$this->_level=$statement['id'];
+		$this->_username=$statement['username'];
+		$this->_password=$statement['password'];
+		$this->_level=$statement['level'];
 		$this->_created_at=$statement['created_at'];
 		$this->_modified_at=$statement['modified_at'];
 	
 		return $this;
+	}
+
+	public function setId($id){
+		$this->_id=$id;
+
+		return $this;
+	}
+
+	public function getId(){
+		return $this->_id;
 	}
 
 	public function setUsername($username){

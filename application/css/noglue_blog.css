@@ -77,8 +77,9 @@
 	text-transform:capitalize;
 }
 
-.show td{
+.show td,.show th{
 	padding:10px;
+	vertical-align:top;
 }
 
 .line{
