@@ -64,6 +64,14 @@ class BlogAdminUsers{
 			array('user'=>$user)
 		);
 	}
+
+	public function add($requestType,$requestObject){
+		require_once('classes/View.php');
+
+		\application\classes\View::load('blog_admin_template.php',
+			'blog_admin_users_add.php'
+		);
+	}
 }
 
 return new \application\BlogAdminUsers();
