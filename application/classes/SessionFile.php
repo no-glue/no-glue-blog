@@ -30,8 +30,4 @@ class SessionFile{
 		return isset($_SESSION['access_rights']) AND
 			in_array($right,$_SESSION['access_rights']);
 	}
-
-	public static function instance(){
-		return new \application\classes\SessionFile();
-	}
 }

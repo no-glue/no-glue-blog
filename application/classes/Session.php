@@ -7,13 +7,14 @@ class Session{
 
 	public function __construct(
 		$actual=array(
-			'object'=>'\\application\\classes\\SessionFile',
-			'factory_file'=>'SessionFile.php'
+			'object'=>'SessionFile',
+			'factory_file'=>'ClassFactory.php',
+			'factory'=>'\\application\\classes\\ClassFactory'
 		)
 	){
 		require_once($actual['factory_file']);
 
-		$this->_actual=$actual['object']::instance();
+		$this->_actual=$actual['factory']::create($actual['object']);
 	}
 
 	public function login($userLevel){
