@@ -7,18 +7,31 @@ use application\classes;
 
 class UserDao{
 	protected $_databaseWrapper;
+	protected $_scramble;
 
-	public function __construct($databaseWrapper=array(
-		'factory_file'=>'premade/DatabaseWrapperFactory.php',
-		'factory'=>'\\premade\\DatabaseWrapperFactory',
-		'object'=>'\\premade\\PdoDatabaseWrapper'
-	)){
+	public function __construct(
+		$databaseWrapper=array(
+			'factory_file'=>'premade/DatabaseWrapperFactory.php',
+			'factory'=>'\\premade\\DatabaseWrapperFactory',
+			'object'=>'\\premade\\PdoDatabaseWrapper'
+		),
+		$scramble=array(
+			'object'=>'Scramble',
+			'factory_file'=>'application/classes/ClassFactory.php',
+			'factory'=>'\\application\\classes\\ClassFactory'
+			)
+	){
 		require_once($databaseWrapper['factory_file']);
 
 		$this->_databaseWrapper=
 			$databaseWrapper['factory']::create(
 				$databaseWrapper['object']
 			);
+
+		require_once($scramble['factory_file']);
+
+		$this->_scramble=
+			$scramble['factory']::create($scramble['object']);
 	}
 
 	public function execute($sql){
@@ -41,7 +54,8 @@ class UserDao{
 
 		$statement=$this->_databaseWrapper->execute($sql,array(
 			':username'=>$username,
-			':password'=>$password
+			':password'=>$this->_scramble
+				->scramble($username,$password)
 		));
 
 		$row=$this->_databaseWrapper->fetch($statement);
@@ -62,27 +76,12 @@ class UserDao{
 
 	public function save(
 		$userVo,
-		$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)',
-		$helpers=array(
-			'scramble'=>array(
-				'object'=>'Scramble',
-				'factory_file'=>'application/classes/ClassFactory.php',
-				'factory'=>'\\application\\classes\\ClassFactory'
-			))
+		$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)'
 	){
-		$helpersActual=array();
-
-		foreach($helpers as $key=>$helper){
-			require_once($helper['factory_file']);
-
-			$helpersActual[$key]=
-				$helper['factory']::create($helper['object']);
-		}
-
 		$statement=$this->_databaseWrapper->execute($sql,array(
 			':username'=>$userVo->getUsername(),
 			':password'=>
-				$helpersActual['scramble']->scramble(
+				$this->_sramble->scramble(
 					$userVo->getUsername(),
 					$userVo->getPassword()),
 			':level'=>$userVo->getLevel(),
@@ -102,7 +101,9 @@ class UserDao{
 	public function update($userVo,$sql='UPDATE users SET username=:username,<password=:password,>level=:level,modified_at=UNIX_TIMESTAMP() WHERE id=:id'){
 		$values=array(
 			':username'=>$userVo->getUsername(),
-			':password'=>$userVo->getPassword(),
+			':password'=>$this->_scramble->scramble(
+				$userVo->getUsername(),
+				$userVo->getPassword()),
 			':level'=>$userVo->getLevel(),
 			':id'=>$userVo->getId()
 		);
