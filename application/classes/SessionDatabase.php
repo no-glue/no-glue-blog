@@ -4,7 +4,7 @@ namespace application\classes;
 
 use premade;
 
-class SessionDatabase implements SessionHandlerInterface{
+class SessionDatabase implements \SessionHandlerInterface{
 	protected $_databaseWrapper;
 
 	public function __construct($databaseWrapper=array(
@@ -20,8 +20,6 @@ class SessionDatabase implements SessionHandlerInterface{
 			);
 
 		session_set_save_handler($this,TRUE);
-
-		session_start();
 	}
 
 	protected function _execute($sql,$values=array()){
@@ -45,11 +43,60 @@ class SessionDatabase implements SessionHandlerInterface{
 		);
 
 		$statement=$this->_execute($sql,$values);
+
+		$row=$this->_databaseWrapper->fetch($statement);
+
+		return unserialize($row['body']);
 	}
 
-	public function write($id,$data){}
+	public function write(
+		$id,
+		$body,
+		$sql='INSERT INTO sessions (id,body,created_at,modified_at) VALUES (:id,:body,UNIX_TIMESTAMP(),UNIX_TIMESTAMP())'){
+		$values=array(
+			':id'=>$id,
+			':body'=>$body
+		);
 
-	public function destroy($id){}
+		$statement=$this->_execute($sql,$values);
+
+		return $statement->rowCount();
+	}
+
+	public function destroy(
+	$id,
+	$sql='DELETE FROM sessions WHERE id=:id'
+	){
+		$values=array(
+			':id'=>$id
+		);
+
+		$statement=$this->_execute($sql,$values);
+
+		return $statement->rowCount();
+	}
 
 	public function gc($maxlifetime){}
+
+	public function login($userLevel){
+		require_once('ConfigureLoader.php');
+
+		$accessRights=ConfigureLoader::help('configure/','accessRights.php');
+
+		session_start();
+	
+		$_SESSION['access_rights']=
+			array_slice($accessRights,$userLevel);
+	}
+
+	public function logout(){
+		unset($_SESSION['access_rights']);
+
+		return TRUE;
+	}
+
+	public function currentUserCan($right){
+		return isset($_SESSION['access_rights']) AND
+			in_array($right,$_SESSION['access_rights']);
+	}
 }

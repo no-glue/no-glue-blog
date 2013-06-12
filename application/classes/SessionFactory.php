@@ -4,7 +4,7 @@ namespace application\classes;
 
 class SessionFactory{
 	public static function create(
-	$object='SessionFile',
+	$object='SessionDatabase',
 	$lookWhere='',
 	$extension='.php',
 	$namespace='\\application\\classes\\'){
