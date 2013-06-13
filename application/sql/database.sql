@@ -35,5 +35,6 @@ CREATE TABLE sessions(
 	id VARCHAR(32) NOT NULL,
 	body TEXT,
 	created_at INT(11),
-	modified_at INT(11)
+	modified_at INT(11),
+	PRIMARY KEY(id)
 );

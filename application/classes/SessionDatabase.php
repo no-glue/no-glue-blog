@@ -46,13 +46,13 @@ class SessionDatabase implements \SessionHandlerInterface{
 
 		$row=$this->_databaseWrapper->fetch($statement);
 
-		return unserialize($row['body']);
+		return $row['body'];
 	}
 
 	public function write(
 		$id,
 		$body,
-		$sql='INSERT INTO sessions (id,body,created_at,modified_at) VALUES (:id,:body,UNIX_TIMESTAMP(),UNIX_TIMESTAMP())'){
+		$sql='REPLACE sessions (id,body,created_at,modified_at) VALUES (:id,:body,UNIX_TIMESTAMP(),UNIX_TIMESTAMP())'){
 		$values=array(
 			':id'=>$id,
 			':body'=>$body
@@ -82,20 +82,23 @@ class SessionDatabase implements \SessionHandlerInterface{
 		require_once('ConfigureLoader.php');
 
 		$accessRights=ConfigureLoader::help('configure/','accessRights.php');
-
 		session_start();
-	
+
 		$_SESSION['access_rights']=
 			array_slice($accessRights,$userLevel);
 	}
 
 	public function logout(){
+		session_start();
+
 		unset($_SESSION['access_rights']);
 
 		return TRUE;
 	}
 
 	public function currentUserCan($right){
+		session_start();
+
 		return isset($_SESSION['access_rights']) AND
 			in_array($right,$_SESSION['access_rights']);
 	}
