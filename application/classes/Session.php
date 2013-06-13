@@ -3,28 +3,37 @@
 namespace application\classes;
 
 class Session{
-	protected $_actual;
-
-	public function __construct(
-		$actual=array(
-			'factory_file'=>'SessionFactory.php',
-			'factory'=>'\\application\\classes\\SessionFactory'
-		)
-	){
-		require_once($actual['factory_file']);
-
-		$this->_actual=$actual['factory']::create();
-	}
+	public function __construct(){}
 
 	public function login($userLevel){
-		$this->_actual->login($userLevel);
+		require_once('ConfigureLoader.php');
+
+		$accessRights=ConfigureLoader::help('configure/','accessRights.php');
+
+		session_start();
+	
+		$_SESSION['access_rights']=
+			array_slice($accessRights,$userLevel);
+
+		session_regenerate_id();
 	}
 
 	public function logout(){
-		return $this->_actual->logout();
+		session_start();
+
+		unset($_SESSION['access_rights']);
+
+		return TRUE;
 	}
 
 	public function currentUserCan($right){
-		return $this->_actual->currentUserCan($right);
+		session_start();
+
+		return isset($_SESSION['access_rights']) AND
+			in_array($right,$_SESSION['access_rights']);
+	}
+
+	public static function redirect($redirect='SessionDatabase'){
+		return $redirect;
 	}
 }
