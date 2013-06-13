@@ -86,6 +86,8 @@ class SessionDatabase implements \SessionHandlerInterface{
 
 		$_SESSION['access_rights']=
 			array_slice($accessRights,$userLevel);
+
+		session_regenerate_id();
 	}
 
 	public function logout(){
