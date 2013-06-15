@@ -25,8 +25,8 @@ class PostDao{
 		$this->_databaseWrapper=$databaseWrapper;
 	}
 
-	public function execute($sql){
-		$statement=$this->_databaseWrapper->execute($sql);
+	public function execute($sql,$values=array()){
+		$statement=$this->_databaseWrapper->execute($sql,$values);
 
 		return $statement;
 	}
@@ -41,7 +41,7 @@ class PostDao{
 	}
 
 	public function save($postVo,$sql='INSERT INTO posts (name,title,body,created_at,modified_at) VALUES (:name,:title,:body,:created_at,:modified_at)'){
-		$statement=$this->_databaseWrapper->execute($sql,array(
+		$statement=$this->execute($sql,array(
 			':name'=>$postVo->getName(),
 			':title'=>$postVo->getTitle(),
 			':body'=>$postVo->getBody(),
@@ -53,13 +53,13 @@ class PostDao{
 	}
 
 	public function deletePostById($postId,$sql='DELETE FROM posts WHERE id=:id'){
-		$statement=$this->_databaseWrapper->execute($sql,array(':id'=>$postId));
+		$statement=$this->execute($sql,array(':id'=>$postId));
 
 		return $statement->rowCount();
 	}
 
 	public function update($postVo,$sql='UPDATE posts SET name=:name,title=:title,body=:body,modified_at=UNIX_TIMESTAMP() WHERE id=:id'){
-		$statement=$this->_databaseWrapper->execute($sql,array(
+		$statement=$this->execute($sql,array(
 			':name'=>$postVo->getName(),
 			':title'=>$postVo->getTitle(),
 			':body'=>$postVo->getBody(),

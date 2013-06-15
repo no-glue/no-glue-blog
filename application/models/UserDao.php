@@ -34,8 +34,8 @@ class UserDao{
 			$scramble['factory']::create($scramble['object']);
 	}
 
-	public function execute($sql){
-		$statement=$this->_databaseWrapper->execute($sql);
+	public function execute($sql,$values=array()){
+		$statement=$this->_databaseWrapper->execute($sql,$values);
 
 		return $statement;
 	}
@@ -52,7 +52,7 @@ class UserDao{
 	public function login($username,$password,$sql='SELECT id,level FROM users WHERE username=:username AND password=:password'){
 		require_once('application/classes/ClassFactory.php');
 
-		$statement=$this->_databaseWrapper->execute($sql,array(
+		$statement=$this->execute($sql,array(
 			':username'=>$username,
 			':password'=>$this->_scramble
 				->scramble($username,$password)
@@ -78,7 +78,7 @@ class UserDao{
 		$userVo,
 		$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)'
 	){
-		$statement=$this->_databaseWrapper->execute($sql,array(
+		$statement=$this->execute($sql,array(
 			':username'=>$userVo->getUsername(),
 			':password'=>
 				$this->_sramble->scramble(
@@ -93,7 +93,7 @@ class UserDao{
 	}
 
 	public function deleteUserById($userId,$sql='DELETE FROM users WHERE id=:id'){
-		$statement=$this->_databaseWrapper->execute($sql,array(':id'=>$userId));
+		$statement=$this->execute($sql,array(':id'=>$userId));
 
 		return $statement->rowCount();
 	}
@@ -115,7 +115,7 @@ class UserDao{
 			unset($values[':password']);
 		}
 
-		$statement=$this->_databaseWrapper->execute($sql,$values);
+		$statement=$this->execute($sql,$values);
 
 		return $statement->rowCount();
 	}
