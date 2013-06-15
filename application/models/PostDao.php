@@ -7,17 +7,32 @@ use application\classes;
 
 class PostDao{
 	protected $_databaseWrapper;
+	protected $_postStatement;
 
-	public function __construct($databaseWrapper=array(
-		'factory_file'=>'premade/DatabaseWrapperFactory.php',
-		'factory'=>'\\premade\\DatabaseWrapperFactory',
-		'object'=>'\\premade\\PdoDatabaseWrapper'
-	)){
+	public function __construct(
+		$databaseWrapper=array(
+			'factory_file'=>'premade/DatabaseWrapperFactory.php',
+			'factory'=>'\\premade\\DatabaseWrapperFactory',
+			'object'=>'\\premade\\PdoDatabaseWrapper'
+		),
+		$postStatement=array(
+			'factory_file'=>'ModelFactory.php',
+			'factory'=>'\\application\\models\\ModelFactory',
+			'object'=>'PostStatement'
+		)
+	){
 		require_once($databaseWrapper['factory_file']);
 
 		$this->_databaseWrapper=
 			$databaseWrapper['factory']::create(
 				$databaseWrapper['object']
+			);
+
+		require_once($postStatement['factory_file']);
+
+		$this->_postStatement=
+			$postStatement['factory']::create(
+				$postStatement['object']
 			);
 	}
 
@@ -31,17 +46,18 @@ class PostDao{
 		return $statement;
 	}
 	
-	public function getPosts($sql='SELECT * FROM posts ORDER BY id DESC'){
-		return $this->execute($sql);
+	public function getPosts(){
+		return $this->execute($this->_postStatement->getPosts());
 	}
 
-	public function getPostById($postId,$sql='SELECT * FROM posts WHERE id=%d'){
+	public function getPostById($id){
 		
-		return $this->execute(sprintf($sql,$postId));
+		return $this->execute(
+			$this->_postStatement->getPostById(),array(':id'=>$id));
 	}
 
-	public function save($postVo,$sql='INSERT INTO posts (name,title,body,created_at,modified_at) VALUES (:name,:title,:body,:created_at,:modified_at)'){
-		$statement=$this->execute($sql,array(
+	public function save($postVo){
+		$statement=$this->execute($this->_postStatement->save(),array(
 			':name'=>$postVo->getName(),
 			':title'=>$postVo->getTitle(),
 			':body'=>$postVo->getBody(),
@@ -52,14 +68,16 @@ class PostDao{
 		return $statement->rowCount();
 	}
 
-	public function deletePostById($postId,$sql='DELETE FROM posts WHERE id=:id'){
-		$statement=$this->execute($sql,array(':id'=>$postId));
+	public function deletePostById($postId){
+		$statement=$this->execute(
+			$this->_postStatement->deletePostById(),
+			array(':id'=>$postId));
 
 		return $statement->rowCount();
 	}
 
-	public function update($postVo,$sql='UPDATE posts SET name=:name,title=:title,body=:body,modified_at=UNIX_TIMESTAMP() WHERE id=:id'){
-		$statement=$this->execute($sql,array(
+	public function update($postVo){
+		$statement=$this->execute($this->_postStatement->update(),array(
 			':name'=>$postVo->getName(),
 			':title'=>$postVo->getTitle(),
 			':body'=>$postVo->getBody(),

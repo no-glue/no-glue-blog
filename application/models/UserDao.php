@@ -8,6 +8,7 @@ use application\classes;
 class UserDao{
 	protected $_databaseWrapper;
 	protected $_scramble;
+	protected $_userStatement;
 
 	public function __construct(
 		$databaseWrapper=array(
@@ -19,6 +20,11 @@ class UserDao{
 			'object'=>'Scramble',
 			'factory_file'=>'application/classes/ClassFactory.php',
 			'factory'=>'\\application\\classes\\ClassFactory'
+			),
+		$userStatement=array(
+			'object'=>'UserStatement',
+			'factory_file'=>'ModelFactory.php',
+			'factory'=>'\\application\\models\\ModelFactory'
 			)
 	){
 		require_once($databaseWrapper['factory_file']);
@@ -32,6 +38,11 @@ class UserDao{
 
 		$this->_scramble=
 			$scramble['factory']::create($scramble['object']);
+
+		require_once($userStatement['factory_file']);
+
+		$this->_userStatement=
+			$userStatement['factory']::create($userStatement['object']);
 	}
 
 	public function execute($sql,$values=array()){
@@ -40,19 +51,20 @@ class UserDao{
 		return $statement;
 	}
 
-	public function getUsers($sql='SELECT * FROM users ORDER BY id DESC'){
-		return $this->execute($sql);
+	public function getUsers(){
+		return $this->execute($this->_userStatement->getUsers());
 	}
 
-	public function getUserById($userId,$sql='SELECT * FROM users WHERE id=%d'){
+	public function getUserById($userId){
 		
-		return $this->execute(sprintf($sql,$userId));
+		return $this->execute(sprintf(
+			$this->_userStatement->getUserById(),$userId));
 	}
 
-	public function login($username,$password,$sql='SELECT id,level FROM users WHERE username=:username AND password=:password'){
+	public function login($username,$password){
 		require_once('application/classes/ClassFactory.php');
 
-		$statement=$this->execute($sql,array(
+		$statement=$this->execute($this->_userStatement->login(),array(
 			':username'=>$username,
 			':password'=>$this->_scramble
 				->scramble($username,$password)
@@ -74,11 +86,8 @@ class UserDao{
 			->logout($row['level']);
 	}
 
-	public function save(
-		$userVo,
-		$sql='INSERT INTO users (username,password,level,created_at,modified_at) VALUES (:username,:password,:level,:created_at,:modified_at)'
-	){
-		$statement=$this->execute($sql,array(
+	public function save($userVo){
+		$statement=$this->execute($this->_userStatement->save(),array(
 			':username'=>$userVo->getUsername(),
 			':password'=>
 				$this->_sramble->scramble(
@@ -92,13 +101,15 @@ class UserDao{
 		return $statement->rowCount();
 	}
 
-	public function deleteUserById($userId,$sql='DELETE FROM users WHERE id=:id'){
-		$statement=$this->execute($sql,array(':id'=>$userId));
+	public function deleteUserById($userId){
+		$statement=$this->execute(
+			$this->_userStatement->deleteUserById(),
+			array(':id'=>$userId));
 
 		return $statement->rowCount();
 	}
 
-	public function update($userVo,$sql='UPDATE users SET username=:username,<password=:password,>level=:level,modified_at=UNIX_TIMESTAMP() WHERE id=:id'){
+	public function update($userVo){
 		$values=array(
 			':username'=>$userVo->getUsername(),
 			':password'=>$this->_scramble->scramble(
@@ -107,11 +118,10 @@ class UserDao{
 			':level'=>$userVo->getLevel(),
 			':id'=>$userVo->getId()
 		);
+
+		$sql=$this->_userStatement->update($userVo);
 			
-		if($userVo->getPassword()!==''){
-			$sql=str_replace('<password=:password,>','password=:password,',$sql);
-		}else{
-			$sql=str_replace('<password=:password,>','',$sql);
+		if($userVo->getPassword()===''){
 			unset($values[':password']);
 		}
 
