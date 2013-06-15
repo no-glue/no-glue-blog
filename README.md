@@ -1,6 +1,6 @@
 No Glue Blog
 _______
-Classes for web applications and sample blog application. 
+Components for web applications and sample blog application. 
 
 ##Idea of the project
 Main idea is to create a set of components that can be used for making web applications.
