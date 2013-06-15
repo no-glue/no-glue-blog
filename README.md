@@ -3,7 +3,7 @@ _______
 Components for web applications and sample blog application. 
 
 ##Idea of the project
-Main idea is to create a set of components that can be used for making web applications.
+Main idea is to create a set of components that can be to make web applications.
 This project comes with blog application. 
 
 ##Some new features
