@@ -6,11 +6,13 @@ class ClassFactory{
 	public static function create($object,
 	$lookWhere='',
 	$extension='.php',
-	$namespace='\\application\\classes\\'){
+	$namespace='\\application\\classes\\',
+	$methodRedirect='redirect'
+	){
 		$require=$lookWhere.$object.$extension;
 		$object=$namespace.$object;
 
-		method_exists($object,'redirect') AND
+		method_exists($object,$methodRedirect) AND
 		$redirect=$object::redirect() AND
 		$require=$lookWhere.$redirect.$extension AND
 		$redirect=$namespace.$redirect AND
