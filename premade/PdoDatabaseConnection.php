@@ -6,7 +6,13 @@ class PdoDatabaseConnection{
 	protected $_connection;
 	protected static $_instance;
 
-	public function __construct($driver,$host,$dbname,$username,$password){
+	public function __construct(
+		$driver,
+		$host,
+		$dbname,
+		$username,
+		$password
+	){
 
 		$this->_connection=new \PDO($driver.':host='.$host.
 			';dbname='.$dbname,
@@ -20,11 +26,12 @@ class PdoDatabaseConnection{
 	}
 
 	public static function getInstance(
-		$driver,
-		$host,
-		$dbname,
-		$username,
-		$password){
+		$driver='mysql',
+		$host='localhost',
+		$dbname='noglue_blog',
+		$username='root',
+		$password='srbijA123'
+	){
 		if(!self::$_instance){
 			self::$_instance=new \premade\PdoDatabaseConnection(
 				$driver,

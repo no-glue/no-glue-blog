@@ -12,9 +12,9 @@ class UserDao{
 
 	public function __construct(
 		$databaseWrapper=array(
-			'factory_file'=>'premade/DatabaseWrapperFactory.php',
-			'factory'=>'\\premade\\DatabaseWrapperFactory',
-			'object'=>'\\premade\\PdoDatabaseWrapper'
+			'factory_file'=>'premade/PremadeFactory.php',
+			'factory'=>'\\premade\\PremadeFactory',
+			'object'=>'PdoDatabaseWrapper'
 		),
 		$scramble=array(
 			'object'=>'Scramble',

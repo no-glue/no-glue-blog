@@ -5,8 +5,17 @@ namespace premade;
 class PdoDatabaseWrapper{
 	protected $_databaseConnection;
 
-	public function __construct($databaseConnection){
-		$this->_databaseConnection=$databaseConnection;
+	public function __construct(
+		$databaseConnection=array(
+			'factory_file'=>'PremadeFactory.php',
+			'factory'=>'\\premade\\PremadeFactory',
+			'object'=>'PdoDatabaseConnection'
+		)
+	){
+		$this->_databaseConnection=
+			$databaseConnection['factory']::create(
+				$databaseConnection['object']
+			);
 	}
 
 	public function execute($sql,$params=array()){
