@@ -8,9 +8,9 @@ class SessionDatabase implements \SessionHandlerInterface{
 	protected $_databaseWrapper;
 
 	public function __construct($databaseWrapper=array(
-		'factory_file'=>'premade/DatabaseWrapperFactory.php',
-		'factory'=>'\\premade\\DatabaseWrapperFactory',
-		'object'=>'\\premade\\PdoDatabaseWrapper'
+		'factory_file'=>'premade/PremadeFactory.php',
+		'factory'=>'\\premade\\PremadeFactory',
+		'object'=>'PdoDatabaseWrapper'
 	)){
 		require_once($databaseWrapper['factory_file']);
 
