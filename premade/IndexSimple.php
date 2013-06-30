@@ -32,6 +32,11 @@ class IndexSimple{
 		$this->_action=$requestHelper->getAction();
 		$this->_params=$requestHelper->getParams();
 
+		$this->populate(
+			$requestHelper,
+			array('class','action','params')
+		);
+
 		foreach($observers as $key=>$observer){
 			$this->_observers[$key]=
 				$observer['factory']::create(
@@ -85,6 +90,19 @@ class IndexSimple{
 	protected function _notify(){
 		foreach($this->_observers as $key=>$observer){
 			$observer->update($this);
+		}
+	}
+
+	protected function populate(
+		$provider,
+		$members,
+		$conventionMember='_',
+		$conventionCall='get'
+	){
+		foreach($members as $member){
+			$mine=$conventionMember.$member;
+			$call=$convention.ucfirst($member);
+			$this->{$mine}=$provider->{$call};
 		}
 	}
 }
