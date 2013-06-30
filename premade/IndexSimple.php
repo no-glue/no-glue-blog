@@ -14,6 +14,7 @@ class IndexSimple{
 	public function __construct(
 		$folder=\premade\Constants::APPLICATION_FOLDER,
 		$requestHelper=\premade\IndexSimpleConstants::REQUEST_HELPER,
+		$populateHelper=\premade\IndexSimpleConstants::POPULATE_HELPER,
 		$observers=array(
 			'index_routes_observer'=>array(
 				'factory'=>'\\premade\\PremadeFactory',
@@ -28,7 +29,7 @@ class IndexSimple{
 
 		$requestHelper=\premade\PremadeFactory::create($requestHelper);
 
-		$populateHelper=\premade\PremadeFactory::create('PopulateHelper');
+		$populateHelper=\premade\PremadeFactory::create($populateHelper);
 
 		$populateHelper->populate(
 			$this,

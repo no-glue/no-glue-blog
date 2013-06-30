@@ -7,13 +7,13 @@ class PopulateHelper{
 		$object,
 		$provider,
 		$members,
-		$conventionMember='_',
-		$conventionCall='get'
+		$setMember='set',
+		$getMember='get'
 	){
 		foreach($members as $member){
-			$mine=$conventionMember.$member;
-			$call=$convention.ucfirst($member);
-			$object->{$mine}=$provider->{$call};
+			$setCall=$setMember.ucfirst($member);
+			$getCall=$getMember.ucfirst($member);
+			$object->{$setCall}($provider->{$getCall}());
 		}
 	}
 }
