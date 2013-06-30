@@ -2,6 +2,8 @@
 
 namespace premade;
 
+require_once('Constants.php');
+
 class IndexSimple{
 	protected $_folder;
 	protected $_class;
@@ -10,10 +12,7 @@ class IndexSimple{
 	protected $_observers;
 
 	public function __construct(
-		$folder=array(
-			'function'=>'load',
-			'params'=>'folder'
-		),
+		$folder=\premade\Constants::APPLICATION_FOLDER,
 		$class=array(
 			'function'=>'getClass'
 		),
@@ -22,11 +21,6 @@ class IndexSimple{
 		),
 		$params=array(
 			'function'=>'getParams'
-		),
-		$folderGroup=array(
-			'factory_file'=>'PremadeFactory.php',
-			'factory'=>'\\premade\\PremadeFactory',
-			'object'=>'ConfigureLoader'
 		),
 		$requestGroup=array(
 			'factory'=>'\\premade\\PremadeFactory',
@@ -40,15 +34,7 @@ class IndexSimple{
 		)
 
 	){
-		require_once($folderGroup['factory_file']);
-
-		$configureLoader=
-			$folderGroup['factory']::create(
-				$folderGroup['object']
-			);
-
-		$this->_folder=
-			$configureLoader->{$folder['function']}($folder['params']);
+		$this->_folder=$folder;
 
 		$requestHelper=
 			$requestGroup['factory']::create(
