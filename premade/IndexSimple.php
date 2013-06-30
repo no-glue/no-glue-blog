@@ -28,11 +28,10 @@ class IndexSimple{
 
 		$requestHelper=\premade\PremadeFactory::create($requestHelper);
 
-		$this->_class=$requestHelper->getClass();
-		$this->_action=$requestHelper->getAction();
-		$this->_params=$requestHelper->getParams();
+		$populateHelper=\premade\PremadeFactory::create('PopulateHelper');
 
-		$this->populate(
+		$populateHelper->populate(
+			$this,
 			$requestHelper,
 			array('class','action','params')
 		);
@@ -90,19 +89,6 @@ class IndexSimple{
 	protected function _notify(){
 		foreach($this->_observers as $key=>$observer){
 			$observer->update($this);
-		}
-	}
-
-	protected function populate(
-		$provider,
-		$members,
-		$conventionMember='_',
-		$conventionCall='get'
-	){
-		foreach($members as $member){
-			$mine=$conventionMember.$member;
-			$call=$convention.ucfirst($member);
-			$this->{$mine}=$provider->{$call};
 		}
 	}
 }
