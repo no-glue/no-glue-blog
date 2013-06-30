@@ -13,19 +13,7 @@ class IndexSimple{
 
 	public function __construct(
 		$folder=\premade\Constants::APPLICATION_FOLDER,
-		$class=array(
-			'function'=>'getClass'
-		),
-		$action=array(
-			'function'=>'getAction'
-		),
-		$params=array(
-			'function'=>'getParams'
-		),
-		$requestGroup=array(
-			'factory'=>'\\premade\\PremadeFactory',
-			'object'=>'RequestHelper'
-		),
+		$requestHelper=\premade\IndexSimpleConstants::REQUEST_HELPER,
 		$observers=array(
 			'index_routes_observer'=>array(
 				'factory'=>'\\premade\\PremadeFactory',
@@ -34,16 +22,15 @@ class IndexSimple{
 		)
 
 	){
+		require_once('PremadeFactory.php');
+
 		$this->_folder=$folder;
 
-		$requestHelper=
-			$requestGroup['factory']::create(
-				$requestGroup['object']
-			);
+		$requestHelper=\premade\PremadeFactory::create($requestHelper);
 
-		$this->_class=$requestHelper->{$class['function']}();
-		$this->_action=$requestHelper->{$action['function']}();
-		$this->_params=$requestHelper->{$params['function']}();
+		$this->_class=$requestHelper->getClass();
+		$this->_action=$requestHelper->getAction();
+		$this->_params=$requestHelper->getParams();
 
 		foreach($observers as $key=>$observer){
 			$this->_observers[$key]=
