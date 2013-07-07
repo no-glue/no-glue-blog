@@ -2,30 +2,22 @@
 
 namespace premade;
 
+require_once('Constants.php');
+
 class RequestHelper{
-	protected $_delegates;
+	protected $_helpers;
 
 	public function __construct(
-		$delegates=array(
-			'letters'=>array(
-				'object'=>'Letters'
-			),
-			'request_formatter'=>array(
-				'object'=>'RequestFormatter'
-			)
-		),
-		$delegatesGroup=array(
-			'factory_file'=>'PremadeFactory.php',
-			'factory'=>'\\premade\\PremadeFactory'
-		)
+		$helpers=\premade\RequestHelperConstants::HELPERS
 	){
-		require_once($delegatesGroup['factory_file']);
+		require_once('PremadeFactory.php');
 
-		foreach($delegates as $key=>$delegate){
-			$this->_delegates[$key]=
-				$delegatesGroup['factory']::create(
-					$delegate['object']
-				);
+		$helpers=\premade\PremadeFactory::create($helpers)
+			->getArrayIterator();
+
+		foreach($helpers as $key=>$helper){
+			$this->_helpers[$key]=
+				\premade\PremadeFactory::create($helper);
 		}
 	}
 
@@ -33,10 +25,10 @@ class RequestHelper{
 		$class=NULL;
 
 		isset($_REQUEST['class']) AND
-		$this->_delegates['letters']
+		$this->_helpers['letters']
 			->check($_REQUEST['class'],'class') AND
 		$class=
-			$this->_delegates['request_formatter']
+			$this->_helpers['request_formatter']
 				->getCorrectClass($_REQUEST['class']);
 
 		return $class;
@@ -46,10 +38,10 @@ class RequestHelper{
 		$action=NULL;
 
 		isset($_REQUEST['action']) AND
-		$this->_delegates['letters']
+		$this->_helpers['letters']
 			->check($_REQUEST['action'],'class') AND
 		$action=
-			$this->_delegates['request_formatter']
+			$this->_helpers['request_formatter']
 				->getCorrectAction($_REQUEST['action']);
 
 		return $action;
@@ -64,7 +56,7 @@ class RequestHelper{
 		$requestType=(string)$_SERVER['REQUEST_METHOD'];
 
 		$requestType!==(string)\premade\Constants::REQUEST_POST AND
-		!$this->_delegates['letters']
+		!$this->_helpers['letters']
 			->checkParams($params) AND 
 		$params=array();
 
