@@ -9,12 +9,12 @@ class IndexSimple{
 	protected $_class;
 	protected $_action;
 	protected $_params;
+	protected $_helpers;
 	protected $_observers;
 
 	public function __construct(
 		$folder=\premade\Constants::APPLICATION_FOLDER,
-		$requestHelper=\premade\IndexSimpleConstants::REQUEST_HELPER,
-		$populateHelper=\premade\IndexSimpleConstants::POPULATE_HELPER,
+		$helpers=\premade\IndexSimpleConstants::HELPERS,
 		$observers=\premade\IndexSimpleConstants::OBSERVERS
 
 	){
@@ -22,13 +22,18 @@ class IndexSimple{
 
 		$this->_folder=$folder;
 
-		$requestHelper=\premade\PremadeFactory::create($requestHelper);
+		$helpers=\premade\PremadeFactory::create($helpers)
+			->getArrayIterator();
 
-		$populateHelper=\premade\PremadeFactory::create($populateHelper);
+		foreach($helpers as $key=>$helper){
+			$this->_helpers[$key]=\premade\PremadeFactory::create(
+				$helper
+			);
+		}
 
-		$populateHelper->populate(
+		$this->_helpers['populate_helper']->populate(
 			$this,
-			$requestHelper,
+			$this->_helpers['request_helper'],
 			array('class','action','params')
 		);
 

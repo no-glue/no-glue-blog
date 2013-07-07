@@ -2,10 +2,10 @@
 
 namespace premade;
 
-class RequestHelperHelpers{
+class IndexSimpleHelpers{
 	protected $_helpers=array(
-		'letters'=>'Letters',
-		'request_formatter'=>'RequestFormatter'
+		'request_helper'=>'RequestHelper',
+		'populate_helper'=>'RequestHelper'
 	);
 	protected $_arrayIterator;
 
