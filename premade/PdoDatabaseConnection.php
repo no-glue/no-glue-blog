@@ -2,6 +2,8 @@
 
 namespace premade;
 
+require_once('Constants.php');
+
 class PdoDatabaseConnection{
 	protected $_connection;
 	protected static $_instance;
@@ -26,11 +28,11 @@ class PdoDatabaseConnection{
 	}
 
 	public static function getInstance(
-		$driver='mysql',
-		$host='localhost',
-		$dbname='noglue_blog',
-		$username='root',
-		$password='srbijA123'
+		$driver=\premade\PdoDatabaseConnectionConstants::DRIVER,
+		$host=\premade\PdoDatabaseConnectionConstants::HOST,
+		$dbname=\premade\PdoDatabaseConnectionConstants::DBNAME,
+		$username=\premade\PdoDatabaseConnectionConstants::USERNAME,
+		$password=\premade\PdoDatabaseConnectionConstants::PASSWORD
 	){
 		if(!self::$_instance){
 			self::$_instance=new \premade\PdoDatabaseConnection(
