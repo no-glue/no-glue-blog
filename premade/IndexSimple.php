@@ -15,12 +15,7 @@ class IndexSimple{
 		$folder=\premade\Constants::APPLICATION_FOLDER,
 		$requestHelper=\premade\IndexSimpleConstants::REQUEST_HELPER,
 		$populateHelper=\premade\IndexSimpleConstants::POPULATE_HELPER,
-		$observers=array(
-			'index_routes_observer'=>array(
-				'factory'=>'\\premade\\PremadeFactory',
-				'object'=>'IndexRoutesObserver'
-			)
-		)
+		$observers=\premade\IndexSimpleConstants::OBSERVERS
 
 	){
 		require_once('PremadeFactory.php');
@@ -37,11 +32,12 @@ class IndexSimple{
 			array('class','action','params')
 		);
 
+		$observers=\premade\PremadeFactory::create($observers)
+			->getArrayIterator();
+
 		foreach($observers as $key=>$observer){
 			$this->_observers[$key]=
-				$observer['factory']::create(
-					$observer['object']
-				);
+				\premade\PremadeFactory::create($observer);
 		}
 
 		$this->_notify();
