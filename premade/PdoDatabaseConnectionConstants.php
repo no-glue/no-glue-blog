@@ -7,5 +7,5 @@ class PdoDatabaseConnectionConstants{
 	const HOST='localhost';
 	const DBNAME='noglue_blog';
 	const USERNAME='root';
-	const PASSWORD='srbijA123';
+	const PASSWORD='root';
 }

@@ -6,9 +6,9 @@ class PdoDatabaseWrapper{
 	protected $_databaseConnection;
 
 	public function __construct(
-		$databaseConnection=>'PdoDatabaseConnection'
+		$databaseConnection='PdoDatabaseConnection'
 	){
-		require_once('PremadeFactory');
+		require_once('PremadeFactory.php');
 
 		$this->_databaseConnection=
 			\premade\PremadeFactory::create(
