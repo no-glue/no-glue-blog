@@ -2,7 +2,6 @@
 
 namespace premade;
 
-require_once('PdoDatabaseConnectionConstants.php');
 require_once('RequestHelperConstants.php');
 
 class Constants{
@@ -13,4 +12,10 @@ class Constants{
 
 	const INDEX_SIMPLE_HELPERS='IndexSimpleHelpers';
 	const INDEX_SIMPLE_OBSERVERS='IndexSimpleObservers';
+
+	const PDO_DATABASE_CONNECTION_DRIVER='mysql';
+	const PDO_DATABASE_CONNECTION_HOST='localhost';
+	const PDO_DATABASE_CONNECTION_DBNAME='noglue_blog';
+	const PDO_DATABASE_CONNECTION_USERNAME='root';
+	const PDO_DATABASE_CONNECTION_PASSWORD='srbijA123';
 }

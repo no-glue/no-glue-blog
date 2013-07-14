@@ -28,11 +28,11 @@ class PdoDatabaseConnection{
 	}
 
 	public static function getInstance(
-		$driver=\premade\PdoDatabaseConnectionConstants::DRIVER,
-		$host=\premade\PdoDatabaseConnectionConstants::HOST,
-		$dbname=\premade\PdoDatabaseConnectionConstants::DBNAME,
-		$username=\premade\PdoDatabaseConnectionConstants::USERNAME,
-		$password=\premade\PdoDatabaseConnectionConstants::PASSWORD
+		$driver=\premade\Constants::PDO_DATABASE_CONNECTION_DRIVER,
+		$host=\premade\Constants::PDO_DATABASE_CONNECTION_HOST,
+		$dbname=\premade\Constants::PDO_DATABASE_CONNECTION_DBNAME,
+		$username=\premade\Constants::PDO_DATABASE_CONNECTION_USERNAME,
+		$password=\premade\Constants::PDO_DATABASE_CONNECTION_PASSWORD
 	){
 		if(!self::$_instance){
 			self::$_instance=new \premade\PdoDatabaseConnection(
