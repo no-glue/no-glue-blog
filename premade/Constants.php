@@ -2,8 +2,6 @@
 
 namespace premade;
 
-require_once('RequestHelperConstants.php');
-
 class Constants{
 	const REQUEST_GET='GET';
 	const REQUEST_POST='POST';
@@ -18,4 +16,6 @@ class Constants{
 	const PDO_DATABASE_CONNECTION_DBNAME='noglue_blog';
 	const PDO_DATABASE_CONNECTION_USERNAME='root';
 	const PDO_DATABASE_CONNECTION_PASSWORD='srbijA123';
+
+	const REQUEST_HELPER_HELPERS='RequestHelperHelprs';
 }

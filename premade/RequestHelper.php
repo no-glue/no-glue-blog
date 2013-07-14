@@ -8,7 +8,7 @@ class RequestHelper{
 	protected $_helpers;
 
 	public function __construct(
-		$helpers=\premade\RequestHelperConstants::HELPERS
+		$helpers=\premade\Constants::REQUEST_HELPER_HELPERS
 	){
 		require_once('PremadeFactory.php');
 
