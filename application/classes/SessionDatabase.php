@@ -2,17 +2,18 @@
 
 namespace application\classes;
 
+require_once('premade/Constants.php');
+
 use premade;
 
 class SessionDatabase implements \SessionHandlerInterface{
 	protected $_databaseWrapper;
 
 	public function __construct($databaseWrapper=array(
-		'factory_file'=>'premade/PremadeFactory.php',
 		'factory'=>'\\premade\\PremadeFactory',
 		'object'=>'PdoDatabaseWrapper'
 	)){
-		require_once($databaseWrapper['factory_file']);
+		require_once('premade/PremadeFactory.php');
 
 		$this->_databaseWrapper=
 			$databaseWrapper['factory']::create(
@@ -78,10 +79,10 @@ class SessionDatabase implements \SessionHandlerInterface{
 
 	public function gc($maxlifetime){}
 
-	public function login($userLevel){
-		require_once('ConfigureLoader.php');
-
-		$accessRights=ConfigureLoader::help('configure/','accessRights.php');
+	public function login(
+		$userLevel,
+		$accessRights=\premade\Constants::ACCESS_RIGHTS
+	){
 		session_start();
 
 		$_SESSION['access_rights']=

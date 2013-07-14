@@ -8,6 +8,9 @@ class Constants{
 
 	const HOST='http://localhost/noglueprojects/noglue_blog/';
 	const APPLICATION_FOLDER='application/';
+	static $ACCESS_RIGHTS=array(
+		'can_access_admin'
+	);
 
 	const INDEX_SIMPLE_HELPERS='IndexSimpleHelpers';
 	const INDEX_SIMPLE_OBSERVERS='IndexSimpleObservers';

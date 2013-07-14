@@ -2,12 +2,15 @@
 
 namespace application\classes;
 
+require_once('premade/Constants.php');
+
+use premade;
+
 class SessionFile{
-	public function login($userLevel){
-		require_once('ConfigureLoader.php');
-
-		$accessRights=ConfigureLoader::help('configure/','accessRights.php');
-
+	public function login(
+		$userLevel,
+		$accessRights=\premade\Constants::ACCESS_RIGHTS
+	){
 		session_start();
 	
 		$_SESSION['access_rights']=
