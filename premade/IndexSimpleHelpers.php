@@ -5,7 +5,7 @@ namespace premade;
 class IndexSimpleHelpers{
 	protected $_helpers=array(
 		'request_helper'=>'RequestHelper',
-		'populate_helper'=>'RequestHelper'
+		'populate_helper'=>'PopulateHelper'
 	);
 	protected $_arrayIterator;
 

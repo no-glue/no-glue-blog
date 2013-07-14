@@ -3,7 +3,6 @@
 namespace premade;
 
 class IndexSimpleConstants{
-	const REQUEST_HELPER='RequestHelper';
-	const POPULATE_HELPER='PopulateHelper';
+	const HELPERS='IndexSimpleHelpers';
 	const OBSERVERS='IndexSimpleObservers';
 }
