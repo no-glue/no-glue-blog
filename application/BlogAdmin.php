@@ -6,11 +6,11 @@ use application\classes;
 
 class BlogAdmin{
 	public function __construct(){
-		require_once('classes/ClassFactory.php');
-		if(!\application\classes\ClassFactory::create('Session')
+		require_once('classes/Factory.php');
+		if(!\application\classes\Factory::create('Session')
 			->currentUserCan('can_access_admin')){
 
-			\application\classes\ClassFactory::create('Redirect')
+			\application\classes\Factory::create('Redirect')
 				->redirect('blog_admin_index','index');
 		}
 	}

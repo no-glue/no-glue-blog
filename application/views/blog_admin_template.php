@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php 
-		echo \application\classes\ClassFactory::create('Link')
+		echo \application\classes\Factory::create('Link')
 			->css(
 				$values['css']['main']['location'],
 				$values['css']['main']['type'],

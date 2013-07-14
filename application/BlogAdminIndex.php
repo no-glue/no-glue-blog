@@ -20,9 +20,9 @@ class BlogAdminIndex{
 				$requestObject->username,
 				$requestObject->password
 			) AND
-		\application\classes\ClassFactory::create('Session')
+		\application\classes\Factory::create('Session')
 			->currentUserCan('can_access_admin') AND
-		\application\classes\ClassFactory::create('Redirect')
+		\application\classes\Factory::create('Redirect')
 			->redirect('blog_admin_posts','index');
 
 		\application\classes\View::load('blog_admin_template.php',
@@ -32,11 +32,11 @@ class BlogAdminIndex{
 
 	public function logout(){
 		require_once('models/ModelFactory.php');
-		require_once('classes/ClassFactory.php');
+		require_once('classes/Factory.php');
 
 		\application\models\ModelFactory::create('UserDao')
 			->logout() AND
-		\application\classes\ClassFactory::create('Redirect')
+		\application\classes\Factory::create('Redirect')
 			->redirect('blog_admin_index','index');
 	}
 }

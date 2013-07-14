@@ -16,7 +16,7 @@ class BlogAdminPosts{
 	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');
 		require_once('models/ModelFactory.php');
-		require_once('classes/ClassFactory.php');
+		require_once('classes/Factory.php');
 
 		$postDao=\application\models\ModelFactory::create('PostDao');
 
@@ -25,7 +25,7 @@ class BlogAdminPosts{
 			->validateDelete($requestObject) AND
 		$postDao->deletePostById($requestObject->id);
 
-		$posts=\application\classes\ClassFactory::create('Result')
+		$posts=\application\classes\Factory::create('Result')
 			->setStatement($postDao->getPosts())
 			->setWhatVo('PostVo');
 
@@ -40,7 +40,7 @@ class BlogAdminPosts{
 	public function view($requestType,$requestObject){
 		require_once('premade/Constants.php');
 		require_once('models/ModelFactory.php');
-		require_once('classes/ClassFactory.php');
+		require_once('classes/Factory.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\ModelFactory::create('PostValidate')
@@ -53,7 +53,7 @@ class BlogAdminPosts{
 				->setFromObject($requestObject)
 			);
 
-		$post=\application\classes\ClassFactory::create('Result')
+		$post=\application\classes\Factory::create('Result')
 			->setStatement(
 				\application\models\ModelFactory::create(
 					'PostDao'

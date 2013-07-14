@@ -15,16 +15,16 @@
 			<tr>
 				<td>
 					<div class='line'><?php echo $post->getId(); ?></div>
-					<div class='line'><?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','view',$post->getId(),array('class'=>'submit')); ?></div>
+					<div class='line'><?php echo \application\classes\Factory::create('Link')->lineForm('blog_admin_posts','view',$post->getId(),array('class'=>'submit')); ?></div>
 					<div class='line'>
-						<?php echo \application\classes\ClassFactory::create('Link')->lineForm('blog_admin_posts','index',$post->getId(),array('class'=>'submit'),'delete','post'); ?>
+						<?php echo \application\classes\Factory::create('Link')->lineForm('blog_admin_posts','index',$post->getId(),array('class'=>'submit'),'delete','post'); ?>
 					</div>
 				</td>
 				<td>
 					<?php echo $post->getName(); ?>
 				</td>
-				<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getTitle()); ?></td>
-				<td><?php echo \application\classes\ClassFactory::create('Text')->cut($post->getBody()); ?></td>
+				<td><?php echo \application\classes\Factory::create('Text')->cut($post->getTitle()); ?></td>
+				<td><?php echo \application\classes\Factory::create('Text')->cut($post->getBody()); ?></td>
 			</tr>
 			<?php endwhile; ?>
 		</tbody>

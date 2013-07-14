@@ -18,8 +18,8 @@ class UserDao{
 		),
 		$scramble=array(
 			'object'=>'Scramble',
-			'factory_file'=>'application/classes/ClassFactory.php',
-			'factory'=>'\\application\\classes\\ClassFactory'
+			'factory_file'=>'application/classes/Factory.php',
+			'factory'=>'\\application\\classes\\Factory'
 			),
 		$userStatement=array(
 			'object'=>'UserStatement',
@@ -62,7 +62,7 @@ class UserDao{
 	}
 
 	public function login($username,$password){
-		require_once('application/classes/ClassFactory.php');
+		require_once('application/classes/Factory.php');
 
 		$statement=$this->execute($this->_userStatement->login(),array(
 			':username'=>$username,
@@ -72,7 +72,7 @@ class UserDao{
 
 		$row=$this->_databaseWrapper->fetch($statement);
 
-		$session=\application\classes\ClassFactory::create('Session');
+		$session=\application\classes\Factory::create('Session');
 
 		$session->login($row['level']);
 
@@ -80,9 +80,9 @@ class UserDao{
 	}
 
 	public function logout(){
-		require_once('application/classes/ClassFactory.php');
+		require_once('application/classes/Factory.php');
 
-		return \application\classes\ClassFactory::create('Session')
+		return \application\classes\Factory::create('Session')
 			->logout($row['level']);
 	}
 

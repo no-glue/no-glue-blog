@@ -12,7 +12,7 @@ class BlogAdminUsers{
 	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');
 		require_once('models/ModelFactory.php');
-		require_once('classes/ClassFactory.php');
+		require_once('classes/Factory.php');
 
 		$userDao=\application\models\ModelFactory::create('UserDao');
 
@@ -21,7 +21,7 @@ class BlogAdminUsers{
 			->validateDelete($requestObject) AND
 		$userDao->deleteUserById($requestObject->id);
 
-		$users=\application\classes\ClassFactory::create('Result')
+		$users=\application\classes\Factory::create('Result')
 			->setStatement($userDao->getUsers())
 			->setWhatVo('UserVo');
 
@@ -36,7 +36,7 @@ class BlogAdminUsers{
 	public function view($requestType,$requestObject){
 		require_once('premade/Constants.php');
 		require_once('models/ModelFactory.php');
-		require_once('classes/ClassFactory.php');
+		require_once('classes/Factory.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\ModelFactory::create('UserDao')
@@ -47,7 +47,7 @@ class BlogAdminUsers{
 				->setFromObject($requestObject)
 			);
 
-		$user=\application\classes\ClassFactory::create('Result')
+		$user=\application\classes\Factory::create('Result')
 			->setStatement(
 				\application\models\ModelFactory::create(
 					'UserDao'
