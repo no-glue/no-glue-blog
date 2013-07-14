@@ -2,23 +2,23 @@
 
 namespace application\classes;
 
-require_once('ConfigureLoader.php');
+require_once('premade/Constants.php');
+
+use premade;
 
 class Link{
-	protected static function _helper($helper,$helpers=array(
-		'configure_loader'=>'\application\classes\ConfigureLoader')){
-		return $helpers[$helper];
-	}
-
-	public function link($class,$action,$text,$parameters=array(),$host=''){
+	public function link(
+		$class,
+		$action,
+		$text,
+		$parameters=array(),
+		$host=\premade\Constants::HOST
+	){
 		$host=(string)$host;
 
-		if($host!==''){
+		if($host!==\premade\Constants::HOST){
 			return '<a href=\''.$host.'\'>'.$text.'</a>';
 		}
-
-		$configureLoader=self::_helper('configure_loader');
-		$host=$configureLoader::help()['host'];
 
 		$result='<a href=\'%s?%s\'>%s</a>';
 
@@ -38,10 +38,15 @@ class Link{
 		return '<link href=\''.$location.'\' type=\''.$type.'\' rel=\''.$rel.'\'/>';
 	}
 
-	public function lineForm($class,$action,$itemId='',$attributes=array(),$formName='view',$formMethod='get'){
-		$configureLoader=self::_helper('configure_loader');
-		$host=$configureLoader::help()['host'];
-
+	public function lineForm(
+		$class,
+		$action,
+		$itemId='',
+		$attributes=array(),
+		$formName='view',
+		$formMethod='get',
+		$host=\premade\Constants::HOST
+	){
 		$string='<form method=\''.$formMethod.'\' action=\''.$host.'\'>';
 		$string.='<input type=\'hidden\' name=\'class\' value=\''.$class.'\' />';
 		$string.='<input type=\'hidden\' name=\'action\' value=\''.$action.'\' />';
