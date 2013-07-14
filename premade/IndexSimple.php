@@ -14,8 +14,8 @@ class IndexSimple{
 
 	public function __construct(
 		$folder=\premade\Constants::APPLICATION_FOLDER,
-		$helpers=\premade\IndexSimpleConstants::HELPERS,
-		$observers=\premade\IndexSimpleConstants::OBSERVERS
+		$helpers=\premade\Constants::INDEX_SIMPLE_HELPERS,
+		$observers=\premade\Constants::INDEX_SIMPLE_OBSERVERS
 
 	){
 		require_once('PremadeFactory.php');
