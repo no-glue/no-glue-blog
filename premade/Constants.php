@@ -17,5 +17,5 @@ class Constants{
 	const PDO_DATABASE_CONNECTION_USERNAME='root';
 	const PDO_DATABASE_CONNECTION_PASSWORD='srbijA123';
 
-	const REQUEST_HELPER_HELPERS='RequestHelperHelprs';
+	const REQUEST_HELPER_HELPERS='RequestHelperHelpers';
 }
