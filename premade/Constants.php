@@ -6,6 +6,7 @@ class Constants{
 	const REQUEST_GET='GET';
 	const REQUEST_POST='POST';
 
+	const HOST='http://localhost/noglueprojects/noglue_blog/';
 	const APPLICATION_FOLDER='application/';
 
 	const INDEX_SIMPLE_HELPERS='IndexSimpleHelpers';
