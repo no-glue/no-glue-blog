@@ -8,9 +8,6 @@ class Constants{
 
 	const HOST='http://localhost/noglueprojects/noglue_blog/';
 	const APPLICATION_FOLDER='application/';
-	static $ACCESS_RIGHTS=array(
-		'can_access_admin'
-	);
 
 	const INDEX_SIMPLE_HELPERS='IndexSimpleHelpers';
 	const INDEX_SIMPLE_OBSERVERS='IndexSimpleObservers';
@@ -19,7 +16,7 @@ class Constants{
 	const PDO_DATABASE_CONNECTION_HOST='localhost';
 	const PDO_DATABASE_CONNECTION_DBNAME='noglue_blog';
 	const PDO_DATABASE_CONNECTION_USERNAME='root';
-	const PDO_DATABASE_CONNECTION_PASSWORD='srbijA123';
+	const PDO_DATABASE_CONNECTION_PASSWORD='root';
 
 	const REQUEST_HELPER_HELPERS='RequestHelperHelpers';
 }

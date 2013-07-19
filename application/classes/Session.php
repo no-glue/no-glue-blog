@@ -11,8 +11,12 @@ class Session{
 
 	public function login(
 		$userLevel,
-		$accessRights=\premade\Constants::ACCESS_RIGHTS
+		$accessRights=array(),
+		$defaultAccessRights=array('can_access_admin')
 	){
+		$accessRights=
+			array_merge($accessRights,$defaultAccessRights);
+
 		session_start();
 	
 		$_SESSION['access_rights']=
