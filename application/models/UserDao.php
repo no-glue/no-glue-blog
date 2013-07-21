@@ -8,41 +8,44 @@ use application\classes;
 class UserDao{
 	protected $_databaseWrapper;
 	protected $_scramble;
+	protected $_session;
 	protected $_userStatement;
 
 	public function __construct(
-		$databaseWrapper=array(
-			'factory_file'=>'premade/PremadeFactory.php',
-			'factory'=>'\\premade\\PremadeFactory',
-			'object'=>'PdoDatabaseWrapper'
-		),
-		$scramble=array(
-			'object'=>'Scramble',
-			'factory_file'=>'application/classes/Factory.php',
-			'factory'=>'\\application\\classes\\Factory'
-			),
-		$userStatement=array(
-			'object'=>'UserStatement',
-			'factory_file'=>'ModelFactory.php',
-			'factory'=>'\\application\\models\\ModelFactory'
-			)
+		$databaseWrapper='PdoDatabaseWrapper',
+		$scramble='Scramble',
+		$session='Session',
+		$userStatement='UserStatement'
 	){
-		require_once($databaseWrapper['factory_file']);
+		require_once('premade/PremadeFactory.php');
 
-		$this->_databaseWrapper=
-			$databaseWrapper['factory']::create(
-				$databaseWrapper['object']
-			);
+		$this->_databaseWrapper=\premade\PremadeFactory::create(
+			$databaseWrapper
+		);
 
-		require_once($scramble['factory_file']);
+		require_once('application/classes/Factory.php');
 
-		$this->_scramble=
-			$scramble['factory']::create($scramble['object']);
+		$this->_scramble=\application\classes\Factory::create(
+			$scramble
+		);
 
-		require_once($userStatement['factory_file']);
+		$this->_session=\application\classes\Factory::create($session);
 
-		$this->_userStatement=
-			$userStatement['factory']::create($userStatement['object']);
+		require_once('ModelFactory.php');
+
+		$this->_userStatement=\application\models\ModelFactory::create(
+			$userStatement
+		);
+	}
+
+	public function setSession($session){
+		require_once('application/classes/Factory.php');
+
+		$this->_session=\application\classes\Factory::create($session);
+	}
+
+	public function getSession(){
+		return $this->_session;
 	}
 
 	public function execute($sql,$values=array()){
@@ -62,8 +65,6 @@ class UserDao{
 	}
 
 	public function login($username,$password){
-		require_once('application/classes/Factory.php');
-
 		$statement=$this->execute($this->_userStatement->login(),array(
 			':username'=>$username,
 			':password'=>$this->_scramble
@@ -72,18 +73,13 @@ class UserDao{
 
 		$row=$this->_databaseWrapper->fetch($statement);
 
-		$session=\application\classes\Factory::create('Session');
-
-		$session->login($row['level']);
+		$this->_session->login($row['level']);
 
 		return $statement->rowCount();
 	}
 
 	public function logout(){
-		require_once('application/classes/Factory.php');
-
-		return \application\classes\Factory::create('Session')
-			->logout($row['level']);
+		return $this->_session->logout($row['level']);
 	}
 
 	public function save($userVo){
