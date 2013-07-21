@@ -3,21 +3,19 @@
 namespace application\classes;
 
 require_once('premade/Constants.php');
+require_once('premade/Statics.php');
 
 use premade;
 
 class SessionDatabase implements \SessionHandlerInterface{
 	protected $_databaseWrapper;
 
-	public function __construct($databaseWrapper=array(
-		'factory'=>'\\premade\\PremadeFactory',
-		'object'=>'PdoDatabaseWrapper'
-	)){
+	public function __construct($databaseWrapper='PdoDatabaseWrapper'){
 		require_once('premade/PremadeFactory.php');
 
 		$this->_databaseWrapper=
-			$databaseWrapper['factory']::create(
-				$databaseWrapper['object']
+			\premade\PremadeFactory::create(
+				$databaseWrapper
 			);
 
 		session_set_save_handler($this,TRUE);
@@ -81,8 +79,13 @@ class SessionDatabase implements \SessionHandlerInterface{
 
 	public function login(
 		$userLevel,
-		$accessRights=\premade\Constants::ACCESS_RIGHTS
+		$accessRights=array()
 	){
+		$accessRights=array_merge(
+			$accessRights,
+			\premade\Statics::$accessRights
+		);
+
 		session_start();
 
 		$_SESSION['access_rights']=

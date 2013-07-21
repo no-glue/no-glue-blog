@@ -3,6 +3,7 @@
 namespace application\classes;
 
 require_once('premade/Constants.php');
+require_once('premade/Statics.php');
 
 use premade;
 
@@ -11,11 +12,12 @@ class Session{
 
 	public function login(
 		$userLevel,
-		$accessRights=array(),
-		$defaultAccessRights=array('can_access_admin')
+		$accessRights=array()
 	){
-		$accessRights=
-			array_merge($accessRights,$defaultAccessRights);
+		$accessRights=array_merge(
+				$accessRights,
+				\premade\Statics::$accessRights
+		);
 
 		session_start();
 	
