@@ -7,13 +7,16 @@ class Factory{
 	$lookWhere='',
 	$extension='.php',
 	$namespace='\\application\\classes\\',
-	$methodRedirect='redirect'
+	$methodRedirect='another'
 	){
 		$require=$lookWhere.$object.$extension;
+
+		require_once($require);
+
 		$object=$namespace.$object;
 
 		method_exists($object,$methodRedirect) AND
-		$redirect=$object::redirect() AND
+		$redirect=$object::$methodRedirect() AND
 		$require=$lookWhere.$redirect.$extension AND
 		$redirect=$namespace.$redirect AND
 		$object=$redirect;

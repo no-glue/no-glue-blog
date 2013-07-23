@@ -42,7 +42,7 @@ class Session{
 			in_array($right,$_SESSION['access_rights']);
 	}
 
-	public static function redirect($redirect='SessionDatabase'){
+	public static function another($redirect='SessionDatabase'){
 		return $redirect;
 	}
 }
