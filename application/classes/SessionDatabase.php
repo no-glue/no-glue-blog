@@ -11,10 +11,10 @@ class SessionDatabase implements \SessionHandlerInterface{
 	protected $_databaseWrapper;
 
 	public function __construct($databaseWrapper='PdoDatabaseWrapper'){
-		require_once('premade/PremadeFactory.php');
+		require_once('premade/Factory.php');
 
 		$this->_databaseWrapper=
-			\premade\PremadeFactory::create(
+			\premade\Factory::create(
 				$databaseWrapper
 			);
 

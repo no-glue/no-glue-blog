@@ -10,8 +10,8 @@ class Result{
 	protected $_whatVo;
 
 	public function __construct($databaseWrapper=array(
-		'factory_file'=>'premade/PremadeFactory.php',
-		'factory'=>'\\premade\\PremadeFactory',
+		'factory_file'=>'premade/Factory.php',
+		'factory'=>'\\premade\\Factory',
 		'object'=>'PdoDatabaseWrapper'),
 		$statement=NULL,$whatVo=''){
 		require_once($databaseWrapper['factory_file']);

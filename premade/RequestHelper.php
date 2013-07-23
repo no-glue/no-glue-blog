@@ -10,14 +10,14 @@ class RequestHelper{
 	public function __construct(
 		$helpers=\premade\Constants::REQUEST_HELPER_HELPERS
 	){
-		require_once('PremadeFactory.php');
+		require_once('Factory.php');
 
-		$helpers=\premade\PremadeFactory::create($helpers)
+		$helpers=\premade\Factory::create($helpers)
 			->getArrayIterator();
 
 		foreach($helpers as $key=>$helper){
 			$this->_helpers[$key]=
-				\premade\PremadeFactory::create($helper);
+				\premade\Factory::create($helper);
 		}
 	}
 

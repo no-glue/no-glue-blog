@@ -17,9 +17,9 @@ class UserDao{
 		$session='Session',
 		$userStatement='UserStatement'
 	){
-		require_once('premade/PremadeFactory.php');
+		require_once('premade/Factory.php');
 
-		$this->_databaseWrapper=\premade\PremadeFactory::create(
+		$this->_databaseWrapper=\premade\Factory::create(
 			$databaseWrapper
 		);
 

@@ -8,10 +8,10 @@ class PdoDatabaseWrapper{
 	public function __construct(
 		$databaseConnection='PdoDatabaseConnection'
 	){
-		require_once('PremadeFactory.php');
+		require_once('Factory.php');
 
 		$this->_databaseConnection=
-			\premade\PremadeFactory::create(
+			\premade\Factory::create(
 				$databaseConnection
 			);
 	}

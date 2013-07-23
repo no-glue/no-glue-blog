@@ -11,8 +11,8 @@ class PostDao{
 
 	public function __construct(
 		$databaseWrapper=array(
-			'factory_file'=>'premade/PremadeFactory.php',
-			'factory'=>'\\premade\\PremadeFactory',
+			'factory_file'=>'premade/Factory.php',
+			'factory'=>'\\premade\\Factory',
 			'object'=>'PdoDatabaseWrapper'
 		),
 		$postStatement=array(
