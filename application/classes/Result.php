@@ -9,17 +9,16 @@ class Result{
 	protected $_statement;
 	protected $_whatVo;
 
-	public function __construct($databaseWrapper=array(
-		'factory_file'=>'premade/Factory.php',
-		'factory'=>'\\premade\\Factory',
-		'object'=>'PdoDatabaseWrapper'),
-		$statement=NULL,$whatVo=''){
-		require_once($databaseWrapper['factory_file']);
+	public function __construct(
+		$databaseWrapper='PdoDatabaseWrapper',
+		$statement=NULL,
+		$whatVo=''
+	){
+		require_once('premade/Factory.php');
 
-		$this->_databaseWrapper=
-			$databaseWrapper['factory']::create(
-				$databaseWrapper['object']
-			);
+		$this->_databaseWrapper=\premade\Factory::create(
+			$databaseWrapper
+		);
 
 		$this->_statement=$statement;
 		$this->_whatVo=$whatVo;
