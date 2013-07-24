@@ -8,8 +8,6 @@ class PdoDatabaseWrapper{
 	public function __construct(
 		$databaseConnection='PdoDatabaseConnection'
 	){
-		require_once('Factory.php');
-
 		$this->_databaseConnection=
 			\premade\Factory::create(
 				$databaseConnection

@@ -2,8 +2,6 @@
 
 namespace premade;
 
-require_once('Constants.php');
-
 class IndexSimple{
 	protected $_folder;
 	protected $_class;
@@ -18,8 +16,6 @@ class IndexSimple{
 		$observers=\premade\Constants::INDEX_SIMPLE_OBSERVERS
 
 	){
-		require_once('Factory.php');
-
 		$this->_folder=$folder;
 
 		$helpers=\premade\Factory::create($helpers)

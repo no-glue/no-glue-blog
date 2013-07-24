@@ -2,8 +2,6 @@
 
 namespace premade;
 
-require_once('Constants.php');
-
 class PdoDatabaseConnection{
 	protected $_connection;
 	protected static $_instance;

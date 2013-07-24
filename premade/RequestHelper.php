@@ -10,8 +10,6 @@ class RequestHelper{
 	public function __construct(
 		$helpers=\premade\Constants::REQUEST_HELPER_HELPERS
 	){
-		require_once('Factory.php');
-
 		$helpers=\premade\Factory::create($helpers)
 			->getArrayIterator();
 
