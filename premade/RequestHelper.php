@@ -6,14 +6,15 @@ class RequestHelper{
 	protected $_helpers;
 
 	public function __construct(
-		$helpers=\premade\Constants::REQUEST_HELPER_HELPERS
+		$helpers=\premade\Constants::REQUEST_HELPER_HELPERS,
+		$factory='\\premade\\Factory'
 	){
-		$helpers=\premade\Factory::create($helpers)
+		$helpers=$factory::create($helpers)
 			->getArrayIterator();
 
 		foreach($helpers as $key=>$helper){
 			$this->_helpers[$key]=
-				\premade\Factory::create($helper);
+				$factory::create($helper);
 		}
 	}
 
