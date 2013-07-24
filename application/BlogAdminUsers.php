@@ -11,13 +11,13 @@ class BlogAdminUsers{
 
 	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('models/ModelFactory.php');
+		require_once('models/Factory.php');
 		require_once('classes/Factory.php');
 
-		$userDao=\application\models\ModelFactory::create('UserDao');
+		$userDao=\application\models\Factory::create('UserDao');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\application\models\ModelFactory::create('UserValidate')
+		\application\models\Factory::create('UserValidate')
 			->validateDelete($requestObject) AND
 		$userDao->deleteUserById($requestObject->id);
 
@@ -35,13 +35,13 @@ class BlogAdminUsers{
 
 	public function view($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('models/ModelFactory.php');
+		require_once('models/Factory.php');
 		require_once('classes/Factory.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\application\models\ModelFactory::create('UserDao')
+		\application\models\Factory::create('UserDao')
 			->update(
-				\application\models\ModelFactory::create(
+				\application\models\Factory::create(
 					'UserVo'
 				)
 				->setFromObject($requestObject)
@@ -49,7 +49,7 @@ class BlogAdminUsers{
 
 		$user=\application\classes\Factory::create('Result')
 			->setStatement(
-				\application\models\ModelFactory::create(
+				\application\models\Factory::create(
 					'UserDao'
 				)
 				->getUserById($requestObject->id)
@@ -67,12 +67,12 @@ class BlogAdminUsers{
 
 	public function add($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('models/ModelFactory.php');
+		require_once('models/Factory.php');
 		require_once('classes/View.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\application\models\ModelFactory::create('UserDao')->save(
-			\application\models\ModelFactory::create('UserVo')
+		\application\models\Factory::create('UserDao')->save(
+			\application\models\Factory::create('UserVo')
 				->setFromObject($requestObject)
 		);
 

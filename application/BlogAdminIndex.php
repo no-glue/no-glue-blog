@@ -11,11 +11,11 @@ class BlogAdminIndex{
 
 	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('models/ModelFactory.php');
+		require_once('models/Factory.php');
 		require_once('classes/View.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		$user=\application\models\ModelFactory::create('UserDao') AND
+		$user=\application\models\Factory::create('UserDao') AND
 		$count=$user->login(
 			$requestObject->username,
 			$requestObject->password
@@ -30,10 +30,10 @@ class BlogAdminIndex{
 	}
 
 	public function logout(){
-		require_once('models/ModelFactory.php');
+		require_once('models/Factory.php');
 		require_once('classes/Factory.php');
 
-		\application\models\ModelFactory::create('UserDao')
+		\application\models\Factory::create('UserDao')
 			->logout() AND
 		\application\classes\Factory::create('Redirect')
 			->redirect('blog_admin_index','index');

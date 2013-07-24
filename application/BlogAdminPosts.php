@@ -15,13 +15,13 @@ class BlogAdminPosts{
 
 	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('models/ModelFactory.php');
+		require_once('models/Factory.php');
 		require_once('classes/Factory.php');
 
-		$postDao=\application\models\ModelFactory::create('PostDao');
+		$postDao=\application\models\Factory::create('PostDao');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\application\models\ModelFactory::create('PostValidate')
+		\application\models\Factory::create('PostValidate')
 			->validateDelete($requestObject) AND
 		$postDao->deletePostById($requestObject->id);
 
@@ -39,15 +39,15 @@ class BlogAdminPosts{
 
 	public function view($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('models/ModelFactory.php');
+		require_once('models/Factory.php');
 		require_once('classes/Factory.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\application\models\ModelFactory::create('PostValidate')
+		\application\models\Factory::create('PostValidate')
 			->validateUpdate($requestObject) AND
-		\application\models\ModelFactory::create('PostDao')
+		\application\models\Factory::create('PostDao')
 			->update(
-				\application\models\ModelFactory::create(
+				\application\models\Factory::create(
 					'PostVo'
 				)
 				->setFromObject($requestObject)
@@ -55,7 +55,7 @@ class BlogAdminPosts{
 
 		$post=\application\classes\Factory::create('Result')
 			->setStatement(
-				\application\models\ModelFactory::create(
+				\application\models\Factory::create(
 					'PostDao'
 				)
 				->getPostById($requestObject->id)
@@ -73,12 +73,12 @@ class BlogAdminPosts{
 
 	public function add($requestType,$requestObject){
 		require_once('premade/Constants.php');
-		require_once('models/ModelFactory.php');
+		require_once('models/Factory.php');
 		require_once('classes/View.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\application\models\ModelFactory::create('PostDao')->save(
-			\application\models\ModelFactory::create('PostVo')
+		\application\models\Factory::create('PostDao')->save(
+			\application\models\Factory::create('PostVo')
 				->setFromObject($requestObject)
 		);
 

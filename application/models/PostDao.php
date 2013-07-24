@@ -16,8 +16,8 @@ class PostDao{
 			'object'=>'PdoDatabaseWrapper'
 		),
 		$postStatement=array(
-			'factory_file'=>'ModelFactory.php',
-			'factory'=>'\\application\\models\\ModelFactory',
+			'factory_file'=>'Factory.php',
+			'factory'=>'\\application\\models\\Factory',
 			'object'=>'PostStatement'
 		)
 	){

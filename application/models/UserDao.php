@@ -31,9 +31,9 @@ class UserDao{
 
 		$this->_session=\application\classes\Factory::create($session);
 
-		require_once('ModelFactory.php');
+		require_once('Factory.php');
 
-		$this->_userStatement=\application\models\ModelFactory::create(
+		$this->_userStatement=\application\models\Factory::create(
 			$userStatement
 		);
 	}

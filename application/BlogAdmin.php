@@ -6,8 +6,8 @@ use application\classes;
 
 class BlogAdmin{
 	public function __construct(){
-		require_once('models/ModelFactory.php');
-		if(!\application\models\ModelFactory::create('UserDao')
+		require_once('models/Factory.php');
+		if(!\application\models\Factory::create('UserDao')
 			->getSession()->currentUserCan('can_access_admin')){
 
 			\application\classes\Factory::create('Redirect')
