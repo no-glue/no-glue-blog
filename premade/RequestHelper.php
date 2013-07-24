@@ -2,8 +2,6 @@
 
 namespace premade;
 
-require_once('Constants.php');
-
 class RequestHelper{
 	protected $_helpers;
 
@@ -46,8 +44,6 @@ class RequestHelper{
 	}
 
 	public function getParams($params=array()){
-		require_once('Constants.php');
-
 		empty($params) AND 
 		$params=array_slice($_REQUEST,2);
 
