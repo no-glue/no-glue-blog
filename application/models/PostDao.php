@@ -10,30 +10,20 @@ class PostDao{
 	protected $_postStatement;
 
 	public function __construct(
-		$databaseWrapper=array(
-			'factory_file'=>'premade/Factory.php',
-			'factory'=>'\\premade\\Factory',
-			'object'=>'PdoDatabaseWrapper'
-		),
-		$postStatement=array(
-			'factory_file'=>'Factory.php',
-			'factory'=>'\\application\\models\\Factory',
-			'object'=>'PostStatement'
-		)
+		$databaseWrapper='PdoDatabaseWrapper',
+		$postStatement='PostStatement'
 	){
-		require_once($databaseWrapper['factory_file']);
+		require_once('premade/Factory.php');
 
-		$this->_databaseWrapper=
-			$databaseWrapper['factory']::create(
-				$databaseWrapper['object']
-			);
+		$this->_databaseWrapper=\premade\Factory::create(
+			$databaseWrapper
+		);
 
-		require_once($postStatement['factory_file']);
+		require_once('Factory.php');
 
-		$this->_postStatement=
-			$postStatement['factory']::create(
-				$postStatement['object']
-			);
+		$this->_postStatement=\application\Models\Factory::create(
+			$postStatement
+		);
 	}
 
 	public function set($databaseWrapper){
