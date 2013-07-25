@@ -9,6 +9,8 @@ class Constants{
 	const HOST='http://localhost/noglueprojects/noglue_blog/';
 	const APPLICATION_FOLDER='application/';
 
+	const FACTORY='\\premade\\Factory';
+
 	const INDEX_SIMPLE_HELPERS='IndexSimpleHelpers';
 	const INDEX_SIMPLE_OBSERVERS='IndexSimpleObservers';
 

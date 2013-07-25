@@ -7,7 +7,7 @@ class RequestHelper{
 
 	public function __construct(
 		$helpers=\premade\Constants::REQUEST_HELPER_HELPERS,
-		$factory='\\premade\\Factory'
+		$factory=\premade\Constants::FACTORY
 	){
 		$helpers=$factory::create($helpers)
 			->getArrayIterator();

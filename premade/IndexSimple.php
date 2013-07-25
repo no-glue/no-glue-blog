@@ -14,7 +14,7 @@ class IndexSimple{
 		$folder=\premade\Constants::APPLICATION_FOLDER,
 		$helpers=\premade\Constants::INDEX_SIMPLE_HELPERS,
 		$observers=\premade\Constants::INDEX_SIMPLE_OBSERVERS,
-		$factory='\\premade\\Factory'
+		$factory=\premade\Constants::FACTORY
 
 	){
 		$this->_folder=$folder;
