@@ -13,16 +13,16 @@ class IndexSimple{
 	public function __construct(
 		$folder=\premade\Constants::APPLICATION_FOLDER,
 		$helpers=\premade\Constants::INDEX_SIMPLE_HELPERS,
-		$observers=\premade\Constants::INDEX_SIMPLE_OBSERVERS
+		$observers=\premade\Constants::INDEX_SIMPLE_OBSERVERS,
+		$factory='\\premade\\Factory'
 
 	){
 		$this->_folder=$folder;
 
-		$helpers=\premade\Factory::create($helpers)
-			->getArrayIterator();
+		$helpers=$factory::create($helpers)->getArrayIterator();
 
 		foreach($helpers as $key=>$helper){
-			$this->_helpers[$key]=\premade\Factory::create(
+			$this->_helpers[$key]=$factory::create(
 				$helper
 			);
 		}
@@ -33,12 +33,10 @@ class IndexSimple{
 			array('class','action','params')
 		);
 
-		$observers=\premade\Factory::create($observers)
-			->getArrayIterator();
+		$observers=$factory::create($observers)->getArrayIterator();
 
 		foreach($observers as $key=>$observer){
-			$this->_observers[$key]=
-				\premade\Factory::create($observer);
+			$this->_observers[$key]=$factory::create($observer);
 		}
 
 		$this->_notify();

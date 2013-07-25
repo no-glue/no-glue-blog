@@ -6,12 +6,12 @@ class PdoDatabaseWrapper{
 	protected $_databaseConnection;
 
 	public function __construct(
-		$databaseConnection='PdoDatabaseConnection'
+		$databaseConnection='PdoDatabaseConnection',
+		$factory='\\premade\\Factory'
 	){
-		$this->_databaseConnection=
-			\premade\Factory::create(
-				$databaseConnection
-			);
+		$this->_databaseConnection=$factory::create(
+			$databaseConnection
+		);
 	}
 
 	public function execute($sql,$params=array()){
