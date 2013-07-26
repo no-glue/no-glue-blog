@@ -26,11 +26,11 @@ class PdoDatabaseConnection{
 	}
 
 	public static function getInstance(
-		$driver=\premade\Constants::PDO_DATABASE_CONNECTION_DRIVER,
-		$host=\premade\Constants::PDO_DATABASE_CONNECTION_HOST,
-		$dbname=\premade\Constants::PDO_DATABASE_CONNECTION_DBNAME,
-		$username=\premade\Constants::PDO_DATABASE_CONNECTION_USERNAME,
-		$password=\premade\Constants::PDO_DATABASE_CONNECTION_PASSWORD
+		$driver='mysql',
+		$host='localhost',
+		$dbname='noglue_blog',
+		$username='root',
+		$password='root'
 	){
 		if(!self::$_instance){
 			self::$_instance=new \premade\PdoDatabaseConnection(

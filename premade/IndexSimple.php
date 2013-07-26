@@ -12,9 +12,9 @@ class IndexSimple{
 
 	public function __construct(
 		$folder=\premade\Constants::APPLICATION_FOLDER,
-		$helpers=\premade\Constants::INDEX_SIMPLE_HELPERS,
-		$observers=\premade\Constants::INDEX_SIMPLE_OBSERVERS,
-		$factory=\premade\Constants::FACTORY
+		$helpers='IndexSimpleHelpers',
+		$observers='IndexSimpleObservers',
+		$factory='\\premade\\Factory'
 
 	){
 		$this->_folder=$folder;

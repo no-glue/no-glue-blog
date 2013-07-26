@@ -7,7 +7,7 @@ class PdoDatabaseWrapper{
 
 	public function __construct(
 		$databaseConnection='PdoDatabaseConnection',
-		$factory=\premade\Constants::FACTORY
+		$factory='\\premade\\Factory'
 	){
 		$this->_databaseConnection=$factory::create(
 			$databaseConnection
