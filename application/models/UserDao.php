@@ -25,7 +25,7 @@ class UserDao{
 
 		require_once('application/classes/Factory.php');
 
-		$this->_scramble=\application\classes\Factory::create(
+		$this->_scramble=\useful\Factory::create(
 			$scramble
 		);
 
