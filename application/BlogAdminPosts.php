@@ -2,22 +2,12 @@
 
 namespace application;
 
-use premade;
-use application\classes;
-use application\models;
-
 class BlogAdminPosts{
 	public function __construct(){
-		require_once('Factory.php');
-
 		\application\Factory::create('BlogAdmin');
 	}
 
 	public function index($requestType,$requestObject){
-		require_once('premade/Constants.php');
-		require_once('models/Factory.php');
-		require_once('classes/Factory.php');
-
 		$postDao=\application\models\Factory::create('PostDao');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
@@ -36,10 +26,6 @@ class BlogAdminPosts{
 	}
 
 	public function view($requestType,$requestObject){
-		require_once('premade/Constants.php');
-		require_once('models/Factory.php');
-		require_once('classes/Factory.php');
-
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\Factory::create('PostValidate')
 			->validateUpdate($requestObject) AND
@@ -68,9 +54,6 @@ class BlogAdminPosts{
 	}
 
 	public function add($requestType,$requestObject){
-		require_once('premade/Constants.php');
-		require_once('models/Factory.php');
-
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\Factory::create('PostDao')->save(
 			\application\models\Factory::create('PostVo')

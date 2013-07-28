@@ -2,17 +2,10 @@
 
 namespace application;
 
-use premade;
-use application\models;
-use application\classes;
-
 class BlogAdminIndex{
 	public function __construct(){}
 
 	public function index($requestType,$requestObject){
-		require_once('premade/Constants.php');
-		require_once('models/Factory.php');
-
 		$requestType===\premade\Constants::REQUEST_POST AND
 		$user=\application\models\Factory::create('UserDao') AND
 		$count=$user->login(
@@ -29,9 +22,6 @@ class BlogAdminIndex{
 	}
 
 	public function logout(){
-		require_once('models/Factory.php');
-		require_once('classes/Factory.php');
-
 		\application\models\Factory::create('UserDao')
 			->logout() AND
 		\useful\Factory::create('Redirect')

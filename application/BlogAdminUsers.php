@@ -4,16 +4,10 @@ namespace application;
 
 class BlogAdminUsers{
 	public function __construct(){
-		require_once('Factory.php');
-
 		\application\Factory::create('BlogAdmin');
 	}
 
 	public function index($requestType,$requestObject){
-		require_once('premade/Constants.php');
-		require_once('models/Factory.php');
-		require_once('classes/Factory.php');
-
 		$userDao=\application\models\Factory::create('UserDao');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
@@ -32,10 +26,6 @@ class BlogAdminUsers{
 	}
 
 	public function view($requestType,$requestObject){
-		require_once('premade/Constants.php');
-		require_once('models/Factory.php');
-		require_once('classes/Factory.php');
-
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\Factory::create('UserDao')
 			->update(
@@ -62,9 +52,6 @@ class BlogAdminUsers{
 	}
 
 	public function add($requestType,$requestObject){
-		require_once('premade/Constants.php');
-		require_once('models/Factory.php');
-
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\Factory::create('UserDao')->save(
 			\application\models\Factory::create('UserVo')

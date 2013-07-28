@@ -23,7 +23,7 @@ class UserDao{
 		),
 		$userStatement=array(
 			'object'=>'UserStatement',
-			'factory'=>'\\application\\classes\\models\\Factory'
+			'factory'=>'\\application\\models\\Factory'
 		)
 	){
 		$this->_databaseWrapper=$databaseWrapper['factory']::create(
