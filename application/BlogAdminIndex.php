@@ -21,7 +21,7 @@ class BlogAdminIndex{
 			$requestObject->password
 		) AND
 		$user->getSession()->currentUserCan('can_access_admin') AND
-		\application\classes\Factory::create('Redirect')
+		\useful\Factory::create('Redirect')
 			->redirect('blog_admin_posts','index');
 
 		\application\classes\View::load('blog_admin_template.php',
@@ -35,7 +35,7 @@ class BlogAdminIndex{
 
 		\application\models\Factory::create('UserDao')
 			->logout() AND
-		\application\classes\Factory::create('Redirect')
+		\useful\Factory::create('Redirect')
 			->redirect('blog_admin_index','index');
 	}
 }

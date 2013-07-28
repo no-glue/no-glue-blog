@@ -10,7 +10,7 @@ class BlogAdmin{
 		if(!\application\models\Factory::create('UserDao')
 			->getSession()->currentUserCan('can_access_admin')){
 
-			\application\classes\Factory::create('Redirect')
+			\useful\Factory::create('Redirect')
 				->redirect('blog_admin_index','index');
 		}
 	}
