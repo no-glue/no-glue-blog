@@ -59,14 +59,14 @@ class Result{
 	}
 
 	public function fetch(){
-		require_once('application/models/Factory.php');
+		require_once('blog/models/Factory.php');
 
 		$vo=NULL;
 
 		$statement=$this->_databaseWrapper->fetch($this->_statement);
 
 		$statement AND 
-		$vo=\application\Models\Factory::create($this->_whatVo) AND 
+		$vo=\blog\Models\Factory::create($this->_whatVo) AND 
 		$vo->setFromArray($statement);
 
 		return $vo;

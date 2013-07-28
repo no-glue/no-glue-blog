@@ -7,5 +7,5 @@ class Constants{
 	const REQUEST_POST='POST';
 
 	const HOST='http://localhost/noglueprojects/noglue_blog/';
-	const APPLICATION_FOLDER='application/';
+	const APPLICATION_FOLDER='blog/';
 }

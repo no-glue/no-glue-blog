@@ -6,8 +6,8 @@ class View{
 	public static function load($view,
 	$for,
 	$additionalValues=array(),
-	$valuesLocation='application/values/',
-	$viewsLocation='application/views/'){
+	$valuesLocation='blog/values/',
+	$viewsLocation='blog/views/'){
 		$values=require_once($valuesLocation.$view);
 		$forValues=require_once($valuesLocation.$for);
 
