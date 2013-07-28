@@ -25,7 +25,7 @@ class BlogAdminPosts{
 			->validateDelete($requestObject) AND
 		$postDao->deletePostById($requestObject->id);
 
-		$posts=\application\classes\Factory::create('Result')
+		$posts=\useful\Factory::create('Result')
 			->setStatement($postDao->getPosts())
 			->setWhatVo('PostVo');
 
@@ -53,7 +53,7 @@ class BlogAdminPosts{
 				->setFromObject($requestObject)
 			);
 
-		$post=\application\classes\Factory::create('Result')
+		$post=\useful\Factory::create('Result')
 			->setStatement(
 				\application\models\Factory::create(
 					'PostDao'

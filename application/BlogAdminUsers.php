@@ -21,7 +21,7 @@ class BlogAdminUsers{
 			->validateDelete($requestObject) AND
 		$userDao->deleteUserById($requestObject->id);
 
-		$users=\application\classes\Factory::create('Result')
+		$users=\useful\Factory::create('Result')
 			->setStatement($userDao->getUsers())
 			->setWhatVo('UserVo');
 
@@ -47,7 +47,7 @@ class BlogAdminUsers{
 				->setFromObject($requestObject)
 			);
 
-		$user=\application\classes\Factory::create('Result')
+		$user=\useful\Factory::create('Result')
 			->setStatement(
 				\application\models\Factory::create(
 					'UserDao'
