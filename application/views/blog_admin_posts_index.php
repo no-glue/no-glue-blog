@@ -23,8 +23,8 @@
 				<td>
 					<?php echo $post->getName(); ?>
 				</td>
-				<td><?php echo \application\classes\Factory::create('Text')->cut($post->getTitle()); ?></td>
-				<td><?php echo \application\classes\Factory::create('Text')->cut($post->getBody()); ?></td>
+				<td><?php echo \useful\Factory::create('Text')->cut($post->getTitle()); ?></td>
+				<td><?php echo \useful\Factory::create('Text')->cut($post->getBody()); ?></td>
 			</tr>
 			<?php endwhile; ?>
 		</tbody>
