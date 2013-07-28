@@ -29,7 +29,7 @@ class UserDao{
 			$scramble
 		);
 
-		$this->_session=\application\classes\Factory::create($session);
+		$this->_session=\useful\Factory::create($session);
 
 		require_once('Factory.php');
 
@@ -39,9 +39,7 @@ class UserDao{
 	}
 
 	public function setSession($session){
-		require_once('application/classes/Factory.php');
-
-		$this->_session=\application\classes\Factory::create($session);
+		$this->_session=\useful\Factory::create($session);
 	}
 
 	public function getSession(){
