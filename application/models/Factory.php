@@ -7,8 +7,6 @@ class Factory{
 	$lookWhere='',
 	$extension='.php',
 	$namespace='\\application\\models\\'){
-		require_once($lookWhere.$object.$extension);
-
 		$object=$namespace.$object;
 
 		return new $object;

@@ -2,27 +2,26 @@
 
 namespace application\models;
 
-use premade;
-use application\classes;
-
 class PostDao{
 	protected $_databaseWrapper;
 	protected $_postStatement;
 
 	public function __construct(
-		$databaseWrapper='PdoDatabaseWrapper',
-		$postStatement='PostStatement'
+		$databaseWrapper=array(
+			'object'=>'PdoDatabaseWrapper',
+			'factory'=>'\\premade\\Factory'
+		),
+		$postStatement=array(
+			'object'=>'PostStatement',
+			'factory'=>'\\application\\models\\Factory'
+		)
 	){
-		require_once('premade/Factory.php');
-
-		$this->_databaseWrapper=\premade\Factory::create(
-			$databaseWrapper
+		$this->_databaseWrapper=$databaseWrapper['factory']::create(
+			$databaseWrapper['object']
 		);
 
-		require_once('Factory.php');
-
-		$this->_postStatement=\application\Models\Factory::create(
-			$postStatement
+		$this->_postStatement=$postStatement['factory']::create(
+			$postStatement['object']
 		);
 	}
 
