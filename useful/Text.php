@@ -1,6 +1,6 @@
 <?php
 
-namespace application\classes;
+namespace useful;
 
 class Text{
 	public function cut($text,$length=100,$start=0){

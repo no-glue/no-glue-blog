@@ -12,7 +12,6 @@ class BlogAdminIndex{
 	public function index($requestType,$requestObject){
 		require_once('premade/Constants.php');
 		require_once('models/Factory.php');
-		require_once('classes/View.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
 		$user=\application\models\Factory::create('UserDao') AND
@@ -24,7 +23,7 @@ class BlogAdminIndex{
 		\useful\Factory::create('Redirect')
 			->redirect('blog_admin_posts','index');
 
-		\application\classes\View::load('blog_admin_template.php',
+		\useful\View::load('blog_admin_template.php',
 			'blog_admin_index_index.php'
 		);
 	}

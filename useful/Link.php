@@ -1,6 +1,6 @@
 <?php
 
-namespace application\classes;
+namespace useful;
 
 require_once('premade/Constants.php');
 

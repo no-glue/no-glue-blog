@@ -6,7 +6,7 @@ class Factory{
 	public static function create($object,
 	$lookWhere='',
 	$extension='.php',
-	$namespace='\\application\\classes\\',
+	$namespace='\\useful\\',
 	$methodRedirect='another'
 	){
 		$require=$lookWhere.$object.$extension;

@@ -25,9 +25,7 @@ class BlogAdminUsers{
 			->setStatement($userDao->getUsers())
 			->setWhatVo('UserVo');
 
-		require_once('classes/View.php');
-
-		\application\classes\View::load('blog_admin_template.php',
+		\useful\View::load('blog_admin_template.php',
 			'blog_admin_users_index.php',
 			array('users'=>$users)
 		);
@@ -57,9 +55,7 @@ class BlogAdminUsers{
 			->setWhatVo('UserVo')
 			->fetch();
 
-		require_once('classes/View.php');
-
-		\application\classes\View::load('blog_admin_template.php',
+		\useful\View::load('blog_admin_template.php',
 			'blog_admin_users_view.php',
 			array('user'=>$user)
 		);
@@ -68,7 +64,6 @@ class BlogAdminUsers{
 	public function add($requestType,$requestObject){
 		require_once('premade/Constants.php');
 		require_once('models/Factory.php');
-		require_once('classes/View.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\Factory::create('UserDao')->save(
@@ -76,7 +71,7 @@ class BlogAdminUsers{
 				->setFromObject($requestObject)
 		);
 
-		\application\classes\View::load('blog_admin_template.php',
+		\useful\View::load('blog_admin_template.php',
 			'blog_admin_users_add.php'
 		);
 	}

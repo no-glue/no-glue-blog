@@ -29,9 +29,7 @@ class BlogAdminPosts{
 			->setStatement($postDao->getPosts())
 			->setWhatVo('PostVo');
 
-		require_once('classes/View.php');
-
-		\application\classes\View::load('blog_admin_template.php',
+		\useful\View::load('blog_admin_template.php',
 			'blog_admin_posts_index.php',
 			array('posts'=>$posts)
 		);
@@ -63,9 +61,7 @@ class BlogAdminPosts{
 			->setWhatVo('PostVo')
 			->fetch();
 
-		require_once('classes/View.php');
-
-		\application\classes\View::load('blog_admin_template.php',
+		\useful\View::load('blog_admin_template.php',
 			'blog_admin_posts_view.php',
 			array('post'=>$post)
 		);
@@ -74,7 +70,6 @@ class BlogAdminPosts{
 	public function add($requestType,$requestObject){
 		require_once('premade/Constants.php');
 		require_once('models/Factory.php');
-		require_once('classes/View.php');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
 		\application\models\Factory::create('PostDao')->save(
@@ -82,7 +77,7 @@ class BlogAdminPosts{
 				->setFromObject($requestObject)
 		);
 
-		\application\classes\View::load('blog_admin_template.php',
+		\useful\View::load('blog_admin_template.php',
 			'blog_admin_posts_add.php'
 		);
 	}

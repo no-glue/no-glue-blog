@@ -1,6 +1,6 @@
 <?php
 
-namespace application\classes;
+namespace useful;
 
 class Scramble{
 	public function scramble(
