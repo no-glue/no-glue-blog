@@ -9,38 +9,23 @@ class UserDao{
 	protected $_userStatement;
 
 	public function __construct(
-		$databaseWrapper=array(
-			'object'=>'PdoDatabaseWrapper',
-			'factory'=>'\\premade\\Factory'
-		),
-		$scramble=array(
-			'object'=>'Scramble',
-			'factory'=>'\\useful\\Factory'
-		),
-		$session=array(
-			'object'=>'Session',
-			'factory'=>'\\useful\\Factory'
-		),
-		$userStatement=array(
-			'object'=>'UserStatement',
-			'factory'=>'\\blog\\models\\Factory'
-		)
+		$databaseWrapper='PdoDatabaseWrapper',
+		$scramble='Scramble',
+		$session='Session',
+		$userStatement='UserStatement',
+		$premadeFactory='\\premade\\Factory',
+		$usefulFactory='\\useful\\Factory',
+		$modelsFactory='\\blog\\models\\Factory'
 	){
-		$this->_databaseWrapper=$databaseWrapper['factory']::create(
-			$databaseWrapper['object']
+		$this->_databaseWrapper=$premadeFactory::create(
+			$databaseWrapper
 		);
 
-		$this->_scramble=$scramble['factory']::create(
-			$scramble['object']
-		);
+		$this->_scramble=$usefulFactory::create($scramble);
 
-		$this->_session=$session['factory']::create(
-			$session['object']
-		);
+		$this->_session=$usefulFactory::create($session);
 
-		$this->_userStatement=$userStatement['factory']::create(
-			$userStatement['object']
-		);
+		$this->_userStatement=$modelsFactory::create($userStatement);
 	}
 
 	public function setSession($session){

@@ -7,21 +7,17 @@ class PostDao{
 	protected $_postStatement;
 
 	public function __construct(
-		$databaseWrapper=array(
-			'object'=>'PdoDatabaseWrapper',
-			'factory'=>'\\premade\\Factory'
-		),
-		$postStatement=array(
-			'object'=>'PostStatement',
-			'factory'=>'\\blog\\models\\Factory'
-		)
+		$databaseWrapper='PdoDatabaseWrapper',
+		$postStatement='PostStatement',
+		$premadeFactory='\\premade\\Factory',
+		$modelsFactory='\\blog\\models\\Factory'
 	){
-		$this->_databaseWrapper=$databaseWrapper['factory']::create(
-			$databaseWrapper['object']
+		$this->_databaseWrapper=$premadeFactory::create(
+			$databaseWrapper
 		);
 
-		$this->_postStatement=$postStatement['factory']::create(
-			$postStatement['object']
+		$this->_postStatement=$modelsFactory::create(
+			$postStatement
 		);
 	}
 
