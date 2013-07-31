@@ -104,6 +104,8 @@ class SplClassLoader
     public function register()
     {
         spl_autoload_register(array($this, 'loadClass'));
+
+	return $this;
     }
 
     /**
@@ -136,3 +138,5 @@ class SplClassLoader
         }
     }
 }
+
+return (new \premade\SplClassLoader())->register();

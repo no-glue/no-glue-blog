@@ -1,8 +1,5 @@
 <?php
 
-require_once('premade/Factory.php');
+require_once('premade/SplClassLoader.php');
 
-use premade;
-
-\premade\Factory::create('SplClassLoader')->register();
 \premade\Factory::create('IndexSimple');
