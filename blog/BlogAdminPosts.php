@@ -11,8 +11,6 @@ class BlogAdminPosts{
 		$postDao=\blog\models\Factory::create('PostDao');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\blog\models\Factory::create('PostValidate')
-			->validateDelete($requestObject) AND
 		$postDao->deletePostById($requestObject->id);
 
 		$posts=\useful\Factory::create('Result')
@@ -27,8 +25,6 @@ class BlogAdminPosts{
 
 	public function view($requestType,$requestObject){
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\blog\models\Factory::create('PostValidate')
-			->validateUpdate($requestObject) AND
 		\blog\models\Factory::create('PostDao')
 			->update(
 				\blog\models\Factory::create(

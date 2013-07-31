@@ -11,8 +11,6 @@ class BlogAdminUsers{
 		$userDao=\blog\models\Factory::create('UserDao');
 
 		$requestType===\premade\Constants::REQUEST_POST AND
-		\blog\models\Factory::create('UserValidate')
-			->validateDelete($requestObject) AND
 		$userDao->deleteUserById($requestObject->id);
 
 		$users=\useful\Factory::create('Result')
