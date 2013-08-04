@@ -12,11 +12,10 @@ class Result{
 	public function __construct(
 		$databaseWrapper='PdoDatabaseWrapper',
 		$statement=NULL,
-		$whatVo=''
+		$whatVo='',
+		$factory='\\premade\\Factory'
 	){
-		require_once('premade/Factory.php');
-
-		$this->_databaseWrapper=\premade\Factory::create(
+		$this->_databaseWrapper=$factory::create(
 			$databaseWrapper
 		);
 
@@ -58,15 +57,13 @@ class Result{
 		return $this->_whatVo;
 	}
 
-	public function fetch(){
-		require_once('blog/models/Factory.php');
-
+	public function fetch($factory='\\blog\\models\\Factory'){
 		$vo=NULL;
 
 		$statement=$this->_databaseWrapper->fetch($this->_statement);
 
 		$statement AND 
-		$vo=\blog\Models\Factory::create($this->_whatVo) AND 
+		$vo=$factory::create($this->_whatVo) AND 
 		$vo->setFromArray($statement);
 
 		return $vo;

@@ -2,8 +2,6 @@
 
 namespace useful;
 
-require_once('premade/Constants.php');
-
 use premade;
 
 class Redirect{
