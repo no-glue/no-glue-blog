@@ -2,19 +2,17 @@
 
 namespace useful;
 
-require_once('premade/Constants.php');
-require_once('premade/Statics.php');
-
 use premade;
 
 class SessionDatabase implements \SessionHandlerInterface{
 	protected $_databaseWrapper;
 
-	public function __construct($databaseWrapper='PdoDatabaseWrapper'){
-		require_once('premade/Factory.php');
-
+	public function __construct(
+		$databaseWrapper='PdoDatabaseWrapper',
+		$factory='\\premade\\Factory'
+	){
 		$this->_databaseWrapper=
-			\premade\Factory::create(
+			$factory::create(
 				$databaseWrapper
 			);
 

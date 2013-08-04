@@ -2,9 +2,6 @@
 
 namespace useful;
 
-require_once('premade/Constants.php');
-require_once('premade/Statics.php');
-
 use premade;
 
 class Session{
