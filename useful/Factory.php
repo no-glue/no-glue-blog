@@ -11,8 +11,6 @@ class Factory{
 	){
 		$require=$lookWhere.$object.$extension;
 
-		require_once($require);
-
 		$object=$namespace.$object;
 
 		method_exists($object,$methodRedirect) AND
@@ -20,8 +18,6 @@ class Factory{
 		$require=$lookWhere.$redirect.$extension AND
 		$redirect=$namespace.$redirect AND
 		$object=$redirect;
-
-		require_once($require);
 
 		return new $object;
 	}
