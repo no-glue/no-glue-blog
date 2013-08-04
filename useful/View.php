@@ -16,8 +16,6 @@ class View{
 
 		!empty($additionalValues) AND $values=array_merge($values,$additionalValues);
 
-		require_once('Factory.php');
-
 		require_once($viewsLocation.$view);
 	}
 }
