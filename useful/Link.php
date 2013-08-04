@@ -2,10 +2,6 @@
 
 namespace useful;
 
-require_once('premade/Constants.php');
-
-use premade;
-
 class Link{
 	public function link(
 		$class,
