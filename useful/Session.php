@@ -13,7 +13,7 @@ class Session{
 	){
 		$accessRights=array_merge(
 				$accessRights,
-				\premade\Statics::$accessRights
+				\useful\Statics::$accessRights
 		);
 
 		session_start();

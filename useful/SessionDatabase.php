@@ -2,8 +2,6 @@
 
 namespace useful;
 
-use premade;
-
 class SessionDatabase implements \SessionHandlerInterface{
 	protected $_databaseWrapper;
 
@@ -80,8 +78,8 @@ class SessionDatabase implements \SessionHandlerInterface{
 		$accessRights=array()
 	){
 		$accessRights=array_merge(
-			$accessRights,
-			\premade\Statics::$accessRights
+			\useful\Statics::$accessRights,
+			$accessRights
 		);
 
 		session_start();
