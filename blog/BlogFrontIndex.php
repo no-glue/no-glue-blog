@@ -12,7 +12,7 @@ class BlogFrontIndex{
 			->setStatement($postDao->getPosts())
 			->setWhatVo('PostVo');
 
-		\useful\View::load('blog_admin_template.php',
+		\useful\View::load('blog_front_template.php',
 			'blog_front_index_index.php',
 			array('posts'=>$posts)
 		);

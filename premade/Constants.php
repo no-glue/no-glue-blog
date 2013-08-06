@@ -9,6 +9,6 @@ class Constants{
 	const HOST='http://localhost/noglueprojects/noglue_blog/';
 	const APPLICATION_FOLDER='blog/';
 
-	const DEFAULT_INDEX='BlogAdminIndex.php';
+	const DEFAULT_INDEX='BlogFrontIndex.php';
 	const DEFAULT_ACTION='index';
 }
