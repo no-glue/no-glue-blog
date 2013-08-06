@@ -3,7 +3,7 @@
 return array(
 	'css'=>array(
 		'main'=>array(
-			'location'=>'blog/css/noglue_blog.css',
+			'location'=>'blog/css/noglue_blog_front.css',
 			'type'=>'text/css',
 			'rel'=>'stylesheet'
 		)
