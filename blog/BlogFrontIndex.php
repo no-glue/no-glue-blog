@@ -17,6 +17,23 @@ class BlogFrontIndex{
 			array('posts'=>$posts)
 		);
 	}
+
+	public function more($requestType,$requestObject){
+		$post=\useful\Factory::create('Result')
+			->setStatement(
+				\blog\models\Factory::create(
+					'PostDao'
+				)
+				->getPostById($requestObject->id)
+			)
+			->setWhatVo('PostVo')
+			->fetch();
+
+		\useful\View::load('blog_front_template.php',
+			'blog_front_index_more.php',
+			array('post'=>$post)
+		);
+	}
 }
 
 return new \blog\BlogFrontIndex();
