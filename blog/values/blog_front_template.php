@@ -10,8 +10,8 @@ return array(
 	),
 	'subviews'=>array(
 		'header'=>array(
-			'blog_front_title'=>'blog_admin_title.php',
-			'blog_front_description'=>'blog_admin_description.php'
+			'blog_front_title'=>'blog_front_title.php',
+			'blog_front_description'=>'blog_front_description.php'
 		),
 		'blog_admin_body'=>''
 	)
