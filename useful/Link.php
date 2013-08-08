@@ -8,15 +8,18 @@ class Link{
 		$action,
 		$text,
 		$parameters=array(),
-		$host=\premade\Constants::HOST
+		$host=\premade\Constants::HOST,
+		$attributes=array()
 	){
 		$host=(string)$host;
 
+		$attributes=implode(' ',$attributes);
+
 		if($host!==\premade\Constants::HOST){
-			return '<a href=\''.$host.'\'>'.$text.'</a>';
+			return sprintf('<a href=\'%s\' $s>$s</a>',$host,$attributes,$text);
 		}
 
-		$result='<a href=\'%s?%s\'>%s</a>';
+		$result='<a href=\'%s?%s\' %s>%s</a>';
 
 		$query=http_build_query(
 			array_merge(
@@ -27,7 +30,7 @@ class Link{
 				$parameters
 			));
 
-		return sprintf($result,$host,$query,$text);
+		return sprintf($result,$host,$query,$attributes,$text);
 	}
 
 	public function css($location,$type='text/css',$rel='stylesheet'){
