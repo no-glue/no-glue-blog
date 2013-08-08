@@ -16,7 +16,7 @@ class Link{
 		$attributes=implode(' ',$attributes);
 
 		if($host!==\premade\Constants::HOST){
-			return sprintf('<a href=\'%s\' $s>$s</a>',$host,$attributes,$text);
+			return sprintf('<a href=\'%s\' %s>%s</a>',$host,$attributes,$text);
 		}
 
 		$result='<a href=\'%s?%s\' %s>%s</a>';
