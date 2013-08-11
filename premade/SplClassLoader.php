@@ -66,6 +66,8 @@ class SplClassLoader
     public function setIncludePath($includePath)
     {
         $this->_includePath = $includePath;
+
+	return $this;
     }
 
     /**
