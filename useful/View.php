@@ -18,7 +18,7 @@ class View{
 
 		!empty($additionalValues) AND $values=array_merge($values,$additionalValues);
 
-		$view=$this->cache($view,$for,$additionalValues,$valuesLocation,$viewsLocation);
+		$view=self::cache($view,$for,$additionalValues,$valuesLocation,$viewsLocation);
 
 		require_once($viewsLocation.$view);
 	}
@@ -38,10 +38,29 @@ class View{
 			return $view;
 		}
 
-		$cachedFile=$applicationPath.$cachedFolder.$cachedName.$for;
+		$cachedFile=$applicationPath.$cachedFolder.$cachedName.'_'.time().'_'.$for;
+		$require=$cachedName.'_'.time().'_'.$for;
 
 		if(file_exists($cachedFile)){
-			return $cachedName.$for;
+			return $require;
 		}
+
+		ob_start();
+		require_once($viewsLocation.$view);
+		$out=ob_get_clean();
+
+		self::write($cachedFile,$out);
+
+		return $require;
+	}
+
+	public function write($file,$content){
+		$file=fopen($file,'w');
+
+		$bytes=fwrite($content);
+
+		fclose($file);
+
+		return $bytes;
 	}
 }
