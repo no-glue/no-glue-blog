@@ -18,28 +18,26 @@ class View{
 
 		!empty($additionalValues) AND $values=array_merge($values,$additionalValues);
 
-		$view=self::cache($view,$for,$additionalValues,$valuesLocation,$viewsLocation);
+		$view=self::cache($view,$for,$values,$viewsLocation);
 
-		require_once($viewsLocation.$view);
+		require_once($view);
 	}
 
 	public function cache(
 		$view,
 		$for,
-		$additionalValues,
-		$valuesLocation,
+		$values,
 		$viewsLocation,
 		$cache=TRUE,
 		$applicationPath=\premade\Constants::APPLICATION_PATH,
-		$cachedName='cached_',
-		$cachedFolder='views/'
+		$cachedName='cached_'
 	){
 		if(!$cache){
-			return $view;
+			return $viewsLocation.$view;
 		}
 
-		$cachedFile=$applicationPath.$cachedFolder.$cachedName.'_'.time().'_'.$for;
-		$require=$cachedName.'_'.time().'_'.$for;
+		$cachedFile=$applicationPath.$viewsLocation.$cachedName.time().'_'.$for;
+		$require=$viewsLocation.$cachedName.time().'_'.$for;
 
 		if(file_exists($cachedFile)){
 			return $require;
@@ -55,9 +53,9 @@ class View{
 	}
 
 	public function write($file,$content){
-		$file=fopen($file,'w');
+		$pointer=fopen($file,'w');
 
-		$bytes=fwrite($content);
+		$bytes=fwrite($pointer,$content);
 
 		fclose($file);
 
