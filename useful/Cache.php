@@ -12,9 +12,12 @@ class Cache{
 		$applicationLocation=\premade\Constants::APPLICATION_LOCATION,
 		$cachedName='cached_',
 		$cachedLocation='blog/cached/',
-		$expiresSeconds=1800
+		$expiresSeconds=1800,
+		$exclude=array(
+			'blog_admin'
+		)
 	){
-		if(!$cache){
+		if(!$cache || in_array(implode('_',array_slice(explode('_',$for),0,2)),$exclude)){
 			return $viewsLocation.$view;
 		}
 
