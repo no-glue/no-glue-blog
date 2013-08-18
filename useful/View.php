@@ -30,14 +30,16 @@ class View{
 		$viewsLocation,
 		$cache=TRUE,
 		$applicationPath=\premade\Constants::APPLICATION_PATH,
-		$cachedName='cached_'
+		$cachedName='cached_',
+		$cachedLocation='blog/cached/'
 	){
 		if(!$cache){
 			return $viewsLocation.$view;
 		}
 
-		$cachedFile=$applicationPath.$viewsLocation.$cachedName.time().'_'.$for;
-		$require=$viewsLocation.$cachedName.time().'_'.$for;
+		$cachedFile=$applicationPath.$cachedLocation.$cachedName.$for;
+
+		$require=$cachedLocation.$cachedName.$for;
 
 		if(file_exists($cachedFile)){
 			return $require;
