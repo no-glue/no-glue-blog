@@ -21,9 +21,11 @@ class Cache{
 			return $viewsLocation.$view;
 		}
 
-		$cachedFile=$applicationLocation.$cachedLocation.$cachedName.$for;
+		$hash=hash('sha256',print_r($values,true)).'_';
 
-		$require=$cachedLocation.$cachedName.$for;
+		$cachedFile=$applicationLocation.$cachedLocation.$cachedName.$hash.$for;
+
+		$require=$cachedLocation.$cachedName.$hash.$for;
 
 		if(file_exists($cachedFile) && (filemtime($cachedFile)+$expiresSeconds>time())){
 			return $require;
