@@ -8,7 +8,8 @@ class View{
 	$for,
 	$additionalValues=array(),
 	$valuesLocation='blog/values/',
-	$viewsLocation='blog/views/'
+	$viewsLocation='blog/views/',
+	$cache='\\useful\\Cache'
 	){
 		$values=require_once($valuesLocation.$view);
 		$forValues=require_once($valuesLocation.$for);
@@ -18,50 +19,8 @@ class View{
 
 		!empty($additionalValues) AND $values=array_merge($values,$additionalValues);
 
-		$view=self::cache($view,$for,$values,$viewsLocation);
+		$view=$cache::cache($view,$for,$values,$viewsLocation);
 
 		require_once($view);
-	}
-
-	public function cache(
-		$view,
-		$for,
-		$values,
-		$viewsLocation,
-		$cache=TRUE,
-		$applicationPath=\premade\Constants::APPLICATION_PATH,
-		$cachedName='cached_',
-		$cachedLocation='blog/cached/',
-		$expiresSeconds=1800
-	){
-		if(!$cache){
-			return $viewsLocation.$view;
-		}
-
-		$cachedFile=$applicationPath.$cachedLocation.$cachedName.$for;
-
-		$require=$cachedLocation.$cachedName.$for;
-
-		if(file_exists($cachedFile) && (filemtime($cachedFile)+$expiresSeconds>time())){
-			return $require;
-		}
-
-		ob_start();
-		require_once($viewsLocation.$view);
-		$out=ob_get_clean();
-
-		self::write($cachedFile,$out);
-
-		return $require;
-	}
-
-	public function write($file,$content){
-		$pointer=fopen($file,'w');
-
-		$bytes=fwrite($pointer,$content);
-
-		fclose($file);
-
-		return $bytes;
 	}
 }
