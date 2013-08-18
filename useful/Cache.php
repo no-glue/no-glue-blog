@@ -45,7 +45,7 @@ class Cache{
 
 		$bytes=fwrite($pointer,$content);
 
-		fclose($file);
+		fclose($pointer);
 
 		return $bytes;
 	}
