@@ -31,7 +31,8 @@ class View{
 		$cache=TRUE,
 		$applicationPath=\premade\Constants::APPLICATION_PATH,
 		$cachedName='cached_',
-		$cachedLocation='blog/cached/'
+		$cachedLocation='blog/cached/',
+		$expiresSeconds=1800
 	){
 		if(!$cache){
 			return $viewsLocation.$view;
@@ -41,7 +42,7 @@ class View{
 
 		$require=$cachedLocation.$cachedName.$for;
 
-		if(file_exists($cachedFile)){
+		if(file_exists($cachedFile) && (filemtime($cachedFile)+$expiresSeconds>time())){
 			return $require;
 		}
 
