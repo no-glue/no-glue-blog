@@ -9,7 +9,7 @@ class Cache{
 		$values,
 		$viewsLocation,
 		$cache=TRUE,
-		$applicationPath=\premade\Constants::APPLICATION_PATH,
+		$applicationLocation=\premade\Constants::APPLICATION_LOCATION,
 		$cachedName='cached_',
 		$cachedLocation='blog/cached/',
 		$expiresSeconds=1800
@@ -18,7 +18,7 @@ class Cache{
 			return $viewsLocation.$view;
 		}
 
-		$cachedFile=$applicationPath.$cachedLocation.$cachedName.$for;
+		$cachedFile=$applicationLocation.$cachedLocation.$cachedName.$for;
 
 		$require=$cachedLocation.$cachedName.$for;
 
