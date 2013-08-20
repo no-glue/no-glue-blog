@@ -11,7 +11,8 @@ class Cache{
 		$cache=TRUE,
 		$applicationLocation=\premade\Constants::APPLICATION_LOCATION,
 		$cachedName='cached_',
-		$cachedLocation='blog/cached/',
+		$cachedLocation='cached/',
+		$applicationFolder=\premade\Constants::APPLICATION_FOLDER,
 		$expiresSeconds=1800,
 		$exclude=array(
 			'blog_admin'
@@ -25,7 +26,7 @@ class Cache{
 
 		$cachedFile=$applicationLocation.$cachedLocation.$cachedName.$hash.$for;
 
-		$require=$cachedLocation.$cachedName.$hash.$for;
+		$require=$applicationFolder.$cachedLocation.$cachedName.$hash.$for;
 
 		if(file_exists($cachedFile) && (filemtime($cachedFile)+$expiresSeconds>time())){
 			return $require;

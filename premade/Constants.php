@@ -12,5 +12,5 @@ class Constants{
 	const DEFAULT_INDEX='BlogFrontIndex.php';
 	const DEFAULT_ACTION='index';
 
-	const APPLICATION_LOCATION='/var/www/noglueprojects/noglue_blog/';
+	const APPLICATION_LOCATION='/var/www/noglueprojects/noglue_blog/blog/';
 }
