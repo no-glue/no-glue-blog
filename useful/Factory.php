@@ -9,7 +9,6 @@ class Factory{
 	
 	public static function create(
 		$object,
-		$lookWhere='',
 		$namespace='\\useful\\'
 	){
 		$object=isset(self::$real[$object])?self::$real[$object]:$object;

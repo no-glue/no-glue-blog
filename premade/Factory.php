@@ -7,7 +7,6 @@ class Factory{
 
 	public static function create(
 		$object,
-		$lookWhere='',
 		$namespace='\\premade\\',
 		$methodInstance='getInstance'
 	){
