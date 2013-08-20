@@ -3,14 +3,15 @@
 namespace premade;
 
 class Factory{
+	public static $real=array();
+
 	public static function create(
 		$object,
 		$lookWhere='',
-		$extension='.php',
 		$namespace='\\premade\\',
 		$methodInstance='getInstance'
 	){
-		require_once($lookWhere.$object.$extension);
+		$object=isset(self::$real[$object])?self::$real[$object]:$object;
 
 		$object=$namespace.$object;
 
