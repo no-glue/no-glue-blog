@@ -17,18 +17,21 @@ class BlogAdminIndex{
 	}
 
 	public function index($requestType,$requestObject){
-		$this->think->canAccessAdmin($requestType,$requestObject->username,$requestObject->password) AND $this->act->redirect('blog_admin_posts','index');
+		$this->think->canAccessAdmin(
+			$requestType,
+			$requestObject
+		) AND
+		$this->act->redirect('blog_admin_posts','index');
 
-		\useful\View::load('blog_admin_template.php',
+		$this->act->show(
+			'blog_admin_template.php',
 			'blog_admin_index_index.php'
 		);
 	}
 
 	public function logout(){
-		\blog\models\Factory::create('UserDao')
-			->logout() AND
-		\useful\Factory::create('Redirect')
-			->redirect('blog_admin_index','index');
+		$this->think->loggedOut() AND
+		$this->act->redirect('blog_admin_index','index');
 	}
 }
 

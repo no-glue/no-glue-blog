@@ -12,6 +12,18 @@ class BlogAdminIndexAct{
 		$factory='\\useful\\Factory',
 		$do='redirect'
 	){
-		$factory::create($redirect)->$do($class,$action);
+		call_user_func_array(
+			array($factory::create($redirect),$do),
+			array($class,$action)
+		);
+	}
+
+	public function show(
+		$template,
+		$for,
+		$view='\\useful\\View',
+		$action='load'
+	){
+		$view::$action($template,$for);	
 	}
 }

@@ -7,20 +7,28 @@ class BlogAdminIndexThink{
 
 	public function canAccessAdmin(
 		$requestType,
-		$username,
-		$password,
+		$requestObject,
 		$user='UserDao',
 		$currentUserCan='can_access_admin',
 		$wantedRequestType=\premade\Constants::REQUEST_POST,
 		$daoFactory='\\blog\\models\\Factory'
 		
 	){
-		return $requestType===$wantedRequestType AND 
+		return isset($requestObject->username) AND
+			isset($requestObject->password) AND
+			$requestType===$wantedRequestType AND 
 			$user=$daoFactory::create($user) AND
 			$count=$user->login(
-				$username,
-				$password
+				$requestObject->username,
+				$requestObject->password
 			) AND
 			$user->getSession()->currentUserCan('can_access_admin');
+	}
+
+	public function loggedOut(
+		$user='UserDao',
+		$daoFactory='\\blog\\models\\Factory'
+	){
+		return $daoFactory::create($user)->logout();
 	}
 }
