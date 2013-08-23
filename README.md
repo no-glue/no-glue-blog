@@ -1,5 +1,4 @@
 ##No Glue Blog
-_______
 Components for web applications and sample blog application. 
 
 ##Idea of the project
