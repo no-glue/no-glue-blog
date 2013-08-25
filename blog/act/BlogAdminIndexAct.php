@@ -17,6 +17,18 @@ class BlogAdminIndexAct{
 		);
 	}
 
+	public function logout(
+		$user='UserDao',
+		$daoFactory='\\blog\\models\\Factory'
+	){
+		$result=NULL;
+
+		$daoFactory::create($user)->logout() AND
+		$result=$this;
+
+		return $this;
+	}
+
 	public function redirect(
 		$class,
 		$action,

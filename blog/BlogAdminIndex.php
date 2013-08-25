@@ -31,7 +31,7 @@ class BlogAdminIndex{
 	}
 
 	public function logout(){
-		$this->think->loggedout() AND
+		$this->act->logout() AND
 		$this->act->redirect('blog_admin_index','index');
 	}
 }
