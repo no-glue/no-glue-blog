@@ -5,7 +5,7 @@ namespace blog\think;
 class BlogAdminIndexThink{
 	public function __construct(){}
 
-	public function canLogIn(
+	public function canLogin(
 		$requestType,
 		$requestObject,
 		$wantedRequestType=\premade\Constants::REQUEST_POST
@@ -35,10 +35,15 @@ class BlogAdminIndexThink{
 		return $result;
 	}
 
-	public function loggedOut(
+	public function loggedout(
 		$user='UserDao',
 		$daoFactory='\\blog\\models\\Factory'
 	){
-		return $daoFactory::create($user)->logout();
+		$result=NULL;
+
+		$daoFactory::create($user)->logout() AND
+		$result=$this;
+
+		return $this;
 	}
 }
