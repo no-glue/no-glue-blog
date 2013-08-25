@@ -4,7 +4,9 @@ namespace blog;
 
 class BlogAdmin{
 	protected $think;
+
 	protected $act;
+
 	public function __construct(
 		$think='BlogAdminThink',
 		$thinkFactory='\\blog\\think\\Factory',

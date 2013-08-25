@@ -4,6 +4,7 @@ namespace blog;
 
 class BlogAdminIndex{
 	protected $think;
+
 	protected $act;
 
 	public function __construct(
@@ -13,14 +14,14 @@ class BlogAdminIndex{
 		$actFactory='\\blog\\act\\Factory'
 	){
 		$this->think=$thinkFactory::create($think);
+
 		$this->act=$actFactory::create($act);
 	}
 
 	public function index($requestType,$requestObject){
-		$this->think->canAccessAdmin(
-			$requestType,
-			$requestObject
-		) AND
+		$this->think->canLogIn($requestType,$requestObject) AND
+		$this->act->login($requestObject) AND
+		$this->think->canAccessAdmin() AND
 		$this->act->redirect('blog_admin_posts','index');
 
 		$this->act->show(

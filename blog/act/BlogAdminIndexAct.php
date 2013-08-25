@@ -5,6 +5,18 @@ namespace blog\act;
 class BlogAdminIndexAct{
 	public function index(){}
 
+	public function login(
+		$requestObject,
+		$user='UserDao',
+		$daoFactory='\\blog\\models\\Factory'
+	){
+		return $user=$daoFactory::create($user) AND
+		$user->login(
+			$requestObject->username,
+			$requestObject->password
+		);
+	}
+
 	public function redirect(
 		$class,
 		$action,
