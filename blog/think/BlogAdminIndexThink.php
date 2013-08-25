@@ -34,16 +34,4 @@ class BlogAdminIndexThink{
 
 		return $result;
 	}
-
-	public function loggedout(
-		$user='UserDao',
-		$daoFactory='\\blog\\models\\Factory'
-	){
-		$result=NULL;
-
-		$daoFactory::create($user)->logout() AND
-		$result=$this;
-
-		return $this;
-	}
 }
