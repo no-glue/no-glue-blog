@@ -23,7 +23,7 @@ class BlogAdminIndex{
 
 	public function index($requestType,$requestObject){
 		$this->think->canLogin($requestType,$requestObject) AND
-		$this->act->login($requestObject) AND
+		$this->think->loggedin($requestObject) AND
 		$this->think->canAccessAdmin() AND
 		$this->act->redirect('blog_admin_posts','index');
 
@@ -34,7 +34,7 @@ class BlogAdminIndex{
 	}
 
 	public function logout(){
-		$this->act->logout() AND
+		$this->think->loggedout() AND
 		$this->act->redirect('blog_admin_index','index');
 	}
 }
