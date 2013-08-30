@@ -31,7 +31,7 @@ class BlogThink{
 		$user->getSession()->currentUserCan($currentUserCan) AND
 		$result=$this;
 
-		return $this;
+		return $result;
 	}
 
 	public function __call($method,$arguments){

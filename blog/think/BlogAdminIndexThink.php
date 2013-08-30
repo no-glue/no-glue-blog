@@ -34,7 +34,7 @@ class BlogAdminIndexThink{
 		) AND
 		$result=$this;
 
-		return $this;
+		return $result;
 	}
 
 	public function loggedout(

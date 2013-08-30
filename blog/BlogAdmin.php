@@ -9,14 +9,11 @@ class BlogAdmin{
 
 	public function __construct(
 		$think='BlogThink',
-		$thinkChild='BlogAdminThink',
 		$thinkFactory='\\blog\\think\\Factory',
 		$act='BlogAdminAct',
 		$actFactory='\\blog\\act\\Factory'
 	){
-		$this->think=
-			$thinkFactory::create($think)
-				->setChild($thinkFactory::create($thinkChild));
+		$this->think=$thinkFactory::create($think);
 
 		$this->act=$actFactory::create($act);
 
