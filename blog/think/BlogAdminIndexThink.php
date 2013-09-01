@@ -17,6 +17,10 @@ class BlogAdminIndexThink{
 		$requestType===$wantedRequestType AND
 		$result=$this;
 
+		if(!result){
+			throw new \Exception('think');
+		}
+
 		return $result; 
 	}
 
@@ -34,6 +38,10 @@ class BlogAdminIndexThink{
 		) AND
 		$result=$this;
 
+		if(!result){
+			throw new \Exception('think');
+		}
+
 		return $result;
 	}
 
@@ -45,6 +53,10 @@ class BlogAdminIndexThink{
 
 		$daoFactory::create($user)->logout() AND
 		$result=$this;
+
+		if(!result){
+			throw new \Exception('think');
+		}
 
 		return $result;
 	}

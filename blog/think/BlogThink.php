@@ -30,6 +30,10 @@ class BlogThink{
 		$user=$daoFactory::create($user) AND
 		$user->getSession()->currentUserCan($currentUserCan) AND
 		$result=$this;
+		
+		if(!$result){
+			throw new \Exception('think');
+		}
 
 		return $result;
 	}

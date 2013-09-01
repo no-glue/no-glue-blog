@@ -22,9 +22,9 @@ class BlogAdminIndex{
 	}
 
 	public function index($requestType,$requestObject){
-		$this->think->canLogin($requestType,$requestObject) AND
-		$this->think->loggedin($requestObject) AND
-		$this->think->canAccessAdmin() AND
+		$this->think->canLogin($requestType,$requestObject)
+			->loggedin($requestObject)
+			->canAccessAdmin() AND
 		$this->act->redirect('blog_admin_posts','index');
 
 		$this->act->show(
