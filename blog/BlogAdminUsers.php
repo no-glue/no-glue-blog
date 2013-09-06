@@ -3,9 +3,7 @@
 namespace blog;
 
 class BlogAdminUsers{
-	public function __construct(){
-		\blog\Factory::create('BlogAdmin');
-	}
+	public function __construct(){}
 
 	public function index($requestType,$requestObject){
 		$userDao=\blog\models\Factory::create('UserDao');

@@ -3,9 +3,7 @@
 namespace blog;
 
 class BlogAdminPosts{
-	public function __construct(){
-		\blog\Factory::create('BlogAdmin');
-	}
+	public function __construct(){}
 
 	public function index($requestType,$requestObject){
 		$postDao=\blog\models\Factory::create('PostDao');
