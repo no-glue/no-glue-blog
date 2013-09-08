@@ -3,23 +3,13 @@
 namespace blog;
 
 class BlogAdminIndex{
-	protected $think;
-
-	protected $act;
-
 	public function __construct(
 		$think='BlogThink',
 		$thinkChild='BlogAdminIndexThink',
-		$thinkFactory='\\blog\\think\\Factory',
 		$act='BlogAdminIndexAct',
+		$thinkFactory='\\blog\\think\\Factory',
 		$actFactory='\\blog\\act\\Factory'
-	){
-		$this->think=
-			$thinkFactory::create($think)
-				->setChild($thinkFactory::create($thinkChild));
-
-		$this->act=$actFactory::create($act);
-	}
+	){}
 
 	public function index($requestType,$requestObject){
 		$this->think->canLogin($requestType,$requestObject)

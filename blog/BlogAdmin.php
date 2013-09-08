@@ -13,7 +13,10 @@ class BlogAdmin{
 
 	protected $children=array(
 		'BlogAdminIndex'=>array(
-			'class'=>'BlogAdminIndex',
+			'handler'=>array(
+				'\\blog\\handlers\\Factory'
+				'BlogHandler',
+			),
 			'think'=>array(
 				'\\blog\\think\\Factory',
 				'BlogThink',
@@ -27,9 +30,10 @@ class BlogAdmin{
 	);
 
 	public function __construct(
-		$child,
+		$child='',
 		$childFactory='\\blog\\Factory'
 	){
+		isset($this->children[$child]) AND
 		$this->child=$childFactory::create($child);
 	}
 
@@ -65,15 +69,22 @@ class BlogAdmin{
 		if(method_exists($this->child,$method)){
 			$object=$this->child;
 			
-			$setup=$this->children[array_pop($arguments)];
+			$setup=$this->children[array_shift($arguments)];
 
-			foreach($setup as $item=>$pieces){
-				$object->$item=array_pop($pieces)
-					::create(array_pop($pieces))
-					->setChild(array_pop($pieces));
+			$handler=array_shift($setup);
+
+			$this->handler=array_shift($handler)
+				::create(array_shift($handler));
+
+			while(($item=array_shift($setup)) && $item){
+				$object->$item=array_shift($item)
+					::create(array_shift($item))
+					->setChild(array_shift($item));
 			}
 		}
 
 		return call_user_func_array(array($object,$method),$arguments);
 	}
 }
+
+return new \blog\BlogAdmin();
