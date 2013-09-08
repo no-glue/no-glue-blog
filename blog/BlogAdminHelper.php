@@ -10,15 +10,15 @@ class BlogAdminHelper{
 	protected $handler;
 
 	protected $who=array(
-		'BlogAdminIndex'=>array(
+		'blog\\BlogAdminIndex'=>array(
 			'handler'=>array(
 				'factory'=>'\\blog\\handlers\\Factory',
 				'handler'=>'BlogHandler'
 			),
 			'think'=>array(
 				'factory'=>'\\blog\\think\\Factory',
-				'think'=>'BlogAdminThink',
-				'think_child'=>'BlogAdminThinkIndex'
+				'think'=>'BlogThink',
+				'think_child'=>'BlogAdminIndexThink'
 			),
 			'act'=>array(
 				'factory'=>'\\blog\\act\\Factory',
@@ -48,5 +48,11 @@ class BlogAdminHelper{
 				$factory::create($child)
 			);
 		}
+
+		return $this;
+	}
+
+	public function __get($name){
+		return $this->{$name};
 	}
 }
