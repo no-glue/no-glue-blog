@@ -16,7 +16,7 @@ class BlogAdminHelper{
 			),
 			'act'=>array(
 				'factory'=>'\\blog\\act\\Factory',
-				'act'=>'BlogAdminIndexAct'
+				'act'=>'BlogAdminAct'
 			)
 		)
 	);
