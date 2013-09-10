@@ -7,14 +7,8 @@ class BlogAdminHelper{
 
 	protected $act;
 
-	protected $handler;
-
 	protected $who=array(
 		'blog\\BlogAdminIndex'=>array(
-			'handler'=>array(
-				'factory'=>'\\blog\\handlers\\Factory',
-				'handler'=>'BlogHandler'
-			),
 			'think'=>array(
 				'factory'=>'\\blog\\think\\Factory',
 				'think'=>'BlogThink',
