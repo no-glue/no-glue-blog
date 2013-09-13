@@ -3,35 +3,46 @@
 namespace blog;
 
 class BlogAdminIndex{
-	protected $helper;
+	protected $think;
+
+	protected $act;
 
 	public function __construct(
-		$helper='BlogAdminHelper',
-		$factory='\\blog\\Factory'
+		$think='BlogAdminIndexThink',
+		$thinkParent='BlogThink',
+		$act='BlogAdminAct',
+		$exceptionHandler='handle',
+		$thinkFactory='\\blog\\think\\Factory',
+		$actFactory='\\blog\\act\\Factory'
 	){
-		$this->helper=
-			$factory::create($helper)
-			->setup(
-				get_class($this)
-			);
+		$this->think=$thinkFactory::create($thinkParent)
+			->setChild($thinkFactory::create($think));
+
+		$this->act=$actFactory::create($act);
+
+		set_exception_handler(array($this,$exceptionHandler));
 	}
 
 	public function index($requestType,$requestObject){
-		$this->helper->think
+		$this->think
 			->canLogin($requestType,$requestObject)
 			->loggedin($requestObject)
 			->canAccessAdmin() AND
-		$this->helper->act->redirect('blog_admin_posts','index');
+		$this->act->redirect('blog_admin_posts','index');
 
-		$this->helper->act->show(
+		$this->act->show(
 			'blog_admin_template.php',
 			'blog_admin_index_index.php'
 		);
 	}
 
 	public function logout(){
-		$this->helper->think->loggedout() AND
-		$this->helper->act->redirect('blog_admin_index','index');
+		$this->think->loggedout() AND
+		$this->act->redirect('blog_admin_index','index');
+	}
+
+	public function handle($exception){
+		exit($exception->getMessage());
 	}
 }
 

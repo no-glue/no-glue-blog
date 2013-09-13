@@ -18,7 +18,13 @@ class BlogAdminIndexThink{
 		$result=$this;
 
 		if(!$result){
-			throw new \Exception('think');
+			throw new \Exception(
+			json_encode(
+				array(
+					'template'=>'blog_admin_template.php',
+					'for'=>'blog_admin_index_index.php'
+				)
+			));
 		}
 
 		return $result; 

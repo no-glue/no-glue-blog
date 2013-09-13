@@ -3,15 +3,21 @@
 namespace blog\act;
 
 class BlogAdminAct{
-	public function __construct(){
-		set_exception_handler(array($this,'handle'));
+	protected $child;
+
+	public function __construct($child=NULL){
+		$this->child=$child;
 	}
 
-	public function handle($exception){
-		exit($exception->getMessage());
+	public function setChild($child){
+		$this->child=$child;
+		
+		return $this;
 	}
 
-	public function index(){}
+	public function getChild(){
+		return $this->child;
+	}
 
 	public function redirect(
 		$class,
