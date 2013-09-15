@@ -7,6 +7,7 @@ class BlogThink{
 	public function __construct(){}
 
 	public function canAccessAdmin(
+		$message='think',
 		$user='UserDao',
 		$currentUserCan='can_access_admin',
 		$daoFactory='\\blog\\models\\Factory'
@@ -19,7 +20,7 @@ class BlogThink{
 		$result=$this;
 		
 		if(!$result){
-			throw new \Exception('think');
+			throw new \Exception($message);
 		}
 
 		return $result;
@@ -83,12 +84,14 @@ class BlogThink{
 
 	public function isPost(
 		$requestType,
+		$message='think',
 		$post=\premade\Constants::REQUEST_POST
 	){
 		// isPost
 		// checks whether request is post
 		//
 		// @param string requestType
+		// @param string message message to throw
 		// @param string post request type
 		//
 		// @return mixed result if all ok
@@ -99,7 +102,7 @@ class BlogThink{
 		$result=$this;
 
 		if(!$result){
-			throw new \Exception('think');
+			throw new \Exception($message);
 		}
 		
 		return $result;

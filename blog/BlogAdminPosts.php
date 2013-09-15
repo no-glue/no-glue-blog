@@ -19,10 +19,12 @@ class BlogAdminPosts{
 		$this->act=$actFactory::create($act);
 
 		set_exception_handler(array($this,$exceptionHandler));
+
+		$this->think->canAccessAdmin('canAccessAdminConstruct');
 	}
 
 	public function index($requestType,$requestObject){
-		$this->think->isPost($requestType) AND
+		$this->think->isPost($requestType,'isPostIndex') AND
 		$this->act->deletePostById($requestObject->id);
 	}
 
@@ -59,13 +61,28 @@ class BlogAdminPosts{
 	}
 
 	public function handle($exception){
-		$this->act->show(
-			'blog_admin_template.php',
-			'blog_admin_posts_index.php',
-			array(
-				'posts'=>$this->act->getPosts()
-			)
-		);
+		switch($exception->getMessage()){
+			case 'isPostIndex':
+				$this->think->canAccessAdmin(
+					'canAccessAdminHandle'
+				) AND
+				$this->act->show(
+				'blog_admin_template.php',
+				'blog_admin_posts_index.php',
+					array(
+						'posts'=>
+							$this->act
+								->getPosts()
+					)
+				);
+				break;
+			case 'canAccessAdminConstruct':
+				$this->act->redirect(
+					'blog_admin_index',
+					'index'
+				);
+				break;
+		}
 	}
 }
 
