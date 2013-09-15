@@ -3,6 +3,10 @@
 namespace blog;
 
 class BlogAdminPosts{
+	protected $think;
+
+	protected $act;
+
 	public function __construct(){}
 
 	public function index($requestType,$requestObject){

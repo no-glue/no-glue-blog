@@ -80,4 +80,28 @@ class BlogThink{
 
 		return $result;
 	}
+
+	public function isPost(
+		$requestType,
+		$post=\premade\Constants::REQUEST_POST
+	){
+		// isPost
+		// checks whether request is post
+		//
+		// @param string requestType
+		// @param string post request type
+		//
+		// @return mixed result if all ok
+
+		$result=NULL;
+
+		$requestType===$post AND
+		$result=$this;
+
+		if(!$result){
+			throw new \Exception('think');
+		}
+		
+		return $result;
+	}
 }

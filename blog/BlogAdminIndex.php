@@ -9,7 +9,7 @@ class BlogAdminIndex{
 
 	public function __construct(
 		$think='BlogThink',
-		$act='BlogAdminAct',
+		$act='BlogAct',
 		$exceptionHandler='handle',
 		$thinkFactory='\\blog\\think\\Factory',
 		$actFactory='\\blog\\act\\Factory'
