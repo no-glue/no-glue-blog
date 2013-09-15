@@ -8,15 +8,13 @@ class BlogAdminIndex{
 	protected $act;
 
 	public function __construct(
-		$think='BlogAdminIndexThink',
-		$thinkParent='BlogThink',
+		$think='BlogThink',
 		$act='BlogAdminAct',
 		$exceptionHandler='handle',
 		$thinkFactory='\\blog\\think\\Factory',
 		$actFactory='\\blog\\act\\Factory'
 	){
-		$this->think=$thinkFactory::create($thinkParent)
-			->setChild($thinkFactory::create($think));
+		$this->think=$thinkFactory::create($think);
 
 		$this->act=$actFactory::create($act);
 
