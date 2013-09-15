@@ -86,4 +86,29 @@ class BlogAct{
 			)
 		);
 	}
+
+	public function getPost(
+		$id,
+		$result='Result',
+		$dao='PostDao',
+		$vo='PostVo',
+		$factoryResult='\useful\Factory',
+		$factoryDao='\blog\models\Factory'
+	){
+		return $factoryResult::create(
+				$result
+			)
+			->setStatement(
+				$factoryDao::create(
+					$dao
+				)
+				->getPostById(
+					$id
+				)
+			)
+			->setWhatVo(
+				$vo
+			)
+			->fetch();
+	}
 }

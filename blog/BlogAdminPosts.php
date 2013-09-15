@@ -29,18 +29,10 @@ class BlogAdminPosts{
 	}
 
 	public function view($requestType,$requestObject){
-		$this->think->isPost($requestType) AND
+		$this->think->isPost($requestType,'isPostView') AND
 		$this->act->updatePost($requestObject);
 
-		$post=\useful\Factory::create('Result')
-			->setStatement(
-				\blog\models\Factory::create(
-					'PostDao'
-				)
-				->getPostById($requestObject->id)
-			)
-			->setWhatVo('PostVo')
-			->fetch();
+		$post=$this->act->getPost($requestObject->id);
 
 		\useful\View::load('blog_admin_template.php',
 			'blog_admin_posts_view.php',
@@ -76,12 +68,15 @@ class BlogAdminPosts{
 					)
 				);
 				break;
+
 			case 'canAccessAdminConstruct':
 				$this->act->redirect(
 					'blog_admin_index',
 					'index'
 				);
 				break;
+
+			case 'isPostView':break;
 		}
 	}
 }
