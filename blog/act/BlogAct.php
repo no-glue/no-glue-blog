@@ -21,9 +21,32 @@ class BlogAct{
 	public function show(
 		$template,
 		$for,
-		$view='\\useful\\View',
-		$action='load'
+		$pass=array(),
+		$view='\\useful\\View'
 	){
-		$view::$action($template,$for);	
+		$view::load($template,$for,$pass);	
+	}
+
+	public function deletePostById(
+		$id,
+		$dao='PostDao',
+		$factory='\blog\models\Factory'
+	){
+		$factory::create($dao)->deletePostById($id);
+	}
+
+	public function getPosts(
+		$result='Result',
+		$dao='PostDao',
+		$vo='PostVo',
+		$factoryResult='\useful\Factory',
+		$factoryDao='\blog\models\Factory'
+		
+	){
+		return $factoryResult::create($result)
+			->setStatement(
+				$factoryDao::create($dao)->getPosts()
+			)
+			->setWhatVo($vo);
 	}
 }

@@ -7,22 +7,23 @@ class BlogAdminPosts{
 
 	protected $act;
 
-	public function __construct(){}
+	public function __construct(
+		$think='BlogThink',
+		$act='BlogAct',
+		$exceptionHandler='handle',
+		$thinkFactory='\\blog\\think\\Factory',
+		$actFactory='\\blog\\act\\Factory'
+	){
+		$this->think=$thinkFactory::create($think);
+
+		$this->act=$actFactory::create($act);
+
+		set_exception_handler(array($this,$exceptionHandler));
+	}
 
 	public function index($requestType,$requestObject){
-		$postDao=\blog\models\Factory::create('PostDao');
-
-		$requestType===\premade\Constants::REQUEST_POST AND
-		$postDao->deletePostById($requestObject->id);
-
-		$posts=\useful\Factory::create('Result')
-			->setStatement($postDao->getPosts())
-			->setWhatVo('PostVo');
-
-		\useful\View::load('blog_admin_template.php',
-			'blog_admin_posts_index.php',
-			array('posts'=>$posts)
-		);
+		$this->think->isPost($requestType) AND
+		$this->act->deletePostById($requestObject->id);
 	}
 
 	public function view($requestType,$requestObject){
@@ -60,6 +61,16 @@ class BlogAdminPosts{
 
 		\useful\View::load('blog_admin_template.php',
 			'blog_admin_posts_add.php'
+		);
+	}
+
+	public function handle($exception){
+		$this->act->show(
+			'blog_admin_template.php',
+			'blog_admin_posts_index.php',
+			array(
+				'posts'=>$this->act->getPosts()
+			)
 		);
 	}
 }
