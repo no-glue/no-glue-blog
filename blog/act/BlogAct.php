@@ -9,12 +9,14 @@ class BlogAct{
 		$class,
 		$action,
 		$redirect='Redirect',
-		$factory='\\useful\\Factory',
-		$do='redirect'
+		$factory='\\useful\\Factory'
 	){
-		call_user_func_array(
-			array($factory::create($redirect),$do),
-			array($class,$action)
+		$factory::create(
+			$redirect
+		)
+		->redirect(
+			$class,
+			$action
 		);
 	}
 
@@ -24,7 +26,11 @@ class BlogAct{
 		$pass=array(),
 		$view='\\useful\\View'
 	){
-		$view::load($template,$for,$pass);	
+		$view::load(
+			$template,
+			$for,
+			$pass
+		);	
 	}
 
 	public function deletePostById(
@@ -32,7 +38,12 @@ class BlogAct{
 		$dao='PostDao',
 		$factory='\blog\models\Factory'
 	){
-		$factory::create($dao)->deletePostById($id);
+		$factory::create(
+			$dao
+		)
+		->deletePostById(
+			$id
+		);
 	}
 
 	public function getPosts(
@@ -43,10 +54,36 @@ class BlogAct{
 		$factoryDao='\blog\models\Factory'
 		
 	){
-		return $factoryResult::create($result)
-			->setStatement(
-				$factoryDao::create($dao)->getPosts()
+		return $factoryResult::create(
+			$result
+		)
+		->setStatement(
+			$factoryDao::create(
+				$dao
 			)
-			->setWhatVo($vo);
+			->getPosts()
+		)
+		->setWhatVo(
+			$vo
+		);
+	}
+
+	public function updatePost(
+		$requestObject,
+		$dao='PostDao',
+		$vo='PostVo',
+		$factoryDao='\blog\models\Factory'
+	){
+		$factoryDao::create(
+			$dao
+		)
+		->update(
+			$factoryDao::create(
+				$vo
+			)
+			->setFromObject(
+				$requestObject
+			)
+		);
 	}
 }

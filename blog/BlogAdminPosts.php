@@ -27,14 +27,8 @@ class BlogAdminPosts{
 	}
 
 	public function view($requestType,$requestObject){
-		$requestType===\premade\Constants::REQUEST_POST AND
-		\blog\models\Factory::create('PostDao')
-			->update(
-				\blog\models\Factory::create(
-					'PostVo'
-				)
-				->setFromObject($requestObject)
-			);
+		$this->think->isPost($requestType) AND
+		$this->act->updatePost($requestObject);
 
 		$post=\useful\Factory::create('Result')
 			->setStatement(
