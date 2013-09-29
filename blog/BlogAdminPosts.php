@@ -55,9 +55,6 @@ class BlogAdminPosts{
 	public function handle($exception){
 		switch($exception->getMessage()){
 			case 'isPostIndex':
-				$this->think->canAccessAdmin(
-					'canAccessAdminHandle'
-				) AND
 				$this->act->show(
 				'blog_admin_template.php',
 				'blog_admin_posts_index.php',
