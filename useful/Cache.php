@@ -8,7 +8,7 @@ class Cache{
 		$for,
 		$values,
 		$viewsLocation,
-		$cache=TRUE,
+		$cache=FALSE,
 		$applicationLocation=\premade\Constants::APPLICATION_LOCATION,
 		$cachedName='cached_',
 		$cachedLocation='cached/',
