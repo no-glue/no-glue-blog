@@ -33,6 +33,24 @@ class BlogAct{
 		);	
 	}
 
+	public function addPost(
+		$requestObject,
+		$dao='PostDao',
+		$vo='PostVo',
+		$factoryDao='\blog\models\Factory'
+	){
+		return $factoryDao::create(
+			$dao
+		)->save(
+			$factoryDao::create(
+				$vo
+			)
+			->setFromObject(
+				$requestObject
+			)
+		);
+	}
+
 	public function deletePostById(
 		$id,
 		$dao='PostDao',

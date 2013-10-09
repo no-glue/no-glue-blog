@@ -107,4 +107,14 @@ class BlogThink{
 
 		return $result;
 	}
+
+	public function trip(){
+		$args=func_get_args();
+
+		$call=array_shift($args);
+
+		$callback=call_user_func_array(array($this,$call),$args);
+
+		return $callback();
+	}
 }
