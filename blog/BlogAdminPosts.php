@@ -21,7 +21,8 @@ class BlogAdminPosts{
 			$act
 		);
 
-		$this->think->trip('canAccessAdmin');
+		$this->think->trip('canAccessAdmin') AND
+		$this->act->redirect('blog_admin_index','index');
 	}
 
 	public function index(
@@ -38,7 +39,8 @@ class BlogAdminPosts{
 
 		$this->act->show(
 			'blog_admin_template.php',
-			'blog_admin_posts_index.php'
+			'blog_admin_posts_index.php',
+			array('posts'=>$this->act->getPosts())
 		);
 	}
 
