@@ -21,7 +21,7 @@ class BlogAdminPosts{
 			$act
 		);
 
-		$this->think->trip('canAccessAdmin') AND
+		!$this->think->trip('canAccessAdmin') AND
 		$this->act->redirect('blog_admin_index','index');
 	}
 
