@@ -29,7 +29,11 @@ class PostsPopulate{
 
 			$act->addPost(
 				(Object)array(
-					'name'=>str_replace(' ','-',$name),
+					'name'=>str_replace(
+						' ',
+						'-',
+						$name
+					),
 					'title'=>$name,
 					'body'=>$body,
 					'created_at'=>$createdAt,
