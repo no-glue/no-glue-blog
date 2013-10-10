@@ -8,6 +8,7 @@ class Index{
 		$folder=__DIR__
 	){
 		$loader=require_once($classLoader);
+
 		$loader->setIncludePath(dirname($folder));
 	}
 
