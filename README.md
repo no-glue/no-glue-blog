@@ -7,4 +7,4 @@ This project comes with blog application.
 
 ##Some new features
 - Top clean - developers need to write little code on top to get things working.
-- Think Act for controllers - Controllers can think and act accordingly.
+- Think Act for controllers - Controllers can think and act accordingly. Keeps them small and clean.
