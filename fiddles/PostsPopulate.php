@@ -5,10 +5,17 @@ namespace fiddles;
 class PostsPopulate{
 	public function populate(
 		$posts=16,
+		$act='BlogAct',
 		$fakeLorem='FakeLorem',
-		$factory='\useful\Factory'
+		$factoryAct='\blog\act\facory',
+		$factoryUseful='\useful\Factory'
 	){
-		$fakeLorem=$factory::create($fakeLorem);
+		$act=$factoryAct::create($act);
+
+		$fakeLorem=$factoryUseful::create($fakeLorem);
+
+		while($posts--){
+		}
 
 		var_dump($fakeLorem->text());
 	}
