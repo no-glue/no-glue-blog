@@ -129,4 +129,45 @@ class BlogAct{
 			)
 			->fetch();
 	}
+
+	public function deleteUserById(
+		$requestObject,
+		$userDao='UserDao',
+		$factory='\blog\models\Factory'
+	){
+		return $factory::create($userDao)->deleteUserById(
+			$requestObject->id
+		);
+	}
+
+	public function getUsers(
+		$userDao='UserDao',
+		$result='Result',
+		$factoryDao='\blog\models\Factory',
+		$factoryResult='\useful\Factory'
+	){
+		return $factoryResult::create(
+			$result
+		)->setStatement(
+			$factoryDao::create(
+				$userDao
+			)
+			->getUsers()
+		)
+		->setWhatVo(
+			'UserVo'
+		);
+	}
+
+	public function updateUser(
+	
+	){
+		\blog\models\Factory::create('UserDao')
+			->update(
+				\blog\models\Factory::create(
+					'UserVo'
+				)
+				->setFromObject($requestObject)
+			);
+	}
 }

@@ -13,9 +13,13 @@ class BlogAdminIndex{
 		$thinkFactory='\\blog\\think\\Factory',
 		$actFactory='\\blog\\act\\Factory'
 	){
-		$this->think=$thinkFactory::create($think);
+		$this->think=$thinkFactory::create(
+			$think
+		);
 
-		$this->act=$actFactory::create($act);
+		$this->act=$actFactory::create(
+			$act
+		);
 	}
 
 	public function index($requestType,$requestObject){
@@ -41,7 +45,10 @@ class BlogAdminIndex{
 
 	public function logout(){
 		$this->think->loggedout() AND
-		$this->act->redirect('blog_admin_index','index');
+		$this->act->redirect(
+			'blog_admin_index',
+			'index'
+		);
 	}
 }
 

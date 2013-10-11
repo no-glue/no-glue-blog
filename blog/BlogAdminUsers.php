@@ -3,26 +3,58 @@
 namespace blog;
 
 class BlogAdminUsers{
-	public function __construct(){}
+	public function __construct(
+		$think='BlogThink',
+		$act='BlogAct',
+		$thinkFactory='\\blog\\think\\Factory',
+		$actFactory='\\blog\\act\\Factory'
+	){
+		$this->think=$thinkFactory::create(
+			$think
+		);
 
-	public function index($requestType,$requestObject){
-		$userDao=\blog\models\Factory::create('UserDao');
+		$this->act=$actFactory::create(
+			$act
+		);
 
-		$requestType===\premade\Constants::REQUEST_POST AND
-		$userDao->deleteUserById($requestObject->id);
-
-		$users=\useful\Factory::create('Result')
-			->setStatement($userDao->getUsers())
-			->setWhatVo('UserVo');
-
-		\useful\View::load('blog_admin_template.php',
-			'blog_admin_users_index.php',
-			array('users'=>$users)
+		!$this->think->trip(
+			'canAccessAdmin'
+		) AND
+		$this->act->redirect(
+			'blog_admin_index',
+			'index'
 		);
 	}
 
-	public function view($requestType,$requestObject){
-		$requestType===\premade\Constants::REQUEST_POST AND
+	public function index(
+		$requestType,
+		$requestObject
+	){
+		$this->think->trip(
+			'isPost',
+			$requestType
+		) AND
+		$this->act->deleteUserById(
+			$requestObject->id
+		);
+
+		$this->act->show(
+			'blog_admin_template.php',
+			'blog_admin_users_index.php,
+			array(
+				'users'=>$this->act->getUsers()
+			)
+		);
+	}
+
+	public function view(
+		$requestType,
+		$requestObject
+	){
+		$this->think->trip(
+			'isPost',
+			$requestType
+		) AND
 		\blog\models\Factory::create('UserDao')
 			->update(
 				\blog\models\Factory::create(
